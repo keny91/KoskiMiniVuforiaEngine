@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+    <Tracking>
+        <ImageTarget name="board-05" size="126.000000 54.024193"/>
+        <ImageTarget name="board-04" size="126.000000 54.024193"/>
+        <ImageTarget name="board-03" size="126.000000 54.024193"/>
+        <ImageTarget name="board-02" size="126.000000 54.024193"/>
+        <ImageTarget name="block_05.Left" size="18.000000 72.169815"/>
+        <ImageTarget name="block_05.Front" size="18.000000 72.169815"/>
+        <ImageTarget name="block_05.Right" size="18.000000 72.169815"/>
+        <ImageTarget name="block_05.Bottom" size="18.000000 18.000000"/>
+        <ImageTarget name="block_05.Back" size="18.000000 72.169815"/>
+        <ImageTarget name="block_05.Top" size="18.000000 18.000000"/>
+        <ImageTarget name="block_04.Left" size="18.000000 72.169815"/>
+        <ImageTarget name="block_04.Front" size="18.000000 72.169815"/>
+        <ImageTarget name="block_04.Right" size="18.000000 72.169815"/>
+        <ImageTarget name="block_04.Bottom" size="18.000000 18.000000"/>
+        <ImageTarget name="block_04.Back" size="18.000000 72.169815"/>
+        <ImageTarget name="block_04.Top" size="18.000000 18.000000"/>
+        <ImageTarget name="block_03.Left" size="18.000000 72.169815"/>
+        <ImageTarget name="block_03.Front" size="18.000000 72.169815"/>
+        <ImageTarget name="block_03.Right" size="18.000000 72.169815"/>
+        <ImageTarget name="block_03.Bottom" size="18.000000 18.000000"/>
+        <ImageTarget name="block_03.Back" size="18.000000 72.169815"/>
+        <ImageTarget name="block_03.Top" size="18.000000 18.000000"/>
+        <ImageTarget name="block_02.Left" size="18.000000 72.169815"/>
+        <ImageTarget name="block_02.Front" size="18.000000 72.169815"/>
+        <ImageTarget name="block_02.Right" size="18.000000 72.169815"/>
+        <ImageTarget name="block_02.Bottom" size="18.000000 18.000000"/>
+        <ImageTarget name="block_02.Back" size="18.000000 72.169815"/>
+        <ImageTarget name="block_02.Top" size="18.000000 18.000000"/>
+        <ImageTarget name="block_01.Left" size="18.000000 72.169815"/>
+        <ImageTarget name="block_01.Front" size="18.000000 72.169815"/>
+        <ImageTarget name="block_01.Right" size="18.000000 72.169815"/>
+        <ImageTarget name="block_01.Bottom" size="18.000000 18.000000"/>
+        <ImageTarget name="block_01.Back" size="18.000000 72.169815"/>
+        <ImageTarget name="block_01.Top" size="18.000000 18.000000"/>
+
+
+
+        <MultiTarget name="full-board">
+            <!--<Part name="board-02" translation="54.0 126.0 0.0" rotation="AD: 0 1 90 90"/> -->
+            <Part name="board-04" translation="0.0 126.0 0.0" rotation="AD: 0 1 90 90"/>
+            <Part name="board-05" translation="0.0 0.0 0.0" rotation="AD: 0 1 90 90"/>
+            <Part name="board-03" translation="54.0 0.0 0.0" rotation="AD: 0 1 90 90"/>
+        </MultiTarget>
+
+        <MultiTarget name="block_05">
+            <Part name="block_05.Left" translation="-9.0 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="block_05.Right" translation="9.0 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="block_05.Front" translation="0 0 9.0" rotation="AD: 1 0 0 0"/>
+            <Part name="block_05.Back" translation="0 0 -9.0" rotation="AD: 0 1 0 180"/>
+            <Part name="block_05.Top" translation="0 36.0 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="block_05.Bottom" translation="0 -36.0 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+        <MultiTarget name="block_04">
+            <Part name="block_04.Left" translation="-9.0 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="block_04.Right" translation="9.0 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="block_04.Front" translation="0 0 9.0" rotation="AD: 1 0 0 0"/>
+            <Part name="block_04.Back" translation="0 0 -9.0" rotation="AD: 0 1 0 180"/>
+            <Part name="block_04.Top" translation="0 36.0 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="block_04.Bottom" translation="0 -36.0 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+        <MultiTarget name="block_03">
+            <Part name="block_03.Left" translation="-9.0 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="block_03.Right" translation="9.0 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="block_03.Front" translation="0 0 9.0" rotation="AD: 1 0 0 0"/>
+            <Part name="block_03.Back" translation="0 0 -9.0" rotation="AD: 0 1 0 180"/>
+            <Part name="block_03.Top" translation="0 36.0 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="block_03.Bottom" translation="0 -36.0 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+        <MultiTarget name="block_02">
+            <Part name="block_02.Left" translation="-9.0 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="block_02.Right" translation="9.0 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="block_02.Front" translation="0 0 9.0" rotation="AD: 1 0 0 0"/>
+            <Part name="block_02.Back" translation="0 0 -9.0" rotation="AD: 0 1 0 180"/>
+            <Part name="block_02.Top" translation="0 36.0 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="block_02.Bottom" translation="0 -36.0 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+        <MultiTarget name="block_01">
+            <Part name="block_01.Left" translation="-9.0 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="block_01.Right" translation="9.0 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="block_01.Front" translation="0 0 9.0" rotation="AD: 1 0 0 0"/>
+            <Part name="block_01.Back" translation="0 0 -9.0" rotation="AD: 0 1 0 180"/>
+            <Part name="block_01.Top" translation="0 36.0 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="block_01.Bottom" translation="0 -36.0 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+    </Tracking>
+</QCARConfig>
