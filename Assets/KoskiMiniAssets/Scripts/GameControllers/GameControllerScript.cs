@@ -302,7 +302,10 @@ public class GameControllerScript : MonoBehaviour
     {
         Resume();
         GamePause.GetComponent<ScoreCanvasControl>().Hide();     //Make Defeat Menu Visible
+        GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
+        GameUIinGame.GetComponent<ScoreCanvasControl>().changeScoreSprite(score);
         GameUIinGame.GetComponent<ScoreCanvasControl>().Show();     //Make Defeat Menu InVisible
+
     }
 
 
