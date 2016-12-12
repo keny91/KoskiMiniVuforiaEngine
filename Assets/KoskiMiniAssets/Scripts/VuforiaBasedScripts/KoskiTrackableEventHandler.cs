@@ -11,12 +11,13 @@ namespace Vuforia
     /// <summary>
     /// A custom handler that implements the ITrackableEventHandler interface.
     /// </summary>
-    public class DefaultTrackableEventHandler : MonoBehaviour,
+    public class KoskiTrackableEventHandler : MonoBehaviour,
                                                 ITrackableEventHandler
     {
         #region PRIVATE_MEMBER_VARIABLES
  
-        private TrackableBehaviour mTrackableBehaviour;
+        public TrackableBehaviour mTrackableBehaviour;
+        public HideTrackerOnLost theTargetMainFrame;
 
 
         #endregion // PRIVATE_MEMBER_VARIABLES
@@ -28,6 +29,7 @@ namespace Vuforia
         void Start()
         {
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
+            theTargetMainFrame = gameObject.transform.GetComponentInParent<HideTrackerOnLost>();
 
             if (mTrackableBehaviour)
             {
@@ -73,6 +75,8 @@ namespace Vuforia
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
+
+
             // Enable rendering:
             foreach (Renderer component in rendererComponents)
             {
@@ -84,7 +88,7 @@ namespace Vuforia
             {
                 component.enabled = true;
             }
-
+            theTargetMainFrame.UpdateTrackedList(gameObject.name, true);
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
@@ -106,6 +110,7 @@ namespace Vuforia
                 component.enabled = false;
             }
 
+            theTargetMainFrame.UpdateTrackedList(gameObject.name, false);
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 
