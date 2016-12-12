@@ -4,12 +4,12 @@ using System.Collections;
 [RequireComponent(typeof(CanvasGroup))]
 public class CanvasGroupDisplay : MonoBehaviour {
 
-    protected CanvasGroup theDisplayedUI;
+    public CanvasGroup theDisplayedUI;
     public bool isActive;
 
 	// Use this for initialization
 	void Start () {
-        theDisplayedUI = GetComponent<CanvasGroup>();
+        theDisplayedUI = (CanvasGroup)GetComponent<CanvasGroup>();
         isActive = true;
         Debug.LogWarning("Created menu: ", gameObject);
     }

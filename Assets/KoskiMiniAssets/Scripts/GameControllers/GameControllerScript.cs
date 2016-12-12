@@ -39,6 +39,8 @@ public class GameControllerScript : MonoBehaviour
     protected GameObject GameUIinGame;
     public GameObject GamePause;
 
+
+
     // Collectibles
     private GameObject[] coinObject; 
     public int collectibleRemaining;
@@ -200,17 +202,17 @@ public class GameControllerScript : MonoBehaviour
         Respawn = (Transform)GameObject.Find("RespawnPosition").GetComponent<Transform>();
 
         // Get all set of hiddable UI elements
-        //GameMenuWin = (GameObject)GameObject.Find("WinMenu");
-       // GameMenuLose = (GameObject)GameObject.Find("LossMenu");
+        GameMenuWin = (GameObject)GameObject.Find("WinMenu");
+        GameMenuLose = (GameObject)GameObject.Find("LossMenu");
         GameUIinGame = (GameObject)GameObject.Find("InGameUI");
-        //GamePause = (GameObject)GameObject.Find("PauseMenu");
+        GamePause = (GameObject)GameObject.Find("PauseMenu");
 
 
         // Set the interfaces to their proper states
-        //GameMenuWin.GetComponent<ScoreCanvasControl>().Hide();
-        //GameMenuLose.GetComponent<ScoreCanvasControl>().Hide();
+        GameMenuWin.GetComponent<ScoreCanvasControl>().Hide();
+        GameMenuLose.GetComponent<ScoreCanvasControl>().Hide();
         GameUIinGame.GetComponent<ScoreCanvasControl>().Show();
-        //GamePause.GetComponent<ScoreCanvasControl>().Hide();
+        GamePause.GetComponent<ScoreCanvasControl>().Hide();
 
 
         //Resume();
