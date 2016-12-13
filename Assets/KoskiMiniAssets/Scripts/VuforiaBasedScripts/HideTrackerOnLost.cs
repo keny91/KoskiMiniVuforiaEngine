@@ -10,7 +10,7 @@ public class HideTrackerOnLost : MonoBehaviour
     TrackerObj[] trackableList;
     PlayerController thePlayer;
     public GameControllerScript theController;
-    bool allUntracked = true;
+    public bool allUntracked = true;
 
     // ObjectTarget trackable = 
     // Use this for initialization
@@ -43,7 +43,7 @@ public class HideTrackerOnLost : MonoBehaviour
             if (trackableList[m].isTracked())
             {
                 allUntracked = false;
-                Debug.LogWarning("AllUNTRACKED SET TO FALSE");
+                //Debug.LogWarning("AllUNTRACKED SET TO FALSE");
                 break;
             }
                 
@@ -55,7 +55,7 @@ public class HideTrackerOnLost : MonoBehaviour
     public void UpdateTrackedList(string theTrackerName, bool isTracked)
         {
 
-        Debug.LogWarning("Updated Traked List: "+ theTrackerName+ isTracked.ToString());
+        
 
         for (int m = 0; m < trackableList.Length; m++)
         {
@@ -63,12 +63,14 @@ public class HideTrackerOnLost : MonoBehaviour
                 trackableList[m].setTracked(isTracked);
         }
 
-        if (!isTracked && !allUntracked)
+        if ((isTracked && allUntracked) || !allUntracked)
         {
             checkAllUntracked();
         }
-            
 
+
+        //Debug.LogWarning("Updated Traked List: " + theTrackerName + isTracked.ToString());
+        //Debug.LogWarning("Is all untracked:" + allUntracked);
         theController.changeWorldVisible(allUntracked);
     }
 

@@ -149,7 +149,7 @@ public class GameControllerScript : MonoBehaviour
             // Enable rendering:
             foreach (Renderer component in rendererComponents)
             {
-                component.enabled = hidTheWorld;
+                component.enabled = !hidTheWorld;
             }
             WorldHidden = hidTheWorld;
         }
