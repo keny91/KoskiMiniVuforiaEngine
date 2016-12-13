@@ -23,6 +23,11 @@ public class GameControllerScript : MonoBehaviour
     public bool gameRunning = true;
 
 
+    //Hidden world
+    public bool WorldHidden;
+    public GameObject WorldObject;
+
+
     //player
     protected PlayerController thePlayer;
     //protected GameObject playerObject;
@@ -106,7 +111,7 @@ public class GameControllerScript : MonoBehaviour
     }
 
 
-
+    
 
 
 
@@ -130,8 +135,27 @@ public class GameControllerScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Hide the elements located on the world
+    /// </summary>
+    public void changeWorldVisible(bool hidTheWorld)
+    {
 
+        if (hidTheWorld != WorldHidden) // Do only if it changes status
+        {
+            Renderer[] rendererComponents = WorldObject.GetComponentsInChildren<Renderer>(true);
+            //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
 
+            // Enable rendering:
+            foreach (Renderer component in rendererComponents)
+            {
+                component.enabled = !hidTheWorld;
+            }
+            WorldHidden = hidTheWorld;
+        }
+
+        // WorldObject.FIIIIINISHTHISSHIT;
+    }
 
 
 
@@ -200,6 +224,7 @@ public class GameControllerScript : MonoBehaviour
 
         //SetGoal and respawn positions
         Respawn = (Transform)GameObject.Find("RespawnPosition").GetComponent<Transform>();
+        WorldObject = GameObject.Find("WorldScene");
 
         // Get all set of hiddable UI elements
         GameMenuWin = (GameObject)GameObject.Find("WinMenu");
