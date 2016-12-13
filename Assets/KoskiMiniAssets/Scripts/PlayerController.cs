@@ -272,18 +272,13 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// If the jump button is disabled, this method will re-enable the
+    /// </summary>
     void resetJumpButton()
     {
         disabledJumpButton = false;
     }
-
-    /********************************************************/
-    /*************      PLAYER COLLISIONS    ****************/
-    /********************************************************/
-
-
-
 
 
 
