@@ -89,7 +89,7 @@ public class EnemyBehabiour : MonoBehaviour
                 MoveDirection = target - transform.position;
 
                 //Velocity = GetComponent<Rigidbody>().velocity;
-                Debug.LogWarning("MAGNITUDE: " + MoveDirection.magnitude + " Direction: " + MoveDirection.magnitude + " wAypoint: " + curWayPoint);
+                //Debug.LogWarning("MAGNITUDE: " + MoveDirection.magnitude + " Direction: " + MoveDirection.magnitude + " wAypoint: " + curWayPoint);
                 if (MoveDirection.magnitude < 1.0f)
                 {
                     curWayPoint = curWayPoint + 1;
