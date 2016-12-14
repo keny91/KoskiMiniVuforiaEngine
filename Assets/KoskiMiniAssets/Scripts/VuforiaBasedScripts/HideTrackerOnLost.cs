@@ -27,8 +27,6 @@ public class HideTrackerOnLost : MonoBehaviour
             trackableList[m].setName(theList[m].name);
             trackableList[m].setTracked(false);
         }
-
-
     }
 
 

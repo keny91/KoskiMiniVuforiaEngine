@@ -151,6 +151,12 @@ public class GameControllerScript : MonoBehaviour
             {
                 component.enabled = !hidTheWorld;
             }
+
+            if (hidTheWorld)
+                Pause();
+            else
+                Resume();
+
             WorldHidden = hidTheWorld;
         }
 
