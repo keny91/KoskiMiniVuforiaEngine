@@ -21,6 +21,15 @@ public class CameraFocus : MonoBehaviour
         }
     }
 
+
+    /* Debug to find out camera position
+    void Update()
+    {
+        Debug.LogWarning(transform.position);
+    }
+    */
+
+
     private void OnQCARStarted()
     {
         Debug.Log("Vuforia has started.");

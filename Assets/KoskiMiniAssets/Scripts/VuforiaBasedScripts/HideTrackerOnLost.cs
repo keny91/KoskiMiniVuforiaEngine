@@ -35,7 +35,9 @@ public class HideTrackerOnLost : MonoBehaviour
 
 
 
-
+    /// <summary>
+    /// Check if the Overall multitracker should change
+    /// </summary>
     private void checkAllUntracked()
     {
         allUntracked = true;
@@ -52,32 +54,47 @@ public class HideTrackerOnLost : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    /// <summary>
+    /// When one of the TrackedLists has been updated, trigger the multi-target hide/show if the "allUntracked" status changes
+    /// </summary>
+    /// <param name="theTrackerName"></param>
+    /// <param name="isTracked"></param>
     public void UpdateTrackedList(string theTrackerName, bool isTracked)
         {
 
-        
 
-        for (int m = 0; m < trackableList.Length; m++)
+        try
         {
-            if(trackableList[m].getName() == theTrackerName)
-                trackableList[m].setTracked(isTracked);
-        }
+            for (int m = 0; m < trackableList.Length; m++)
+            {
+                if (trackableList[m].getName() == theTrackerName)
+                    trackableList[m].setTracked(isTracked);
+            }
 
-        if ((isTracked && allUntracked) || !allUntracked)
+            if ((isTracked && allUntracked) || !allUntracked)
+            {
+                checkAllUntracked();
+            }
+
+
+            //Debug.LogWarning("Updated Traked List: " + theTrackerName + isTracked.ToString());
+            //Debug.LogWarning("Is all untracked:" + allUntracked);
+            theController.changeWorldVisible(allUntracked);
+        }
+        catch(System.NullReferenceException e)
         {
-            checkAllUntracked();
+            Debug.Log("Suppresed Error: "+ e.Message);
         }
-
-
-        //Debug.LogWarning("Updated Traked List: " + theTrackerName + isTracked.ToString());
-        //Debug.LogWarning("Is all untracked:" + allUntracked);
-        theController.changeWorldVisible(allUntracked);
     }
 
 
 }
 
+
+/// <summary>
+/// Struct that helps keeping the information of singular targetable trackers.
+/// Each struct represents the status of an individual target.
+/// </summary>
 public struct TrackerObj
 {
     string name;
