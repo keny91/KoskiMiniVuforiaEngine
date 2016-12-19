@@ -363,6 +363,22 @@ public class PlayerController : MonoBehaviour {
     }
 
 
+    public void MoveForward()
+    {
+        Vector3 targetVelocity = new Vector3();
+        targetVelocity.z += moveSpeed;
+        extraFunctionalities.VelocityTransition(ref velocity, targetVelocity, "XZ".ToCharArray(), playerCollider.below);
+    }
+
+
+    public void ChangeOrientationClockwise()
+    {
+        Quaternion prov = transform.rotation;
+        prov.y += 90;
+        transform.rotation = prov;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
