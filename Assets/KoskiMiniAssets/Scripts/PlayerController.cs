@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     PhysicsController extraFunctionalities;
     JumpController jumpController;
     JoyStickCustomController joyStickController;
+    JoystickCameraController theCameraJoyStickController;
      
     public LayerMask collisionMaskGround;
 
@@ -338,6 +339,12 @@ public class PlayerController : MonoBehaviour {
             Debug.LogError(e, joyObject);
         }
 
+        GameObject cameraRef = GameObject.Find("ARCamera");
+        theCameraJoyStickController = (JoystickCameraController)cameraRef.GetComponent<JoystickCameraController>();
+        theCameraJoyStickController.SelectJoyStick(joyStickController);
+
+
+
         animationElements = this.GetComponent<Animator>();
         ObjectController = GameObject.Find("GameController");
         theController = GetComponent<GameControllerScript>();
@@ -371,17 +378,22 @@ public class PlayerController : MonoBehaviour {
             animationElements.speed = 1;
             Vector3 MVector = new Vector3();
             if (isControllable)
+            {
+                theCameraJoyStickController.DetermineZone();
                 MVector = joyStickController.getAxisOutput();
+            }
+                
 
             Vector3 targetVelocity = new Vector3();
 
             jumpController.AddFallingForce(ref velocity);
 
-
+            // Set horizontal velocity
             targetVelocity.x += moveSpeed * MVector.y;
             targetVelocity.z += moveSpeed * MVector.x;
             extraFunctionalities.VelocityTransition(ref velocity, targetVelocity, "XZ".ToCharArray(), playerCollider.below);
 
+            
 
             //    if(playerCollider.ObjectHit.collider !=null)
             //        playerCollider.RayHitCheck(playerCollider.ObjectHit);
@@ -391,7 +403,7 @@ public class PlayerController : MonoBehaviour {
 
             Vector2 velXZ = new Vector2(velocity.x, velocity.z);
             animationElements.SetFloat("Speed", velXZ.magnitude);
-            DetermineOrientation(velXZ);
+            DetermineOrientation(velXZ); // Re-orient the object
 
 
 
@@ -424,12 +436,6 @@ public class PlayerController : MonoBehaviour {
                 jumpController.resetJump();
                 animationElements.SetBool("Jumping", false);
             }
-
-
-            /*
-            if (MVector.z != 0)
-                transform.eulerAngles = (MVector.z > 0 && MVector.z != 0) ? Vector3.zero : Vector3.up * 180;
-    */
 
 
 

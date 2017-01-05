@@ -378,7 +378,7 @@ public class GameControllerScript : MonoBehaviour
 
         if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
         {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
             
         }
