@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour {
     PlayerCollisionController playerCollider;
     PhysicsController extraFunctionalities;
     JumpController jumpController;
-    JoyStickCustomController joyStickController;
+   // JoyStickCustomController joyStickController;
+
+    public int Direction;
      
     public LayerMask collisionMaskGround;
 
@@ -340,6 +342,7 @@ public class PlayerController : MonoBehaviour {
         theTagReference.tagList = new Dictionary<string, int>();
         theTagReference.Initialize();
 
+        /*
         // Get the joystick
         GameObject joyObject = GameObject.Find("MobileJoystick");
         try
@@ -351,6 +354,7 @@ public class PlayerController : MonoBehaviour {
         {
             Debug.LogError(e, joyObject);
         }
+        */
 
         animationElements = this.GetComponent<Animator>();
         ObjectController = GameObject.Find("GameController");
@@ -388,9 +392,64 @@ public class PlayerController : MonoBehaviour {
 
     public void ChangeOrientationClockwise()
     {
-        Quaternion prov = transform.rotation;
-        prov.y += 90;
-        transform.rotation = prov;
+        //Quaternion prov = transform.rotation;
+        PlayerCapsule.Rotate(0, 90, 0);
+        SwitchPlayerDirection(+1);
+        //prov.y += 90;
+        //transform.rotation = prov;
+    }
+
+    public void ChangeOrientationAntiClockwise()
+    {
+        //Quaternion prov = transform.rotation;
+        SwitchPlayerDirection(-1);
+        PlayerCapsule.Rotate(0, -90, 0);
+        //transform.rotation = prov;
+    }
+
+
+    public void SwitchPlayerDirection(int amount)
+    {
+        Direction += amount;
+        // keep between 1 and 4
+        if (Direction > 4)
+        {
+            Direction = 1; // From 5 to 1
+        }
+        else if (Direction < 1)
+            Direction = 4; // From 0 to 4
+    }
+
+    public Vector3 Advance()
+    {
+        Vector3 vel = new Vector3() ;
+        Vector2 oriHelp = new Vector2();
+        switch (Direction)
+        {
+            default:
+                Debug.LogWarning("Error at Advance()... Unexpected Value");
+                break;
+
+            case 1:
+                oriHelp.y = moveSpeed;
+                vel.z += moveSpeed;
+                break;
+            case 2:
+                oriHelp.x = moveSpeed;
+                vel.x += moveSpeed;
+                break;
+            case 3:
+                oriHelp.y = -moveSpeed;
+                vel.z -= moveSpeed;
+                break;
+            case 4:
+                oriHelp.x = -moveSpeed;
+                vel.x -= moveSpeed;
+                break;
+        }
+
+        DetermineOrientation(oriHelp);
+        return vel;
     }
 
 
@@ -401,9 +460,21 @@ public class PlayerController : MonoBehaviour {
         {
             animationElements.speed = 1;
             Vector3 MVector = new Vector3();
+            /*
             if (isControllable)
                 MVector = joyStickController.getAxisOutput();
+                */
+            if (isControllable)
+            {
+                if (CrossPlatformInputManager.GetButtonDown("Advance"))
+                    MVector = Advance();
 
+                if (CrossPlatformInputManager.GetButtonDown("TurnClockWise"))
+                    ChangeOrientationClockwise();
+
+                //if (CrossPlatformInputManager.GetButtonDown("TurnAntiClockWise"))
+                 //   ChangeOrientationAntiClockwise();
+            }
             Vector3 targetVelocity = new Vector3();
 
             jumpController.AddFallingForce(ref velocity);
