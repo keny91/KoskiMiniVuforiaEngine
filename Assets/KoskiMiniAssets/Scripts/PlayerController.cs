@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour {
     bool disabledJumpButton = false;
     private float disabledJumpButtonTime = 0.5f;
     public bool jumpActivated = false;
+    private float disabledRotateButton = 0.2f;
+    public bool rotateButtonActivated = false;
 
     // Repulsion on Damage Interaction
     private float HorizontalPushByEnemyDmg = 50f;
@@ -92,6 +94,12 @@ public class PlayerController : MonoBehaviour {
     /********************************************************/
     /*************      ENEMY INTERACTION    ****************/
     /********************************************************/
+
+
+        /// <summary>
+        /// The player object takes a standard amount of damage. It decreases the player life count by one.
+        /// It also calls the gameController to perform a check to determine if the game has finished.
+        /// </summary>
     public void takeDamage()
     {
         // Decrease life count
@@ -237,7 +245,7 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-
+    
     /// <summary>
     /// Find out which should be the orientation of the animated object
     /// </summary>
@@ -280,6 +288,12 @@ public class PlayerController : MonoBehaviour {
         disabledJumpButton = false;
     }
 
+
+
+    void resetRotateButton()
+    {
+        rotateButtonActivated = false;
+    }
 
 
 
@@ -368,6 +382,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 targetVelocity = new Vector3();
         targetVelocity.z += moveSpeed;
         extraFunctionalities.VelocityTransition(ref velocity, targetVelocity, "XZ".ToCharArray(), playerCollider.below);
+        Move(velocity);
     }
 
 

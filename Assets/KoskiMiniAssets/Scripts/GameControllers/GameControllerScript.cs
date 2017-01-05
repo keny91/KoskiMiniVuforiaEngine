@@ -363,6 +363,10 @@ public class GameControllerScript : MonoBehaviour
     /*******************************************************/
     /*****************  Buttons/Actions  *******************/
     /*******************************************************/
+
+        /// <summary>
+        /// Retry button has been pressed.
+        /// </summary>
     public void RetryButton()
     {
         /*
@@ -378,7 +382,7 @@ public class GameControllerScript : MonoBehaviour
 
         if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
         {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
             
         }
@@ -387,7 +391,7 @@ public class GameControllerScript : MonoBehaviour
         {
             CrossPlatformInputManager.UnRegisterVirtualAxis(verticalAxisName);
         }
-        /*
+        /*1
         theHorizontalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
         theVerticalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
         CrossPlatformInputManager.RegisterVirtualAxis(theHorizontalAxis);
