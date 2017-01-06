@@ -466,11 +466,23 @@ public class PlayerController : MonoBehaviour {
                 */
             if (isControllable)
             {
-                if (CrossPlatformInputManager.GetButtonDown("Advance"))
-                    MVector = Advance();
 
-                if (CrossPlatformInputManager.GetButtonDown("TurnClockWise"))
+
+                if (CrossPlatformInputManager.GetButtonDown("TurnClockwise"))
+                {
+                    Debug.Log("Pressed Turn1");
                     ChangeOrientationClockwise();
+                    
+                }
+
+
+                if (CrossPlatformInputManager.GetButton("Advance")) // Instead of buttonDown since only returns true for a single frame
+                {
+                    MVector = Advance();
+                    Debug.Log("Pressed Advance");
+                }
+                    
+
 
                 //if (CrossPlatformInputManager.GetButtonDown("TurnAntiClockWise"))
                  //   ChangeOrientationAntiClockwise();
