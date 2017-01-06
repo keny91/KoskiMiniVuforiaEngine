@@ -44,19 +44,21 @@ public class JoystickCameraController : MonoBehaviour {
     public void DetermineZone()
     {
         CameraZone = -1;
-        if (0 <= transform.rotation.y && transform.rotation.y < 90)
+        float eulerAngle = transform.rotation.eulerAngles.y;
+        //Debug.Log("aaaaaaaaaaaaaaaaaaaaaa:  " + transform.rotation.eulerAngles.y);
+        if (315 <= eulerAngle || eulerAngle < 45)
         {
             CameraZone = 1;
         }
-        else if(90 <= transform.rotation.y && transform.rotation.y < 180)
+        else if(45 <= eulerAngle && eulerAngle < 135)
         {
             CameraZone = 2;
         }
-        else if ((180 <= transform.rotation.y && transform.rotation.y < 270) || (transform.rotation.y < 0 && transform.rotation.y>-90) )
+        else if ((135 <= eulerAngle && eulerAngle < 225) || (eulerAngle < 0 && eulerAngle>-90) )
         {
             CameraZone = 3;
         }
-        else if ((270 <= transform.rotation.y && transform.rotation.y < 360) || (transform.rotation.y < -90 && transform.rotation.y > -180))
+        else if ((225 <= eulerAngle && eulerAngle < 315) || (eulerAngle < -90 && eulerAngle > -180))
         {
             CameraZone = 4;
         }
@@ -88,19 +90,19 @@ public class JoystickCameraController : MonoBehaviour {
                 break;
             case 1:
                 Debug.Log("CAMERA IN ZONE: 1");
-                joyStickController.configureJoystick(true, false, true);
+                joyStickController.configureJoystick(false, false, true ,true);
                 break;
             case 2:
                 Debug.Log("CAMERA IN ZONE: 2");
-                joyStickController.configureJoystick(true, true, true);
+                joyStickController.configureJoystick(true, false, false, true);
                 break;
             case 3:
                 Debug.Log("CAMERA IN ZONE: 3");
-                joyStickController.configureJoystick(false, true, true);
+                joyStickController.configureJoystick(true, true, true, true);
                 break;
             case 4:
                 Debug.Log("CAMERA IN ZONE: 4");
-                joyStickController.configureJoystick(false, false, true);
+                joyStickController.configureJoystick(false, true, false, true);
                 break;
         }
         LastCameraZone = CameraZone;

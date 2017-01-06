@@ -332,12 +332,17 @@ public class PlayerController : MonoBehaviour {
         try
         {
             joyStickController = (JoyStickCustomController)joyObject.GetComponent<JoyStickCustomController>();
-            joyStickController.configureJoystick(false, true, true);
+            joyStickController.configureJoystick(false, true, false , true);
         }
         catch(Exception e)
         {
             Debug.LogError(e, joyObject);
         }
+
+
+        animationElements = this.GetComponent<Animator>();
+        //ObjectController = GameObject.Find("GameController");
+        theController = GetComponent<GameControllerScript>();
 
         GameObject cameraRef = GameObject.Find("ARCamera");
         theCameraJoyStickController = (JoystickCameraController)cameraRef.GetComponent<JoystickCameraController>();
@@ -345,9 +350,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
-        animationElements = this.GetComponent<Animator>();
-        ObjectController = GameObject.Find("GameController");
-        theController = GetComponent<GameControllerScript>();
+
 
         disabledJumpButtonTime = jumpController.timeToReachJumpHeight / 2;
 

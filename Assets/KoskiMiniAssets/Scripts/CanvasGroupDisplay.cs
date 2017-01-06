@@ -23,6 +23,7 @@ public class CanvasGroupDisplay : MonoBehaviour {
         isActive = false;
         theDisplayedUI.alpha = 0;
         theDisplayedUI.interactable = false;
+        theDisplayedUI.blocksRaycasts = false;
     }
     /// <summary>
     /// Display interface and return interactivity
@@ -32,6 +33,7 @@ public class CanvasGroupDisplay : MonoBehaviour {
         isActive = true;
         theDisplayedUI.alpha = 1;
         theDisplayedUI.interactable = true;
+        theDisplayedUI.blocksRaycasts = true;
     }
 
 
