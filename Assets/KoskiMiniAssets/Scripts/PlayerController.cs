@@ -376,7 +376,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (theController.gameRunning) // Only update player if game is running
+        if (theController.gameRunning && !theController.gameStopped) // Only update player if game is running
         {
             animationElements.speed = 1;
             Vector3 MVector = new Vector3();
