@@ -136,11 +136,16 @@ public class GameControllerScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Stop the game when target lost
+    /// </summary>
     public void Stop()
     {
         gameStopped = true;
     }
-
+    /// <summary>
+    /// Resume on target reapeared
+    /// </summary>
     public void Run()
     {
         gameStopped = false;
