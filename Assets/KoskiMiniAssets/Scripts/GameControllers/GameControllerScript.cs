@@ -21,6 +21,7 @@ public class GameControllerScript : MonoBehaviour
     protected Transform CheckPoint1;
 
     public bool gameRunning = true;
+    public bool gameStopped = true;
 
 
     //Hidden world
@@ -135,6 +136,16 @@ public class GameControllerScript : MonoBehaviour
     }
 
 
+    public void Stop()
+    {
+        gameStopped = true;
+    }
+
+    public void Run()
+    {
+        gameStopped = false;
+    }
+
     /// <summary>
     /// Hide the elements located on the world
     /// </summary>
@@ -153,9 +164,9 @@ public class GameControllerScript : MonoBehaviour
             }
 
             if (hidTheWorld)
-                Pause();
+                Stop();
             else
-                Resume();
+                Run();
 
             WorldHidden = hidTheWorld;
         }

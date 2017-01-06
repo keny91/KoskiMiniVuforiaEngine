@@ -323,7 +323,7 @@ public class PlayerController : MonoBehaviour {
 
         // Access to jump controller
         jumpController = (JumpController)GetComponent<JumpController>();
-
+        SwitchPlayerDirection(2);
 
         // Set Up velocity limit for the player
         VelocityLimits = new VelocityLimit(xVelocityLimit, zVelocityLimit, FallingVelocityLimit, RisingVelocityLimit);
@@ -392,21 +392,32 @@ public class PlayerController : MonoBehaviour {
 
     public void ChangeOrientationClockwise()
     {
-        //Quaternion prov = transform.rotation;
-        PlayerCapsule.Rotate(0, 90, 0);
+        Vector3 prov = PlayerCapsule.eulerAngles;
+        prov.y -= 90;
+        Debug.Log("OLD -> " + PlayerCapsule.eulerAngles + " \\\\  NEW -> " + prov.y);
+        PlayerCapsule.eulerAngles = prov;
+
         SwitchPlayerDirection(+1);
-        //prov.y += 90;
-        //transform.rotation = prov;
+
     }
 
     public void ChangeOrientationAntiClockwise()
     {
-        //Quaternion prov = transform.rotation;
+
+        Vector3 prov = PlayerCapsule.eulerAngles;
+        prov.y += 90;
+        Debug.Log("OLD -> " + PlayerCapsule.eulerAngles + " \\\\  NEW -> " + prov.y);
+        PlayerCapsule.eulerAngles = prov;
+
         SwitchPlayerDirection(-1);
-        PlayerCapsule.Rotate(0, -90, 0);
+
         //transform.rotation = prov;
     }
 
+    public void ResetOrientation()
+    {
+        PlayerCapsule.eulerAngles = new Vector3();
+    }
 
     public void SwitchPlayerDirection(int amount)
     {
@@ -424,26 +435,27 @@ public class PlayerController : MonoBehaviour {
     {
         Vector3 vel = new Vector3() ;
         Vector2 oriHelp = new Vector2();
+        Debug.Log("Directions is: " + Direction);
         switch (Direction)
         {
             default:
                 Debug.LogWarning("Error at Advance()... Unexpected Value");
                 break;
 
-            case 1:
-                oriHelp.y = moveSpeed;
+            case 1: //
+                oriHelp.x = moveSpeed;
                 vel.z += moveSpeed;
                 break;
             case 2:
-                oriHelp.x = moveSpeed;
+                oriHelp.y = moveSpeed;
                 vel.x += moveSpeed;
                 break;
-            case 3:
-                oriHelp.y = -moveSpeed;
+            case 3:  //
+                oriHelp.x = -moveSpeed;
                 vel.z -= moveSpeed;
                 break;
             case 4:
-                oriHelp.x = -moveSpeed;
+                oriHelp.y = -moveSpeed;
                 vel.x -= moveSpeed;
                 break;
         }
@@ -456,7 +468,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (theController.gameRunning) // Only update player if game is running
+        if (theController.gameRunning && !theController.gameStopped) // Only update player if game is running
         {
             animationElements.speed = 1;
             Vector3 MVector = new Vector3();
@@ -475,6 +487,12 @@ public class PlayerController : MonoBehaviour {
                     
                 }
 
+                if (CrossPlatformInputManager.GetButtonDown("TurnAntiClockwise"))
+                {
+                    Debug.Log("Pressed Turn2");
+                    ChangeOrientationAntiClockwise();
+
+                }
 
                 if (CrossPlatformInputManager.GetButton("Advance")) // Instead of buttonDown since only returns true for a single frame
                 {
@@ -487,12 +505,12 @@ public class PlayerController : MonoBehaviour {
                 //if (CrossPlatformInputManager.GetButtonDown("TurnAntiClockWise"))
                  //   ChangeOrientationAntiClockwise();
             }
-            Vector3 targetVelocity = new Vector3();
 
+            Vector3 targetVelocity = new Vector3();
             jumpController.AddFallingForce(ref velocity);
 
 
-            targetVelocity.x += moveSpeed * MVector.y;
+            targetVelocity.x += moveSpeed * MVector.z;
             targetVelocity.z += moveSpeed * MVector.x;
             extraFunctionalities.VelocityTransition(ref velocity, targetVelocity, "XZ".ToCharArray(), playerCollider.below);
 
@@ -505,7 +523,7 @@ public class PlayerController : MonoBehaviour {
 
             Vector2 velXZ = new Vector2(velocity.x, velocity.z);
             animationElements.SetFloat("Speed", velXZ.magnitude);
-            DetermineOrientation(velXZ);
+            //DetermineOrientation(velXZ);
 
 
 
