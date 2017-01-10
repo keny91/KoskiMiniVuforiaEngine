@@ -5,9 +5,10 @@ using UnityStandardAssets.CrossPlatformInput;
 using System;
 
 
-[RequireComponent(typeof(GameControllerScript))]
+//[RequireComponent(typeof(GameControllerScript))]
 [RequireComponent(typeof(PlayerCollisionController))]
 [RequireComponent(typeof(JumpController))]
+[RequireComponent(typeof(BoxCollider))]
 
 //[RequireComponent(typeof(BoxCollider))]
 
@@ -139,6 +140,7 @@ public class PlayerController : MonoBehaviour {
                 if (!isInvulnerable)
                 {
                     takeDamage();
+                    theController.theSoundController.playClip(theController.theSoundController.SoundPlayerHit);
                     Vector3 colDir = collision.transform.position - gameObject.transform.FindChild("Origin").transform.position;
 
                     AdditionalMath.EstimateHorizontalRepulsion(colDir, ref velocity, HorizontalPushByEnemyDmg);
@@ -342,7 +344,9 @@ public class PlayerController : MonoBehaviour {
 
         animationElements = this.GetComponent<Animator>();
         //ObjectController = GameObject.Find("GameController");
-        theController = GetComponent<GameControllerScript>();
+        //theController = GetComponent<GameControllerScript>();
+        theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
+
 
         GameObject cameraRef = GameObject.Find("ARCamera");
         theCameraJoyStickController = (JoystickCameraController)cameraRef.GetComponent<JoystickCameraController>();
@@ -369,6 +373,7 @@ public class PlayerController : MonoBehaviour {
     {
         yield return new WaitForSeconds(delayTime);
         // After Delay
+        theController.theSoundController.PlayRandomFrom(theController.theSoundController.SoundJump);
         jumpController.performJump(ref velocity);
     }
 

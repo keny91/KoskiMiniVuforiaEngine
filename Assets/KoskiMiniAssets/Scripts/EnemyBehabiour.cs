@@ -69,7 +69,8 @@ public class EnemyBehabiour : MonoBehaviour
 
         curWayPoint = 0;
         thePlayer = GameObject.Find("Player");
-        theController = (GameControllerScript)thePlayer.GetComponent<GameControllerScript>();
+        //theController = (GameControllerScript)thePlayer.GetComponent<GameControllerScript>();
+        theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
         EnemyObject = transform.FindChild("Oval").gameObject;
         GetWayPoints();
 

@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 using Vuforia;
 
+[RequireComponent(typeof(SoundController))]
 
-[RequireComponent(typeof(BoxCollider))]
 public class GameControllerScript : MonoBehaviour 
     {
 
@@ -27,6 +27,7 @@ public class GameControllerScript : MonoBehaviour
     public bool WorldHidden;
     public GameObject WorldObject;
 
+    public SoundController theSoundController;
 
     //player
     protected PlayerController thePlayer;
@@ -77,7 +78,9 @@ public class GameControllerScript : MonoBehaviour
 
         if (!collect.isPowerUp)
         {            
+
             modifyScore(collect.value);
+            theSoundController.playClip(theSoundController.SoundCoinCollected);
         }
             
         else
@@ -206,7 +209,11 @@ public class GameControllerScript : MonoBehaviour
         score += value;
         GameUIinGame.GetComponent<ScoreCanvasControl>().changeScoreSprite(score);
         if (score > score_th)
+        {
             ChangeLiveCount(1);
+            theSoundController.playClip(theSoundController.Sound1Up);
+        }
+            
     }
 
     /// <summary> Simple method to modify the life count. If the score beats a certain threshold and event is activated.
@@ -287,6 +294,9 @@ public class GameControllerScript : MonoBehaviour
         GameObject objectRespawn = GameObject.Find("RespawnPosition");
         Respawn = objectRespawn.transform;
 
+        theSoundController = (SoundController)GetComponent<SoundController>();
+        theSoundController.PlayBackGroundMusic();
+
         GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
 
     }
@@ -320,6 +330,7 @@ public class GameControllerScript : MonoBehaviour
     void OnVictory()
     {
         Pause();  // Pause the game
+        theSoundController.playClip(theSoundController.SoundVictory);
         //HideUI();
         GameMenuWin.GetComponent<ScoreCanvasControl>().Show();     //Make Win Menu Visible
         GameUIinGame.GetComponent<ScoreCanvasControl>().Hide();     //Make player controls Menu InVisible
@@ -362,7 +373,7 @@ public class GameControllerScript : MonoBehaviour
     void OnDefeat()
     {
         Pause();  // Pause the game
-        //HideUI();
+        theSoundController.playClip(theSoundController.SoundDefeat);
         GameMenuLose.GetComponent<ScoreCanvasControl>().Show();     //Make Defeat Menu Visible
         GameUIinGame.GetComponent<ScoreCanvasControl>().Hide();     //Make Defeat Menu InVisible
         // Update data
@@ -394,7 +405,6 @@ public class GameControllerScript : MonoBehaviour
 
         if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
         {
-            //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
             
         }
