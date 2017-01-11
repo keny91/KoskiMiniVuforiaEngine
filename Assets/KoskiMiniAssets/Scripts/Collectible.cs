@@ -15,7 +15,8 @@ public class Collectible : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        theController = GameObject.Find("Player").GetComponent<GameControllerScript>();
+        //theController = GameObject.Find("Player").GetComponent<GameControllerScript>();
+        theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
 
     }
 

@@ -5,9 +5,10 @@ using UnityStandardAssets.CrossPlatformInput;
 using System;
 
 
-[RequireComponent(typeof(GameControllerScript))]
+//[RequireComponent(typeof(GameControllerScript))]
 [RequireComponent(typeof(PlayerCollisionController))]
 [RequireComponent(typeof(JumpController))]
+[RequireComponent(typeof(BoxCollider))]
 
 //[RequireComponent(typeof(BoxCollider))]
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     PhysicsController extraFunctionalities;
     JumpController jumpController;
     JoyStickCustomController joyStickController;
+    JoystickCameraController theCameraJoyStickController;
      
     public LayerMask collisionMaskGround;
 
@@ -138,6 +140,7 @@ public class PlayerController : MonoBehaviour {
                 if (!isInvulnerable)
                 {
                     takeDamage();
+                    theController.theSoundController.playClip(theController.theSoundController.SoundPlayerHit);
                     Vector3 colDir = collision.transform.position - gameObject.transform.FindChild("Origin").transform.position;
 
                     AdditionalMath.EstimateHorizontalRepulsion(colDir, ref velocity, HorizontalPushByEnemyDmg);
@@ -331,16 +334,27 @@ public class PlayerController : MonoBehaviour {
         try
         {
             joyStickController = (JoyStickCustomController)joyObject.GetComponent<JoyStickCustomController>();
-            joyStickController.configureJoystick(false, true, true);
+            joyStickController.configureJoystick(false, true, false , true);
         }
         catch(Exception e)
         {
             Debug.LogError(e, joyObject);
         }
 
+
         animationElements = this.GetComponent<Animator>();
-        ObjectController = GameObject.Find("GameController");
-        theController = GetComponent<GameControllerScript>();
+        //ObjectController = GameObject.Find("GameController");
+        //theController = GetComponent<GameControllerScript>();
+        theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
+
+
+        GameObject cameraRef = GameObject.Find("ARCamera");
+        theCameraJoyStickController = (JoystickCameraController)cameraRef.GetComponent<JoystickCameraController>();
+        theCameraJoyStickController.SelectJoyStick(joyStickController);
+
+
+
+
 
         disabledJumpButtonTime = jumpController.timeToReachJumpHeight / 2;
 
@@ -359,6 +373,7 @@ public class PlayerController : MonoBehaviour {
     {
         yield return new WaitForSeconds(delayTime);
         // After Delay
+        theController.theSoundController.PlayRandomFrom(theController.theSoundController.SoundJump);
         jumpController.performJump(ref velocity);
     }
 
@@ -366,22 +381,27 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (theController.gameRunning) // Only update player if game is running
+        if (theController.gameRunning && !theController.gameStopped) // Only update player if game is running
         {
             animationElements.speed = 1;
             Vector3 MVector = new Vector3();
             if (isControllable)
+            {
+                theCameraJoyStickController.DetermineZone();
                 MVector = joyStickController.getAxisOutput();
+            }
+                
 
             Vector3 targetVelocity = new Vector3();
 
             jumpController.AddFallingForce(ref velocity);
 
-
+            // Set horizontal velocity
             targetVelocity.x += moveSpeed * MVector.y;
             targetVelocity.z += moveSpeed * MVector.x;
             extraFunctionalities.VelocityTransition(ref velocity, targetVelocity, "XZ".ToCharArray(), playerCollider.below);
 
+            
 
             //    if(playerCollider.ObjectHit.collider !=null)
             //        playerCollider.RayHitCheck(playerCollider.ObjectHit);
@@ -391,7 +411,7 @@ public class PlayerController : MonoBehaviour {
 
             Vector2 velXZ = new Vector2(velocity.x, velocity.z);
             animationElements.SetFloat("Speed", velXZ.magnitude);
-            DetermineOrientation(velXZ);
+            DetermineOrientation(velXZ); // Re-orient the object
 
 
 
@@ -424,12 +444,6 @@ public class PlayerController : MonoBehaviour {
                 jumpController.resetJump();
                 animationElements.SetBool("Jumping", false);
             }
-
-
-            /*
-            if (MVector.z != 0)
-                transform.eulerAngles = (MVector.z > 0 && MVector.z != 0) ? Vector3.zero : Vector3.up * 180;
-    */
 
 
 

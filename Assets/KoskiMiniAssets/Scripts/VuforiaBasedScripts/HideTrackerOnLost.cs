@@ -21,7 +21,8 @@ public class HideTrackerOnLost : MonoBehaviour
 
 
         thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
-        theController = (GameControllerScript)GameObject.Find("Player").GetComponent<GameControllerScript>();
+        theController = (GameControllerScript)GameObject.Find("GameControl").GetComponent<GameControllerScript>();
+
 
         //trackableList = new TrackerObj[theList.Length];
         trackableList = new TrackerObj[listLenght];

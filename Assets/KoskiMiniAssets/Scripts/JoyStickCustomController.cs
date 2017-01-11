@@ -9,13 +9,15 @@ public class JoyStickCustomController : Joystick {
     public bool InvertX = false;
     public bool InvertY = false;
     public bool SingleAxisInput = false;
+    public bool Swapped = false;
 
 
-    public void configureJoystick(bool X, bool Y, bool Single)
+    public void configureJoystick(bool X, bool Y, bool swap,bool Single)
     {
         //Debug.LogWarning("JOYSTICK DONE");
         InvertX = X;
         InvertY = Y;
+        Swapped = swap;
         SingleAxisInput = Single;
     }
 
@@ -123,15 +125,16 @@ public class JoyStickCustomController : Joystick {
 
         }
 
-        Output = new Vector2(valueX, valueY);
+        
+
+        if(Swapped)
+            Output = new Vector2(valueY, valueX);
+        else       
+            Output = new Vector2(valueX, valueY);
 
         return Output;
     }
 
 
 
-    // Update is called once per frame
-    void Update () {
-	
-	}
 }
