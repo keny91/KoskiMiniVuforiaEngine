@@ -161,21 +161,29 @@ public class GameControllerScript : MonoBehaviour
 
         if (hidTheWorld != WorldHidden) // Do only if it changes status
         {
-            Renderer[] rendererComponents = WorldObject.GetComponentsInChildren<Renderer>(true);
-            //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
-
-            // Enable rendering:
-            foreach (Renderer component in rendererComponents)
+            try
             {
-                component.enabled = !hidTheWorld;
+                Renderer[] rendererComponents = WorldObject.GetComponentsInChildren<Renderer>(true);
+                //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
+
+                // Enable rendering:
+                foreach (Renderer component in rendererComponents)
+                {
+                    component.enabled = !hidTheWorld;
+                }
+
+                if (hidTheWorld)
+                    Stop();
+                else
+                    Run();
+
+                WorldHidden = hidTheWorld;
+            }
+            catch (UnassignedReferenceException e)
+            {
+                Debug.Log("Suppressed Error: "+ e);
             }
 
-            if (hidTheWorld)
-                Stop();
-            else
-                Run();
-
-            WorldHidden = hidTheWorld;
         }
 
         // WorldObject.FIIIIINISHTHISSHIT;
@@ -268,6 +276,8 @@ public class GameControllerScript : MonoBehaviour
         GameUIinGame.GetComponent<ScoreCanvasControl>().Show();
         GamePause.GetComponent<ScoreCanvasControl>().Hide();
 
+        GameUIinGame.GetComponent<ScoreCanvasControl>().Start();  // Force to initialize the element
+        GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
 
         //Resume();
 
@@ -289,15 +299,18 @@ public class GameControllerScript : MonoBehaviour
         }
 
         //playerObject = GameObject.Find("Player");
-        thePlayer = (PlayerController)GetComponent<PlayerController>();
+        thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
 
         GameObject objectRespawn = GameObject.Find("RespawnPosition");
         Respawn = objectRespawn.transform;
 
+        
+
         theSoundController = (SoundController)GetComponent<SoundController>();
         theSoundController.PlayBackGroundMusic();
 
-        GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
+        
+        //Debug.LogWarning(Lives);
 
     }
 	

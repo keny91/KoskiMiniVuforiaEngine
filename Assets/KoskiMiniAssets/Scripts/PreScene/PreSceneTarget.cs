@@ -3,34 +3,37 @@ using System.Collections;
 using Vuforia;
 using System.Collections.Generic;
 
-public class HideTrackerOnLost : MonoBehaviour
-                                                
+public class PreSceneTarget : MonoBehaviour
+
 {
 
-    TrackerObj[] trackableList;
-    PlayerController thePlayer;
-    public GameControllerScript theController;
+    public TrackerObj[] trackableList;
+    //PlayerController thePlayer;
+    public PreSceneControl theController;
     public bool allUntracked = true;
 
     // ObjectTarget trackable = 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
 
         //GameObject[] theList = GameObject.FindGameObjectsWithTag("Trackable");
         int listLenght = transform.childCount;
 
 
-        thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
-        theController = (GameControllerScript)GameObject.Find("GameControl").GetComponent<GameControllerScript>();
+        //thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
+        theController = (PreSceneControl)GameObject.Find("UI").GetComponent<PreSceneControl>();
 
 
         //trackableList = new TrackerObj[theList.Length];
         trackableList = new TrackerObj[listLenght];
         for (int m = 0; m < listLenght; m++)
         {
+            Debug.LogError(transform.GetChild(m).name);
             trackableList[m].setName(transform.GetChild(m).name);
             trackableList[m].setTracked(false);
         }
+        
     }
 
 
@@ -50,7 +53,7 @@ public class HideTrackerOnLost : MonoBehaviour
                 //Debug.LogWarning("AllUNTRACKED SET TO FALSE");
                 break;
             }
-                
+
         }
     }
 
@@ -61,7 +64,7 @@ public class HideTrackerOnLost : MonoBehaviour
     /// <param name="theTrackerName"></param>
     /// <param name="isTracked"></param>
     public void UpdateTrackedList(string theTrackerName, bool isTracked)
-        {
+    {
 
 
         try
@@ -82,16 +85,16 @@ public class HideTrackerOnLost : MonoBehaviour
             Debug.LogWarning("Is all untracked:" + allUntracked);
             theController.changeWorldVisible(allUntracked);
         }
-        catch(System.NullReferenceException e)
+        catch (System.NullReferenceException e)
         {
-            Debug.Log("Suppresed Error: "+ e.Message);
+            Debug.Log("Suppresed Error: " + e.Message);
         }
     }
 
 
 }
 
-
+/*
 /// <summary>
 /// Struct that helps keeping the information of singular targetable trackers.
 /// Each struct represents the status of an individual target.
@@ -117,7 +120,9 @@ public struct TrackerObj
     }
 
     public string getName()
-        {
-            return name;
-        }
+    {
+        return name;
     }
+}
+
+    */
