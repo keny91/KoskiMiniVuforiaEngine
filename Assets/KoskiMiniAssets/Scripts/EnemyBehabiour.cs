@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyBehabiour : MonoBehaviour {
+public class EnemyBehabiour : MonoBehaviour
+{
 
     public int Lives;
-    public Transform Origin; // always add a beggining and end patrol point.
+    //public Transform Origin; // always add a beggining and end patrol point.
     public float speed = 2f;
 
     GameObject thePlayer;
+    GameObject EnemyObject;
     GameControllerScript theController;
+
+    protected Animator AnimationElement;
+
 
     public Transform[] Waypoints;
     private int curWayPoint;
@@ -17,7 +22,7 @@ public class EnemyBehabiour : MonoBehaviour {
     private Vector3 MoveDirection;
     private Vector3 Velocity;
     private int RouteModifier;
-    
+
 
 
     // Enemies can only take damage
@@ -41,14 +46,33 @@ public class EnemyBehabiour : MonoBehaviour {
         transform.Translate(Velocity);
     }
 
+
+    protected void GetWayPoints()
+    {
+        Transform theWayPointContainer = transform.parent.FindChild("enemyPatrol");
+        int childNumber = theWayPointContainer.childCount;
+
+        Waypoints = new Transform[childNumber];
+
+        for(int i =0;i<Waypoints.Length; i++)
+        {
+            Waypoints[i] = theWayPointContainer.FindChild("Point" + (i+1).ToString());
+        }
+
+    }
+
+
+
     // Use this for initialization
-    void Start () {
-        //gameObject.transform.position = Origin.position;
-        //RouteModifier = +1;
-        //currPathPoint = 0;
-        //target = pathPoints[currPathPoint+RouteModifier].position;
+    void Start()
+    {
+
+        curWayPoint = 0;
         thePlayer = GameObject.Find("Player");
-        theController = (GameControllerScript)thePlayer.GetComponent<GameControllerScript>();
+        //theController = (GameControllerScript)thePlayer.GetComponent<GameControllerScript>();
+        theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
+        EnemyObject = transform.FindChild("Oval").gameObject;
+        GetWayPoints();
 
     }
 
@@ -56,17 +80,21 @@ public class EnemyBehabiour : MonoBehaviour {
     void Update()
     {
 
-        if (true)
+        if (theController.gameRunning)
         {
+            GetComponent<Animator>().speed = 1;
+
             if (curWayPoint < Waypoints.Length)
             {
                 target = Waypoints[curWayPoint].position;
                 MoveDirection = target - transform.position;
-                //Velocity = GetComponent<Rigidbody>().velocity;
 
-                if (MoveDirection.magnitude < 1)
+                //Velocity = GetComponent<Rigidbody>().velocity;
+                //Debug.LogWarning("MAGNITUDE: " + MoveDirection.magnitude + " Direction: " + MoveDirection.magnitude + " wAypoint: " + curWayPoint);
+                if (MoveDirection.magnitude < 1.0f)
                 {
-                    curWayPoint++;
+                    curWayPoint = curWayPoint + 1;
+                    Velocity = MoveDirection.magnitude * MoveDirection.normalized;
                 }
                 else
                 {
@@ -91,9 +119,10 @@ public class EnemyBehabiour : MonoBehaviour {
             Debug.Log("<color=green>Direction: </color>" + MoveDirection);
             */
 
-            GetComponent<Rigidbody>().velocity = Velocity;
+            //GetComponent<Rigidbody>().velocity = Velocity;
+            transform.Translate(Velocity);
             //Move();
-            transform.LookAt(target);
+            EnemyObject.transform.LookAt(target);
         }
         else
         {
@@ -101,5 +130,47 @@ public class EnemyBehabiour : MonoBehaviour {
         }
 
 
+    }
+}
+
+
+
+
+//theTagReference = new TagDatabase();
+//theTagReference.tagList = new Dictionary<string, int>();
+
+/// <summary>
+/// Struct to keep singular paths with an animation/animationsSpeed/speed
+/// </summary>
+public struct PathSegment
+{
+    int animationStatus;
+    Vector3 OriginPosition, EndPosition;
+    public float animationSpeed, speed;
+
+    public void SetPath(Vector3 ori, Vector3 end)
+    {
+        OriginPosition = ori;
+        EndPosition = end;
+    }
+
+    public void setAnimationStatus(int status)
+    {
+        animationStatus = status;
+    }
+
+    public Vector3 getEnd()
+    {
+        return EndPosition;
+    }
+
+    public Vector3 getOrigin()
+    {
+        return OriginPosition;
+    }
+
+    public int getAnimationStatus()
+    {
+        return animationStatus;
     }
 }

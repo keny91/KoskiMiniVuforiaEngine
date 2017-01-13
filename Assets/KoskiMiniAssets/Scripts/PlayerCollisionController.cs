@@ -134,7 +134,6 @@ public class PlayerCollisionController : CollisionControler
         // Depending on which direction we are moving 
         Vector3 rayOrigin = (directionY == -1) ? raycastOrigins.botLeftBack : raycastOrigins.topLeftBack;
         rayOrigin += new Vector3(velocity.x, 0, velocity.z);    // CHECK THIS... MIGHT BE TROUBLE
-        bool hitObj = false;
 
         // Create a rayCast plane below the player
         for (int i = 0; i < XRayCount; i++)
@@ -194,7 +193,7 @@ public class PlayerCollisionController : CollisionControler
         // Depending on which direction we are moving 
         Vector3 rayOrigin = (directionX == -1 || directionX == 0) ? raycastOrigins.botLeftBack : raycastOrigins.botLeftFront;
         rayOrigin += new Vector3(0, velocity.y, velocity.z);    // CHECK THIS... MIGHT BE TROUBLE
-        bool hitObj = false;
+
 
         // Create a rayCast plane below the player
         for (int i = 0; i < ZRayCount; i++)
@@ -253,7 +252,6 @@ public class PlayerCollisionController : CollisionControler
         // Depending on which direction we are moving 
         Vector3 rayOrigin = (directionZ == -1 || directionZ == 0) ? raycastOrigins.botLeftBack : raycastOrigins.botRightBack;
         rayOrigin += new Vector3(velocity.x, velocity.y, 0);    // CHECK THIS... MIGHT BE TROUBLE
-        bool hitObj = false;
 
         // Create a rayCast plane below the player
         for (int i = 0; i < XRayCount; i++)

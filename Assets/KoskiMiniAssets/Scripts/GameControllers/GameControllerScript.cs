@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 using Vuforia;
 
+[RequireComponent(typeof(SoundController))]
 
-[RequireComponent(typeof(BoxCollider))]
 public class GameControllerScript : MonoBehaviour 
     {
 
@@ -21,7 +21,13 @@ public class GameControllerScript : MonoBehaviour
     protected Transform CheckPoint1;
 
     public bool gameRunning = true;
+    public bool gameStopped = true;
 
+    //Hidden world
+    public bool WorldHidden;
+    public GameObject WorldObject;
+
+    public SoundController theSoundController;
 
     //player
     protected PlayerController thePlayer;
@@ -38,6 +44,8 @@ public class GameControllerScript : MonoBehaviour
     protected GameObject GameMenuWin;
     protected GameObject GameUIinGame;
     public GameObject GamePause;
+
+
 
     // Collectibles
     private GameObject[] coinObject; 
@@ -70,7 +78,9 @@ public class GameControllerScript : MonoBehaviour
 
         if (!collect.isPowerUp)
         {            
+
             modifyScore(collect.value);
+            theSoundController.playClip(theSoundController.SoundCoinCollected);
         }
             
         else
@@ -104,7 +114,7 @@ public class GameControllerScript : MonoBehaviour
     }
 
 
-
+    
 
 
 
@@ -128,7 +138,56 @@ public class GameControllerScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Stop the game when target lost
+    /// </summary>
+    public void Stop()
+    {
+        gameStopped = true;
+    }
+    /// <summary>
+    /// Resume on target reapeared
+    /// </summary>
+    public void Run()
+    {
+        gameStopped = false;
+    }
 
+    /// <summary>
+    /// Hide the elements located on the world
+    /// </summary>
+    public void changeWorldVisible(bool hidTheWorld)
+    {
+
+        if (hidTheWorld != WorldHidden) // Do only if it changes status
+        {
+            try
+            {
+                Renderer[] rendererComponents = WorldObject.GetComponentsInChildren<Renderer>(true);
+                //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
+
+                // Enable rendering:
+                foreach (Renderer component in rendererComponents)
+                {
+                    component.enabled = !hidTheWorld;
+                }
+
+                if (hidTheWorld)
+                    Stop();
+                else
+                    Run();
+
+                WorldHidden = hidTheWorld;
+            }
+            catch (UnassignedReferenceException e)
+            {
+                Debug.Log("Suppressed Error: "+ e);
+            }
+
+        }
+
+        // WorldObject.FIIIIINISHTHISSHIT;
+    }
 
 
 
@@ -158,7 +217,11 @@ public class GameControllerScript : MonoBehaviour
         score += value;
         GameUIinGame.GetComponent<ScoreCanvasControl>().changeScoreSprite(score);
         if (score > score_th)
+        {
             ChangeLiveCount(1);
+            theSoundController.playClip(theSoundController.Sound1Up);
+        }
+            
     }
 
     /// <summary> Simple method to modify the life count. If the score beats a certain threshold and event is activated.
@@ -198,20 +261,23 @@ public class GameControllerScript : MonoBehaviour
 
         //SetGoal and respawn positions
         Respawn = (Transform)GameObject.Find("RespawnPosition").GetComponent<Transform>();
+        WorldObject = GameObject.Find("WorldScene");
 
         // Get all set of hiddable UI elements
-        //GameMenuWin = (GameObject)GameObject.Find("WinMenu");
-       // GameMenuLose = (GameObject)GameObject.Find("LossMenu");
+        GameMenuWin = (GameObject)GameObject.Find("WinMenu");
+        GameMenuLose = (GameObject)GameObject.Find("LossMenu");
         GameUIinGame = (GameObject)GameObject.Find("InGameUI");
-        //GamePause = (GameObject)GameObject.Find("PauseMenu");
+        GamePause = (GameObject)GameObject.Find("PauseMenu");
 
 
         // Set the interfaces to their proper states
-        //GameMenuWin.GetComponent<ScoreCanvasControl>().Hide();
-        //GameMenuLose.GetComponent<ScoreCanvasControl>().Hide();
+        GameMenuWin.GetComponent<ScoreCanvasControl>().Hide();
+        GameMenuLose.GetComponent<ScoreCanvasControl>().Hide();
         GameUIinGame.GetComponent<ScoreCanvasControl>().Show();
-        //GamePause.GetComponent<ScoreCanvasControl>().Hide();
+        GamePause.GetComponent<ScoreCanvasControl>().Hide();
 
+        GameUIinGame.GetComponent<ScoreCanvasControl>().Start();  // Force to initialize the element
+        GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
 
         //Resume();
 
@@ -220,8 +286,22 @@ public class GameControllerScript : MonoBehaviour
         collectibleRemaining = 0;
         //Debug.Log(coinObject[0].name);
 
+        //Set material to transparent
+        /*
+                GameObject Object2Compensate = GameObject.Find("board_square_test");
+                Material theMat = Object2Compensate.GetComponent<Renderer>().material;
+                Color theNewColor = new Color();
+                theNewColor.a = 0;
+                theMat.color = theNewColor;
 
-        for(int i =0; i < coinObject.Length; i++)
+                Object2Compensate.GetComponent<Renderer>().receiveShadows = true;
+                //Object2Compensate.GetComponent<Material>() = theMat;
+                //theMat = (Material)Object2Compensate.AddComponent(typeof(Material));
+                //Object2Compensate.AddComponent(theMat);
+
+                */
+
+        for (int i =0; i < coinObject.Length; i++)
         {
             Collectible theCollectible = (Collectible)coinObject[i].GetComponent(typeof(Collectible));
             if (theCollectible.requiredToPassLevel)
@@ -233,12 +313,18 @@ public class GameControllerScript : MonoBehaviour
         }
 
         //playerObject = GameObject.Find("Player");
-        thePlayer = (PlayerController)GetComponent<PlayerController>();
+        thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
 
         GameObject objectRespawn = GameObject.Find("RespawnPosition");
         Respawn = objectRespawn.transform;
 
-        GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
+        
+
+        theSoundController = (SoundController)GetComponent<SoundController>();
+        theSoundController.PlayBackGroundMusic();
+
+        
+        //Debug.LogWarning(Lives);
 
     }
 	
@@ -271,6 +357,7 @@ public class GameControllerScript : MonoBehaviour
     void OnVictory()
     {
         Pause();  // Pause the game
+        theSoundController.playClip(theSoundController.SoundVictory);
         //HideUI();
         GameMenuWin.GetComponent<ScoreCanvasControl>().Show();     //Make Win Menu Visible
         GameUIinGame.GetComponent<ScoreCanvasControl>().Hide();     //Make player controls Menu InVisible
@@ -300,7 +387,10 @@ public class GameControllerScript : MonoBehaviour
     {
         Resume();
         GamePause.GetComponent<ScoreCanvasControl>().Hide();     //Make Defeat Menu Visible
+        GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
+        GameUIinGame.GetComponent<ScoreCanvasControl>().changeScoreSprite(score);
         GameUIinGame.GetComponent<ScoreCanvasControl>().Show();     //Make Defeat Menu InVisible
+
     }
 
 
@@ -310,7 +400,7 @@ public class GameControllerScript : MonoBehaviour
     void OnDefeat()
     {
         Pause();  // Pause the game
-        //HideUI();
+        theSoundController.playClip(theSoundController.SoundDefeat);
         GameMenuLose.GetComponent<ScoreCanvasControl>().Show();     //Make Defeat Menu Visible
         GameUIinGame.GetComponent<ScoreCanvasControl>().Hide();     //Make Defeat Menu InVisible
         // Update data
@@ -342,7 +432,6 @@ public class GameControllerScript : MonoBehaviour
 
         if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
         {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
             
         }

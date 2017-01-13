@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+    <Tracking>
+        <ImageTarget name="final_vrstevnice.Right" size="58.000000 278.043854"/>
+        <ImageTarget name="final_vrstevnice.Front" size="278.000000 278.000000"/>
+        <ImageTarget name="final_vrstevnice.Back" size="278.000000 278.000000"/>
+        <ImageTarget name="final_vrstevnice.Bottom" size="278.000000 57.958942"/>
+        <ImageTarget name="final_vrstevnice.Left" size="58.000000 278.171051"/>
+        <ImageTarget name="final_vrstevnice.Top" size="278.000000 57.958942"/>
+        <MultiTarget name="final_vrstevnice">
+            <Part name="final_vrstevnice.Left" translation="-139.0 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="final_vrstevnice.Right" translation="139.0 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="final_vrstevnice.Front" translation="0 0 29.0" rotation="AD: 1 0 0 0"/>
+            <Part name="final_vrstevnice.Back" translation="0 0 -29.0" rotation="AD: 0 1 0 180"/>
+            <Part name="final_vrstevnice.Top" translation="0 139.0 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="final_vrstevnice.Bottom" translation="0 -139.0 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+    </Tracking>
+</QCARConfig>

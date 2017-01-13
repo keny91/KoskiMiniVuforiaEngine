@@ -11,7 +11,7 @@ public class ScoreCanvasControl : CanvasGroupDisplay {
     // Use this for initialization
     
 
-	void Start () {
+	public void Start () {
 
         theDisplayedUI = GetComponent<CanvasGroup>();
         isActive = true;
