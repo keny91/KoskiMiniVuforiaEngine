@@ -286,8 +286,22 @@ public class GameControllerScript : MonoBehaviour
         collectibleRemaining = 0;
         //Debug.Log(coinObject[0].name);
 
+        //Set material to transparent
+        /*
+                GameObject Object2Compensate = GameObject.Find("board_square_test");
+                Material theMat = Object2Compensate.GetComponent<Renderer>().material;
+                Color theNewColor = new Color();
+                theNewColor.a = 0;
+                theMat.color = theNewColor;
 
-        for(int i =0; i < coinObject.Length; i++)
+                Object2Compensate.GetComponent<Renderer>().receiveShadows = true;
+                //Object2Compensate.GetComponent<Material>() = theMat;
+                //theMat = (Material)Object2Compensate.AddComponent(typeof(Material));
+                //Object2Compensate.AddComponent(theMat);
+
+                */
+
+        for (int i =0; i < coinObject.Length; i++)
         {
             Collectible theCollectible = (Collectible)coinObject[i].GetComponent(typeof(Collectible));
             if (theCollectible.requiredToPassLevel)
