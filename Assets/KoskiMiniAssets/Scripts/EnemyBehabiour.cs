@@ -8,7 +8,7 @@ public class EnemyBehabiour : MonoBehaviour
     //public Transform Origin; // always add a beggining and end patrol point.
     public float speed = 2f;
 
-    GameObject thePlayer;
+    //GameObject thePlayer;
     GameObject EnemyObject;
     GameControllerScript theController;
 
@@ -68,7 +68,7 @@ public class EnemyBehabiour : MonoBehaviour
     {
 
         curWayPoint = 0;
-        thePlayer = GameObject.Find("Player");
+        //thePlayer = GameObject.Find("Player");
         //theController = (GameControllerScript)thePlayer.GetComponent<GameControllerScript>();
         theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
         EnemyObject = transform.FindChild("Oval").gameObject;

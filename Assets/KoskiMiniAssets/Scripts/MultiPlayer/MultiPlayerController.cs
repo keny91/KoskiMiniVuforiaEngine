@@ -3,28 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
 using System;
+using UnityEngine.Networking;
 
 
 //[RequireComponent(typeof(GameControllerScript))]
-[RequireComponent(typeof(PlayerCollisionController))]
+[RequireComponent(typeof(CollissionControllerMultiplayer))]
 [RequireComponent(typeof(JumpController))]
 [RequireComponent(typeof(BoxCollider))]
 
 //[RequireComponent(typeof(BoxCollider))]
 
-public class PlayerController : MonoBehaviour {
+public class MultiPlayerController : NetworkBehaviour
+{
 
-    PlayerCollisionController playerCollider;
+    CollissionControllerMultiplayer playerCollider;
     PhysicsController extraFunctionalities;
     JumpController jumpController;
     JoyStickCustomController joyStickController;
     JoystickCameraController theCameraJoyStickController;
-     
+
     public LayerMask collisionMaskGround;
 
     protected GameObject ObjectController;
-    [HideInInspector] public Transform PlayerCapsule;
-    GameControllerScript theController;
+    [HideInInspector]
+    public Transform PlayerCapsule;
+    MultiplayerGameControlScript theController;
 
 
     // Horizontal Movement
@@ -71,7 +74,8 @@ public class PlayerController : MonoBehaviour {
     private Animator animationElements;
 
     // Tag Map reference
-    [HideInInspector]public TagDatabase theTagReference;
+    [HideInInspector]
+    public TagDatabase theTagReference;
 
     //Respawn Process
     public void PlayerRespawn()
@@ -103,16 +107,16 @@ public class PlayerController : MonoBehaviour {
         Invoke("ResetUncontrolable", RecoveryTime);
         isInvulnerable = true;
         Invoke("ResetInvulnerability", InvulnerableTime);
-        
+
     }
 
-  
+
 
 
     /********************************************************/
     /*************      PLAYER COLLISIONS    ****************/
     /********************************************************/
-   
+
 
 
     void OnTriggerEnter(Collider collision)
@@ -158,10 +162,10 @@ public class PlayerController : MonoBehaviour {
             //Encountered Vulnerable object
             case 3:
                 Debug.Log("Hit Vulnerable", TheHitObject);
-                    Vector3 ProvisionalVector = new Vector3(0, 0, 0);
-                    TheHitObject.transform.parent.gameObject.SetActive(false); // deactivate instead of destroy so you could later reactivate (respawn) him
-                    
-                    AdditionalMath.AddVerticalRepulsion(ref velocity, VerticalPushByEnemyKill);
+                Vector3 ProvisionalVector = new Vector3(0, 0, 0);
+                TheHitObject.transform.parent.gameObject.SetActive(false); // deactivate instead of destroy so you could later reactivate (respawn) him
+
+                AdditionalMath.AddVerticalRepulsion(ref velocity, VerticalPushByEnemyKill);
 
                 //colliders.Add(collision.collider); // saves the enemy for later respawn
 
@@ -203,14 +207,14 @@ public class PlayerController : MonoBehaviour {
     }
 
 
-   
+
     /// <summary>
     /// Do a traslation of the player object in the world.
     /// </summary>
     /// <param name="velocity">Determines the direction and magnitude of the displacement.</param>
     public void Move(Vector3 velocity)
     {
-        
+
 
         playerCollider.UpdateRaycastOrigins();
         playerCollider.reset();
@@ -236,7 +240,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         transform.Translate(velocity);
-        
+
     }
 
 
@@ -251,9 +255,9 @@ public class PlayerController : MonoBehaviour {
         float magZ = Mathf.Abs(XZ.y);
         Vector3 rot = new Vector3();
 
-        if(magX > magZ)
+        if (magX > magZ)
         {
-            if(Mathf.Sign(XZ.x) == 1)
+            if (Mathf.Sign(XZ.x) == 1)
                 rot.y = 90;
             else
                 rot.y = 270;
@@ -293,15 +297,21 @@ public class PlayerController : MonoBehaviour {
     /*************         START/UPDATE      ****************/
     /********************************************************/
 
+    public override void OnStartLocalPlayer()
+    {
+        GetComponentInChildren<Renderer>().material.color = Color.green;
+        //GetComponent<MeshRenderer>().material.color = Color.green;
+    }
+
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
 
         // Set Up Collisions
         //playerCollider = new CollisionControler();  // OR
-        playerCollider = (PlayerCollisionController)GetComponent<PlayerCollisionController>();
-        playerCollider.Init(4,6,4);  // 6 vertical divisions
+        playerCollider = (CollissionControllerMultiplayer)GetComponent<CollissionControllerMultiplayer>();
+        playerCollider.Init(4, 6, 4);  // 6 vertical divisions
         playerCollider.collisionMaskGround.value = 1 << LayerMask.NameToLayer("Ground");
         playerCollider.collisionMaskObjects.value = 1 << LayerMask.NameToLayer("WorldObjects");
 
@@ -319,7 +329,7 @@ public class PlayerController : MonoBehaviour {
         playerCollider.CalculateRaySpacing();
 
         //Register ground layer for collisions
-        
+
 
         // Find Capsule in the prefab.
         PlayerCapsule = transform.FindChild("Capsule");
@@ -334,9 +344,9 @@ public class PlayerController : MonoBehaviour {
         try
         {
             joyStickController = (JoyStickCustomController)joyObject.GetComponent<JoyStickCustomController>();
-            joyStickController.configureJoystick(false, true, false , true);
+            joyStickController.configureJoystick(false, true, false, true);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Debug.LogError(e, joyObject);
         }
@@ -345,7 +355,7 @@ public class PlayerController : MonoBehaviour {
         animationElements = this.GetComponent<Animator>();
         //ObjectController = GameObject.Find("GameController");
         //theController = GetComponent<GameControllerScript>();
-        theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
+        theController = GameObject.Find("GameControl").GetComponent<MultiplayerGameControlScript>();
 
 
         GameObject cameraRef = GameObject.Find("ARCamera");
@@ -374,6 +384,7 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(delayTime);
         // After Delay
         theController.theSoundController.PlayRandomFrom(theController.theSoundController.SoundJump);
+        theController.Start();
         jumpController.performJump(ref velocity);
     }
 
@@ -381,6 +392,13 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer)
+        {
+
+            Debug.LogError(theController.gameRunning);
+            Debug.LogError("This is not local Player");
+            return;
+        }
 
         if (theController.gameRunning && !theController.gameStopped) // Only update player if game is running
         {
@@ -391,7 +409,7 @@ public class PlayerController : MonoBehaviour {
                 theCameraJoyStickController.DetermineZone();
                 MVector = joyStickController.getAxisOutput();
             }
-                
+
 
             Vector3 targetVelocity = new Vector3();
 
@@ -402,7 +420,7 @@ public class PlayerController : MonoBehaviour {
             targetVelocity.z += moveSpeed * MVector.x;
             extraFunctionalities.VelocityTransition(ref velocity, targetVelocity, "XZ".ToCharArray(), playerCollider.below);
 
-            
+
 
             //    if(playerCollider.ObjectHit.collider !=null)
             //        playerCollider.RayHitCheck(playerCollider.ObjectHit);
@@ -422,7 +440,7 @@ public class PlayerController : MonoBehaviour {
                 animationElements.SetBool("OnAir", false);
 
             //jumpActivated = CrossPlatformInputManager.GetButtonDown("Jump");
-            if (jumpActivated || CrossPlatformInputManager.GetButtonDown("Jump") )
+            if (jumpActivated || CrossPlatformInputManager.GetButtonDown("Jump"))
             {
                 if (playerCollider.below && !disabledJumpButton)
                 {

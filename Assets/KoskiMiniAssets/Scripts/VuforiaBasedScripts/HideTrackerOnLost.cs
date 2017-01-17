@@ -8,7 +8,7 @@ public class HideTrackerOnLost : MonoBehaviour
 {
 
     TrackerObj[] trackableList;
-    PlayerController thePlayer;
+    //PlayerController thePlayer;
     public GameControllerScript theController;
     public bool allUntracked = true;
 
@@ -20,7 +20,7 @@ public class HideTrackerOnLost : MonoBehaviour
         int listLenght = transform.childCount;
 
 
-        thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
+        //thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
         theController = (GameControllerScript)GameObject.Find("GameControl").GetComponent<GameControllerScript>();
 
 
