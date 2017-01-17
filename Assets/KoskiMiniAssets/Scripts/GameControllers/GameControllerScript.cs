@@ -417,50 +417,44 @@ public class GameControllerScript : MonoBehaviour
     /*******************************************************/
     /*****************  Buttons/Actions  *******************/
     /*******************************************************/
-    public void RetryButton()
-    {
-        /*
-        LVL_controler nLVL = new LVL_controler();
-        GameObject UInterface = GameObject.Find("UI");
-        nLVL = (LVL_controler)UInterface.GetComponent(typeof(LVL_controler));
-        nLVL.initLevel();
-        */
 
-        // Unregister axis
+
+    private void ClearAxis()
+    {
         string horizontalAxisName = "Horizontal";
         string verticalAxisName = "Vertical";
 
         if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
         {
             CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
-            
+
         }
 
         if (CrossPlatformInputManager.AxisExists(verticalAxisName))
         {
             CrossPlatformInputManager.UnRegisterVirtualAxis(verticalAxisName);
         }
-        /*
-        theHorizontalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
-        theVerticalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
-        CrossPlatformInputManager.RegisterVirtualAxis(theHorizontalAxis);
-        CrossPlatformInputManager.RegisterVirtualAxis(theVerticalAxis);
-        */
+    }
 
+    public void OnRetryButton()
+    {
+        ClearAxis();
         SceneManager.LoadScene("Main");
-        //Application.LoadLevel(Application.loadedLevel);
     }
 
-    // Method asigned to 
-    public void NextLevelButton()
+    public void OnMenuButton()
     {
-        //Application.LoadLevel(Application.loadedLevel + 1);
+        ClearAxis();
+        SceneManager.LoadScene("MainMenu");
     }
 
-    public void MenuButton()
+    public void OnNextButton()
     {
-        //Application.LoadLevel(0);
+        ClearAxis();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
+
+    
 
 }
 
