@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour {
 
     public void StartButton()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("PreScene1");
     }
 
 	// Update is called once per frame

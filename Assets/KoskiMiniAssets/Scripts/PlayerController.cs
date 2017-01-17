@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
     private const float FallingVelocityLimit = -50f;
     private const float RisingVelocityLimit = 50f;
 
-    [HideInInspector]public float enemyDeathRepulsionVelY = 20f;
+    public float enemyDeathRepulsionVelY = 20f;
 
 
     CrossPlatformInputManager.VirtualAxis theHorizontalAxis;

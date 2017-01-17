@@ -161,21 +161,29 @@ public class GameControllerScript : MonoBehaviour
 
         if (hidTheWorld != WorldHidden) // Do only if it changes status
         {
-            Renderer[] rendererComponents = WorldObject.GetComponentsInChildren<Renderer>(true);
-            //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
-
-            // Enable rendering:
-            foreach (Renderer component in rendererComponents)
+            try
             {
-                component.enabled = !hidTheWorld;
+                Renderer[] rendererComponents = WorldObject.GetComponentsInChildren<Renderer>(true);
+                //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
+
+                // Enable rendering:
+                foreach (Renderer component in rendererComponents)
+                {
+                    component.enabled = !hidTheWorld;
+                }
+
+                if (hidTheWorld)
+                    Stop();
+                else
+                    Run();
+
+                WorldHidden = hidTheWorld;
+            }
+            catch (UnassignedReferenceException e)
+            {
+                Debug.Log("Suppressed Error: "+ e);
             }
 
-            if (hidTheWorld)
-                Stop();
-            else
-                Run();
-
-            WorldHidden = hidTheWorld;
         }
 
         // WorldObject.FIIIIINISHTHISSHIT;
@@ -268,6 +276,8 @@ public class GameControllerScript : MonoBehaviour
         GameUIinGame.GetComponent<ScoreCanvasControl>().Show();
         GamePause.GetComponent<ScoreCanvasControl>().Hide();
 
+        GameUIinGame.GetComponent<ScoreCanvasControl>().Start();  // Force to initialize the element
+        GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
 
         //Resume();
 
@@ -276,8 +286,22 @@ public class GameControllerScript : MonoBehaviour
         collectibleRemaining = 0;
         //Debug.Log(coinObject[0].name);
 
+        //Set material to transparent
+        /*
+                GameObject Object2Compensate = GameObject.Find("board_square_test");
+                Material theMat = Object2Compensate.GetComponent<Renderer>().material;
+                Color theNewColor = new Color();
+                theNewColor.a = 0;
+                theMat.color = theNewColor;
 
-        for(int i =0; i < coinObject.Length; i++)
+                Object2Compensate.GetComponent<Renderer>().receiveShadows = true;
+                //Object2Compensate.GetComponent<Material>() = theMat;
+                //theMat = (Material)Object2Compensate.AddComponent(typeof(Material));
+                //Object2Compensate.AddComponent(theMat);
+
+                */
+
+        for (int i =0; i < coinObject.Length; i++)
         {
             Collectible theCollectible = (Collectible)coinObject[i].GetComponent(typeof(Collectible));
             if (theCollectible.requiredToPassLevel)
@@ -289,15 +313,18 @@ public class GameControllerScript : MonoBehaviour
         }
 
         //playerObject = GameObject.Find("Player");
-        thePlayer = (PlayerController)GetComponent<PlayerController>();
+        thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
 
         GameObject objectRespawn = GameObject.Find("RespawnPosition");
         Respawn = objectRespawn.transform;
 
+        
+
         theSoundController = (SoundController)GetComponent<SoundController>();
         theSoundController.PlayBackGroundMusic();
 
-        GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
+        
+        //Debug.LogWarning(Lives);
 
     }
 	
@@ -390,50 +417,44 @@ public class GameControllerScript : MonoBehaviour
     /*******************************************************/
     /*****************  Buttons/Actions  *******************/
     /*******************************************************/
-    public void RetryButton()
-    {
-        /*
-        LVL_controler nLVL = new LVL_controler();
-        GameObject UInterface = GameObject.Find("UI");
-        nLVL = (LVL_controler)UInterface.GetComponent(typeof(LVL_controler));
-        nLVL.initLevel();
-        */
 
-        // Unregister axis
+
+    private void ClearAxis()
+    {
         string horizontalAxisName = "Horizontal";
         string verticalAxisName = "Vertical";
 
         if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
         {
             CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
-            
+
         }
 
         if (CrossPlatformInputManager.AxisExists(verticalAxisName))
         {
             CrossPlatformInputManager.UnRegisterVirtualAxis(verticalAxisName);
         }
-        /*
-        theHorizontalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
-        theVerticalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
-        CrossPlatformInputManager.RegisterVirtualAxis(theHorizontalAxis);
-        CrossPlatformInputManager.RegisterVirtualAxis(theVerticalAxis);
-        */
+    }
 
+    public void OnRetryButton()
+    {
+        ClearAxis();
         SceneManager.LoadScene("Main");
-        //Application.LoadLevel(Application.loadedLevel);
     }
 
-    // Method asigned to 
-    public void NextLevelButton()
+    public void OnMenuButton()
     {
-        //Application.LoadLevel(Application.loadedLevel + 1);
+        ClearAxis();
+        SceneManager.LoadScene("MainMenu");
     }
 
-    public void MenuButton()
+    public void OnNextButton()
     {
-        //Application.LoadLevel(0);
+        ClearAxis();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
+
+    
 
 }
 

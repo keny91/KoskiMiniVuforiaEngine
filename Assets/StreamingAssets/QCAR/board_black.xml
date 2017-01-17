@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="boardblackkano-07" size="123.199997 89.923302" />
+    <ImageTarget name="boardblackkano-05" size="123.199997 87.721786" />
+    <ImageTarget name="boardblackkano-03" size="123.199997 87.721786" />
+    <ImageTarget name="board_black_kano-06" size="141.600006 89.939713" />
+    <ImageTarget name="board_black_kano-04" size="141.600006 87.737808" />
+    <ImageTarget name="board_black_kano-02" size="141.550003 87.706818" />
+  </Tracking>
+</QCARConfig>

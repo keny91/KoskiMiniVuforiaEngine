@@ -24,6 +24,11 @@ public class JoyStickCustomController : Joystick {
 
     // Use this for initialization
     void Start () {
+        int wid = Screen.width;
+        int hei = Screen.height;
+
+        MovementRange = wid / 13;
+
         m_StartPos = transform.position;
         CreateVirtualAxes();
     }
