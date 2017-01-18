@@ -46,6 +46,7 @@ public class SoundController : MonoBehaviour {
 
     public void playClip(AudioClip Clip)
     {
+        audioS.Stop();
         audioS = gameObject.AddComponent<AudioSource>();
         audioS.clip = Clip;
         audioS.Play();
