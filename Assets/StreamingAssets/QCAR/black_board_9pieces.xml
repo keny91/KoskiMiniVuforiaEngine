@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="wood_box-04" size="278.000000 58.004875" />
+    <ImageTarget name="wood_box-03" size="278.000000 58.004875" />
+    <ImageTarget name="wood_box-02" size="278.000000 58.004875" />
+    <ImageTarget name="wood_box-01" size="278.000000 58.004875" />
+    <ImageTarget name="black_board_9pieces-09" size="94.000000 94.000000" />
+    <ImageTarget name="black_board_9pieces-08" size="90.000000 93.979301" />
+    <ImageTarget name="black_board_9pieces-07" size="94.000000 94.000000" />
+    <ImageTarget name="black_board_9pieces-06" size="94.000000 90.019821" />
+    <ImageTarget name="black_board_9pieces-05" size="90.000000 90.000000" />
+    <ImageTarget name="black_board_9pieces-04" size="94.000000 90.019821" />
+    <ImageTarget name="black_board_9pieces-03" size="94.000000 94.000000" />
+    <ImageTarget name="black_board_9pieces-02" size="90.000000 93.979301" />
+    <ImageTarget name="black_board_9pieces-01" size="94.000000 94.000000" />
+  </Tracking>
+</QCARConfig>

@@ -439,7 +439,7 @@ public class GameControllerScript : MonoBehaviour
     public void OnRetryButton()
     {
         ClearAxis();
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("PreScene1");
     }
 
     public void OnMenuButton()
