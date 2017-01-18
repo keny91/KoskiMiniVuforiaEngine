@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
+using System.Collections.Generic;
 using Vuforia;
 
 //[RequireComponent(typeof(SoundController))]
@@ -10,6 +11,15 @@ using Vuforia;
 
 public class MultiplayerGameControlScript : GameControllerScript
 {
+
+    // Multiplayer 
+    [HideInInspector]
+    public List <PlayerInfo> playerList;
+    MultiPlayerController[] players;
+    int currentNumberofPlayers = 0;
+    int maxNumberOfPlayers = 5;
+    public int DefaultLives = 3;
+
 
 
     new public void Start()
@@ -42,27 +52,10 @@ public class MultiplayerGameControlScript : GameControllerScript
         GameUIinGame.GetComponent<ScoreCanvasControl>().Start();  // Force to initialize the element
         GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
 
-        //Resume();
-
         // Set up maximum possible score and total of items required to pass the level
         coinObject = GameObject.FindGameObjectsWithTag("Collectable");
         collectibleRemaining = 0;
-        //Debug.Log(coinObject[0].name);
 
-        //Set material to transparent
-        /*
-                GameObject Object2Compensate = GameObject.Find("board_square_test");
-                Material theMat = Object2Compensate.GetComponent<Renderer>().material;
-                Color theNewColor = new Color();
-                theNewColor.a = 0;
-                theMat.color = theNewColor;
-
-                Object2Compensate.GetComponent<Renderer>().receiveShadows = true;
-                //Object2Compensate.GetComponent<Material>() = theMat;
-                //theMat = (Material)Object2Compensate.AddComponent(typeof(Material));
-                //Object2Compensate.AddComponent(theMat);
-
-                */
 
         for (int i = 0; i < coinObject.Length; i++)
         {
@@ -75,8 +68,11 @@ public class MultiplayerGameControlScript : GameControllerScript
 
         }
 
-        //playerObject = GameObject.Find("Player");
-        //thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
+        if (playerList == null)
+        {
+            playerList = new List<PlayerInfo>();
+        }
+
 
         GameObject objectRespawn = GameObject.Find("RespawnPosition");
         Respawn = objectRespawn.transform;
@@ -91,4 +87,75 @@ public class MultiplayerGameControlScript : GameControllerScript
 
     }
 
+
+    public void RefreshPlayerList()
+    {
+        players = GameObject.Find("PlayersContainer").transform.GetComponentsInChildren<MultiPlayerController>(false);
+        currentNumberofPlayers = players.Length;
+    }
+
+    /// <summary>
+    /// Check if a new player can join.
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckJoinPlayer()
+    {
+        if (currentNumberofPlayers < maxNumberOfPlayers)
+        {
+            return true;
+
+        }
+        else
+            return false;
+        }
+    
+
+    /// <summary>
+    /// Ask for the next player ID when it is created and register a new player
+    /// </summary>
+    /// <returns>ID of the new player</returns>
+    public int RegisterNewPlayer()
+    {
+
+
+        Debug.LogWarning(currentNumberofPlayers);
+        currentNumberofPlayers++;
+        Debug.LogWarning(currentNumberofPlayers);
+        PlayerInfo theNewPlayer = new PlayerInfo();
+        theNewPlayer.SetToDefault();
+        playerList.Add(theNewPlayer);
+
+
+
+        return currentNumberofPlayers;        
+    }
+
+    public void updatePlayer()
+    {
+
+    }
+
+
+}
+
+
+
+/// <summary>
+/// Struct to store the point positions required for the rayCasts.
+/// Each of the corners of a 3D box
+/// </summary>
+public struct PlayerInfo
+{
+    int id;
+    int score;
+    int lives;
+    bool vulnerable;
+    int status;
+
+    public void SetToDefault(){
+        score = 0;
+        lives = 3;
+        vulnerable = false;
+        status = 0;
+    }
 }

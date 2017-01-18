@@ -19,7 +19,7 @@ public class Collectible : MonoBehaviour {
         if (GameObject.Find("GameControl").GetComponent<GameControllerScript>())
         {
             theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
-            Debug.LogError("COIN INITTTTTTTT");
+            //Debug.LogError("COIN INITTTTTTTT");
         }
             
 

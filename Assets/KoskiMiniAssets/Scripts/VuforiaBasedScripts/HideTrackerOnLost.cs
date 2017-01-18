@@ -78,8 +78,8 @@ public class HideTrackerOnLost : MonoBehaviour
             }
 
 
-            Debug.LogWarning("Updated Traked List: " + theTrackerName + isTracked.ToString());
-            Debug.LogWarning("Is all untracked:" + allUntracked);
+            //Debug.LogWarning("Updated Traked List: " + theTrackerName + isTracked.ToString());
+            //Debug.LogWarning("Is all untracked:" + allUntracked);
             theController.changeWorldVisible(allUntracked);
         }
         catch(System.NullReferenceException e)

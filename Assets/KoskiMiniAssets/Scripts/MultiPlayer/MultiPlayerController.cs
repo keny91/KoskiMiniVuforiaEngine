@@ -77,6 +77,15 @@ public class MultiPlayerController : NetworkBehaviour
     [HideInInspector]
     public TagDatabase theTagReference;
 
+    // Multiplayer 
+    public bool MultiplayerReady = false;
+    int playerID;
+
+
+
+
+
+
     //Respawn Process
     public void PlayerRespawn()
     {
@@ -297,10 +306,23 @@ public class MultiPlayerController : NetworkBehaviour
     /*************         START/UPDATE      ****************/
     /********************************************************/
 
+
+    /// <summary>
+    /// Register a new Player.
+    /// </summary>
     public override void OnStartLocalPlayer()
     {
+        Start();
+        this.transform.parent = GameObject.Find("PlayersContainer").transform; // Allocate it 
+        playerID = theController.RegisterNewPlayer();
         GetComponentInChildren<Renderer>().material.color = Color.green;
-        //GetComponent<MeshRenderer>().material.color = Color.green;
+        
+    }
+
+
+    private void initReferences()
+    {
+        Start();
     }
 
 
@@ -355,7 +377,14 @@ public class MultiPlayerController : NetworkBehaviour
         animationElements = this.GetComponent<Animator>();
         //ObjectController = GameObject.Find("GameController");
         //theController = GetComponent<GameControllerScript>();
-        theController = GameObject.Find("GameControl").GetComponent<MultiplayerGameControlScript>();
+        if (GameObject.Find("GameControl").GetComponent<GameControllerScript>())
+        {
+            theController = GameObject.Find("GameControl").GetComponent<MultiplayerGameControlScript>();
+        }
+        else
+        {
+            
+        }
 
 
         GameObject cameraRef = GameObject.Find("ARCamera");
@@ -384,7 +413,7 @@ public class MultiPlayerController : NetworkBehaviour
         yield return new WaitForSeconds(delayTime);
         // After Delay
         theController.theSoundController.PlayRandomFrom(theController.theSoundController.SoundJump);
-        theController.Start();
+        //theController.Start();
         jumpController.performJump(ref velocity);
     }
 
