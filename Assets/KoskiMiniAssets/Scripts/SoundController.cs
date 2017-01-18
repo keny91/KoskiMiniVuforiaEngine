@@ -5,9 +5,10 @@ public class SoundController : MonoBehaviour {
 
 
 
-    AudioSource audioS, AudioLevel;
+    public AudioSource audioS, AudioLevel;
     public AudioClip SoundCoinCollected, SoundPlayerHit, SoundPlayerDeath, Sound1Up;
     public AudioClip[] SoundJump;
+    public AudioClip SoundRunning;
     public AudioClip SoundVictory, SoundDefeat;
     public AudioClip AmbientalMusicForLevel;
 
@@ -16,8 +17,9 @@ public class SoundController : MonoBehaviour {
         // Don´t Destroy Background music from Level to Level
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(GameObject.Find("Music"));
-
-
+        audioS = gameObject.AddComponent<AudioSource>();
+        AudioLevel = gameObject.AddComponent<AudioSource>();
+        audioS.clip = AmbientalMusicForLevel;
 
     }
 	
@@ -49,6 +51,19 @@ public class SoundController : MonoBehaviour {
         audioS.Play();
     }
 
+    public void playClipLooped(AudioClip Clip)
+    {
+        if (!audioS.isPlaying)
+        {
+            audioS = gameObject.AddComponent<AudioSource>();
+            audioS.loop = true;
+            audioS.clip = Clip;
+            audioS.Play();
+        }
+
+    }
+
+
     public void ResumeClip(AudioClip Clip)
     {
         if (!audioS.isPlaying)
@@ -59,14 +74,16 @@ public class SoundController : MonoBehaviour {
     }
 
 
-    public void StopClip(AudioClip Clip)
+    public void StopClip(AudioClip theClip)
     {
         //audioS = gameObject.AddComponent<AudioSource>();
         //audioS.clip = Clip;
-        if (audioS.isPlaying)
+        if (audioS.isPlaying && audioS.clip.name == theClip.name)
+        {
             audioS.Stop();
-        else
-            Debug.LogWarning("Clip "+ audioS.clip.name + " is not playing");
+        }
+            
+
     }
 
 
