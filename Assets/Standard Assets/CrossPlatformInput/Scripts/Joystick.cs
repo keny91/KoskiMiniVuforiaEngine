@@ -20,24 +20,22 @@ namespace UnityStandardAssets.CrossPlatformInput
 		public string verticalAxisName = "Vertical"; // The name given to the vertical axis for the cross platform input
 
 		protected Vector3 m_StartPos;
-		protected bool m_UseX; // Toggle for using the x axis
-		protected bool m_UseY; // Toggle for using the Y axis
-		protected CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis; // Reference to the joystick in the cross platform input
+        protected bool m_UseX; // Toggle for using the x axis
+        protected bool m_UseY; // Toggle for using the Y axis
+        protected CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis; // Reference to the joystick in the cross platform input
         protected CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis; // Reference to the joystick in the cross platform input
 
-        /*
-        void OnEnable()
+		void OnEnable()
 		{
 			CreateVirtualAxes();
 		}
-        */
+
         void Start()
         {
             m_StartPos = transform.position;
-            CreateVirtualAxes();
         }
 
-		protected void UpdateVirtualAxes(Vector3 value)
+		void UpdateVirtualAxes(Vector3 value)
 		{
 			var delta = m_StartPos - value;
 			delta.y = -delta.y;
@@ -53,7 +51,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		protected void CreateVirtualAxes()
+		public void CreateVirtualAxes()
 		{
 			// set axes to use
 			m_UseX = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal);
@@ -80,17 +78,17 @@ namespace UnityStandardAssets.CrossPlatformInput
 			if (m_UseX)
 			{
 				int delta = (int)(data.position.x - m_StartPos.x);
-				//delta = Mathf.Clamp(delta, - MovementRange, MovementRange); // modified
+				delta = Mathf.Clamp(delta, - MovementRange, MovementRange);
 				newPos.x = delta;
 			}
 
 			if (m_UseY)
 			{
 				int delta = (int)(data.position.y - m_StartPos.y);
-                //delta = Mathf.Clamp(delta, -MovementRange, MovementRange); // modified
-                newPos.y = delta;
+				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
+				newPos.y = delta;
 			}
-			transform.position = Vector3.ClampMagnitude(new Vector3(newPos.x, newPos.y, newPos.z),MovementRange) +m_StartPos;
+			transform.position = new Vector3(m_StartPos.x + newPos.x, m_StartPos.y + newPos.y, m_StartPos.z + newPos.z);
 			UpdateVirtualAxes(transform.position);
 		}
 
@@ -118,4 +116,3 @@ namespace UnityStandardAssets.CrossPlatformInput
 		}
 	}
 }
- 
