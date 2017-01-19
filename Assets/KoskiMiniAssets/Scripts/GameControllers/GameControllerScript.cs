@@ -61,7 +61,16 @@ public class GameControllerScript : MonoBehaviour
     /*******************************************************/
 
        
-
+        public void FadeWorld(float alphaFade, float duration)
+    {
+        /*
+        //Mathf.PingPong(Time.time, duration) / duration;
+        material.color = new Color(color.r, color.g, color.b, color.a - (fadePerSecond * Time.deltaTime));
+        WorldObject.GetComponent<Renderer>().material.set
+        alpha = Mathf.Lerp(0.0, 1.0, lerp);
+        renderer.material.color.a = alpha;
+        */
+    }
 
 
     /*******************************************************/
