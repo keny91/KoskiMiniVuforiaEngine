@@ -9,14 +9,14 @@ using System.Collections;
 public class PlayerCollisionController : CollisionControler
 {
 
-    PlayerController thePlayer;
+    SinglePlayerController thePlayer;
     GameControllerScript theController;
     GameObject LastObjectHit = null;
 
 
     void Start()
     {
-        thePlayer = (PlayerController)GetComponent<PlayerController>();
+        thePlayer = (SinglePlayerController)GetComponent<SinglePlayerController>();
         theController = GetComponent<GameControllerScript>();
     }
 

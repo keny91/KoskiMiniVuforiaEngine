@@ -11,7 +11,7 @@ public class CustomBehaviourScript : MonoBehaviour,
         private TrackableBehaviour mTrackableBehaviour;
         private ImageTargetBehaviour mTarget;
         Tracker objectTracker; // HOW MANY TRACKERS ARE THERE
-        PlayerController thePlayer;
+        SinglePlayerController thePlayer;
         StateManager sm;
 
 
@@ -19,7 +19,7 @@ public class CustomBehaviourScript : MonoBehaviour,
     // Use this for initialization
     void Start()
     {
-        thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
+        thePlayer = (SinglePlayerController)GameObject.Find("Player").GetComponent<SinglePlayerController>();
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         mTarget = GetComponent<ImageTargetBehaviour>();
         if (mTrackableBehaviour)
