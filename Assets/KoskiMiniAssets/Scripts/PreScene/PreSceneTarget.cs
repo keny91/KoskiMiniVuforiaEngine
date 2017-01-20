@@ -19,6 +19,7 @@ public class PreSceneTarget : MonoBehaviour
 
         //GameObject[] theList = GameObject.FindGameObjectsWithTag("Trackable");
         int listLenght = transform.childCount;
+        this.transform.name = "Targets";
 
 
         //thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
@@ -29,8 +30,9 @@ public class PreSceneTarget : MonoBehaviour
         trackableList = new TrackerObj[listLenght];
         for (int m = 0; m < listLenght; m++)
         {
-            Debug.LogError(transform.GetChild(m).name);
+            //Debug.LogError(transform.GetChild(m).name);
             trackableList[m].setName(transform.GetChild(m).name);
+            transform.GetChild(m).GetComponent<PreSceneKoskiMarker>().Start();
             trackableList[m].setTracked(false);
         }
         

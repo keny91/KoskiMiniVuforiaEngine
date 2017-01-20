@@ -26,7 +26,7 @@ namespace Vuforia
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
 
-        void Start()
+        public void Start()
         {
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             theTargetMainFrame = gameObject.transform.GetComponentInParent<PreSceneTarget>();

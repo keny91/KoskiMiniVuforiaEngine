@@ -18,7 +18,7 @@ public class HideTrackerOnLost : MonoBehaviour
 
         //GameObject[] theList = GameObject.FindGameObjectsWithTag("Trackable");
         int listLenght = transform.childCount;
-
+        this.transform.name = "Targets";
 
         //thePlayer = (PlayerController)GameObject.Find("Player").GetComponent<PlayerController>();
         theController = (GameControllerScript)GameObject.Find("GameControl").GetComponent<GameControllerScript>();
@@ -29,6 +29,7 @@ public class HideTrackerOnLost : MonoBehaviour
         for (int m = 0; m < listLenght; m++)
         {
             trackableList[m].setName(transform.GetChild(m).name);
+            transform.GetChild(m).GetComponent<KoskiTrackableEventHandler>().Start();
             trackableList[m].setTracked(false);
         }
     }
