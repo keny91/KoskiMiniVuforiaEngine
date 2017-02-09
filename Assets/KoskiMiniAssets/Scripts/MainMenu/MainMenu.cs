@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour {
     public string buildVersion = "1";
     private Text BuildText;
 
+
     // Use this for initialization
     void Start () {
 
@@ -19,7 +20,13 @@ public class MainMenu : MonoBehaviour {
 
     public void StartButton()
     {
-        SceneManager.LoadScene("PreScene1");
+        //SceneManager.LoadScene("PreScene1");
+        
+        GetComponent<Canvas>().enabled = false;
+        LoadingScreen.GetObject().GetComponent<Canvas>().enabled = true;
+        LoadingScreen.GetObject().Load("main");
+
+
     }
 
 	// Update is called once per frame
