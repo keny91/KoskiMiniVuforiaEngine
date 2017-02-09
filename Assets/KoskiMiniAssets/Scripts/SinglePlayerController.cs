@@ -79,6 +79,7 @@ public class SinglePlayerController : MonoBehaviour
     //Respawn Process
     public void PlayerRespawn()
     {
+		theController.Start ();
         gameObject.transform.position = theController.Respawn.position;
         Debug.Log("Respawned");
     }

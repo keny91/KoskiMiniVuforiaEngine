@@ -248,7 +248,7 @@ public class GameControllerScript : MonoBehaviour
    
 
     // Use this for initialization
-    protected void Start () {
+	public void Start () {
 
         // Box Collider init
         
