@@ -35,7 +35,7 @@ namespace UnityStandardAssets.CrossPlatformInput
             m_StartPos = transform.position;
         }
 
-		void UpdateVirtualAxes(Vector3 value)
+		public void UpdateVirtualAxes(Vector3 value)
 		{
 			var delta = m_StartPos - value;
 			delta.y = -delta.y;
@@ -71,7 +71,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		}
 
 
-		public void OnDrag(PointerEventData data)
+		public virtual void OnDrag(PointerEventData data)
 		{
 			Vector3 newPos = Vector3.zero;
 
@@ -102,7 +102,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 		public void OnPointerDown(PointerEventData data) { }
 
-		void OnDisable()
+		protected void OnDisable()
 		{
 			// remove the joysticks from the cross platform input
 			if (m_UseX)

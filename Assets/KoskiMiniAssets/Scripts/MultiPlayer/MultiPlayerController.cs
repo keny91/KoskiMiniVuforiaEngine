@@ -171,7 +171,7 @@ public class MultiPlayerController : NetworkBehaviour
             //Encountered Vulnerable object
             case 3:
                 Debug.Log("Hit Vulnerable", TheHitObject);
-                Vector3 ProvisionalVector = new Vector3(0, 0, 0);
+                //Vector3 ProvisionalVector = new Vector3(0, 0, 0);
                 TheHitObject.transform.parent.gameObject.SetActive(false); // deactivate instead of destroy so you could later reactivate (respawn) him
 
                 AdditionalMath.AddVerticalRepulsion(ref velocity, VerticalPushByEnemyKill);
