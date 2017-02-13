@@ -42,6 +42,10 @@ public class LoadingScreen : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Initialization, finding the object which will carry out the loading process.
+    /// </summary>
+    /// <returns></returns>
     public static LoadingScreen GetObject(){
 
         return GameObject.Find("LoadingScreen").GetComponent<LoadingScreen>();
@@ -82,6 +86,10 @@ public class LoadingScreen : MonoBehaviour {
 
 
 
+
+    /// <summary>
+    /// Hide the load screen
+    /// </summary>
     public void HideLoadingScreen()
     {
         theTexture.enabled = false;
@@ -89,6 +97,10 @@ public class LoadingScreen : MonoBehaviour {
         GetComponent<Canvas>().enabled = false;
     }
 
+
+    /// <summary>
+    /// show the loading screen
+    /// </summary>
     public void ShowLoadingScreen()
     {
         theTexture.enabled = true;
@@ -97,6 +109,12 @@ public class LoadingScreen : MonoBehaviour {
     }
 
 
+
+    /// <summary>
+    /// Call to start loading a level
+    /// </summary>
+    /// <param name="name">Name of the scene containing the level</param>
+    /// <returns></returns>
     IEnumerator LoadLevel(string name)
     {
         async = SceneManager.LoadSceneAsync(name);
@@ -121,7 +139,11 @@ public class LoadingScreen : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// Call to start loading a level
+    /// </summary>
+    /// <param name="sceneID">Id of the scene containing the level</param>
+    /// <returns></returns>
     IEnumerator LoadLevel(int sceneID)
     {
         async = SceneManager.LoadSceneAsync(sceneID);
@@ -143,22 +165,34 @@ public class LoadingScreen : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// The continue button is enabled, allowing to proceed past the loading screen.
+    /// </summary>
     public void EnableContinue()
     {
         continueButton.SetActive(true);
     }
 
+    /// <summary>
+    /// The continue button is enabled, allowing to proceed past the loading screen.
+    /// </summary>
     public void DisableContinue()
     {
         continueButton.SetActive(false);
     }
 
-
+    /// <summary>
+    /// Configure the class to change the next level to load.
+    /// </summary>
+    /// <param name="newScene"></param>
     public void SetNextScene(string newScene)
     {
         levelToLoad = newScene;
     }
 
+    /// <summary>
+    /// Action that occurs after pressing the "Continue" button.
+    /// </summary>
     public void OnContinueButton()
     {
         if (levelToLoad != null)
