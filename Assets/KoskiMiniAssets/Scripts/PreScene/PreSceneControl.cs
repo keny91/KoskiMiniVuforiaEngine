@@ -8,10 +8,14 @@ public class PreSceneControl : MonoBehaviour
     CanvasGroup info, targetFound, continueButton;
     bool WorldHidden = true;
     public GameObject WorldObject;
+    LoadingScreen theLoadingScreen;
 
     public void OnContinuePressed()
     {
-        SceneManager.LoadScene("Main");
+        //SceneManager.LoadScene("PreScene1");
+        GameObject.Find("UI").GetComponent<Canvas>().enabled = false;
+        LoadingScreen.GetObject().GetComponent<Canvas>().enabled = true;
+        LoadingScreen.GetObject().Load("Main");
     }
 
 
@@ -23,6 +27,7 @@ public class PreSceneControl : MonoBehaviour
         continueButton = GameObject.Find("ContinueButton").GetComponent<CanvasGroup>();
         targetFound = GameObject.Find("findTargetText").GetComponent<CanvasGroup>();
         info = GameObject.Find("infoText").GetComponent<CanvasGroup>();
+        theLoadingScreen = LoadingScreen.GetObject().GetComponent<LoadingScreen>();
         changeWorldVisible(false);
     }
 

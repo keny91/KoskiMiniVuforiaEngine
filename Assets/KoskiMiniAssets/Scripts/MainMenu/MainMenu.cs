@@ -23,8 +23,10 @@ public class MainMenu : MonoBehaviour {
         //SceneManager.LoadScene("PreScene1");
         
         GetComponent<Canvas>().enabled = false;
-        LoadingScreen.GetObject().GetComponent<Canvas>().enabled = true;
-        LoadingScreen.GetObject().Load("main");
+        //LoadingScreen.GetObject().GetComponent<Canvas>().enabled = true;
+
+        //LoadingScreen.GetObject().Load("PreScene1");
+        SceneManager.LoadScene("PreScene1");
 
 
     }

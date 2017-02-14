@@ -206,7 +206,7 @@ public class LoadingScreen : MonoBehaviour {
 
         //levelToLoad = null; // Reset level
         DisableContinue();
-        HideLoadingScreen();
+        //HideLoadingScreen();
     }
 
 }

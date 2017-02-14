@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 using Vuforia;
+using System;
 
 [RequireComponent(typeof(SoundController))]
 
@@ -22,6 +23,8 @@ public class GameControllerScript : MonoBehaviour
 
     public bool gameRunning = true;
     public bool gameStopped = true;
+
+    public LoadingScreen theLoadingScreen;
 
     //Hidden world
     public bool WorldHidden;
@@ -261,6 +264,16 @@ public class GameControllerScript : MonoBehaviour
         //SetGoal and respawn positions
         Respawn = (Transform)GameObject.Find("RespawnPosition").GetComponent<Transform>();
         WorldObject = GameObject.Find("WorldScene");
+
+        try
+        {
+            theLoadingScreen = LoadingScreen.GetObject().GetComponent<LoadingScreen>();
+            theLoadingScreen.HideLoadingScreen();
+        }
+  catch(NullReferenceException e)
+        {
+            Debug.LogError("No LoadingScreen Object" + e.Message);
+        }
 
         // Get all set of hiddable UI elements
         GameMenuWin = (GameObject)GameObject.Find("WinMenu");
