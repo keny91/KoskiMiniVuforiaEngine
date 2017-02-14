@@ -158,7 +158,7 @@ public class JoyStickCustomController : Joystick {
         if(m_UseY)
             valueY = CrossPlatformInputManager.GetAxisRaw(verticalAxisName);
 
-        Debug.LogWarning(valueX + "___" + valueY);
+
 
         float x = Mathf.Abs(valueX);
         float y = Mathf.Abs(valueY);

@@ -416,6 +416,28 @@ public class SinglePlayerController : MonoBehaviour
 
             Vector2 velXZ = new Vector2(velocity.x, velocity.z);
             animationElements.SetFloat("Speed", velXZ.magnitude);
+
+
+            if (animationElements.GetCurrentAnimatorStateInfo(0).IsName("Movement"))
+            {
+                if (velXZ.magnitude > 10)
+                {
+                    theController.theSoundController.playClipLooped(theController.theSoundController.SoundRunning);
+                }
+
+                else
+                {
+                    // Debug.LogError("AUDIIIIO STOPPED");
+                    theController.theSoundController.StopClip(theController.theSoundController.SoundRunning);
+                }
+
+            }
+            else
+            {
+                // Debug.LogError("AUDIIIIO STOPPED");
+                theController.theSoundController.StopClip(theController.theSoundController.SoundRunning);
+            }
+
             DetermineOrientation(velXZ); // Re-orient the object
 
 

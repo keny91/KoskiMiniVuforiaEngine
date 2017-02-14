@@ -1,28 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SoundController : MonoBehaviour {
+public class SoundController : MonoBehaviour
+{
 
 
 
-    AudioSource audioS, AudioLevel;
+    public AudioSource audioS, AudioLevel;
     public AudioClip SoundCoinCollected, SoundPlayerHit, SoundPlayerDeath, Sound1Up;
     public AudioClip[] SoundJump;
+    public AudioClip SoundRunning;
     public AudioClip SoundVictory, SoundDefeat;
     public AudioClip AmbientalMusicForLevel;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         // Don´t Destroy Background music from Level to Level
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(GameObject.Find("Music"));
-
-
+        audioS = gameObject.AddComponent<AudioSource>();
+        AudioLevel = gameObject.AddComponent<AudioSource>();
+        audioS.clip = AmbientalMusicForLevel;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
 
     }
@@ -44,10 +49,24 @@ public class SoundController : MonoBehaviour {
 
     public void playClip(AudioClip Clip)
     {
+        audioS.Stop();
         audioS = gameObject.AddComponent<AudioSource>();
         audioS.clip = Clip;
         audioS.Play();
     }
+
+    public void playClipLooped(AudioClip Clip)
+    {
+        if (!audioS.isPlaying)
+        {
+            audioS = gameObject.AddComponent<AudioSource>();
+            audioS.loop = true;
+            audioS.clip = Clip;
+            audioS.Play();
+        }
+
+    }
+
 
     public void ResumeClip(AudioClip Clip)
     {
@@ -59,14 +78,16 @@ public class SoundController : MonoBehaviour {
     }
 
 
-    public void StopClip(AudioClip Clip)
+    public void StopClip(AudioClip theClip)
     {
         //audioS = gameObject.AddComponent<AudioSource>();
         //audioS.clip = Clip;
-        if (audioS.isPlaying)
+        if (audioS.isPlaying && audioS.clip.name == theClip.name)
+        {
             audioS.Stop();
-        else
-            Debug.LogWarning("Clip "+ audioS.clip.name + " is not playing");
+        }
+
+
     }
 
 
@@ -74,7 +95,7 @@ public class SoundController : MonoBehaviour {
     {
         int len = clipList.Length;
         int selected = (int)Random.Range(0, len);
-        Debug.LogWarning("ClipsSelected from " + clipList + "is the number "+ selected);
+        Debug.LogWarning("ClipsSelected from " + clipList + "is the number " + selected);
         playClip(clipList[selected]);
 
     }

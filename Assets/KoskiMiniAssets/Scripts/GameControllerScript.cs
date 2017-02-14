@@ -130,6 +130,7 @@ public class GameControllerScript : MonoBehaviour
     /// </summary>
     public void Pause()
     {
+        theSoundController.audioS.Stop();
         gameRunning = false;
     }
 
@@ -354,6 +355,7 @@ public class GameControllerScript : MonoBehaviour
     void OnVictory()
     {
         Pause();  // Pause the game
+        theSoundController.audioS.Stop();
         theSoundController.playClip(theSoundController.SoundVictory);
         //HideUI();
         GameMenuWin.GetComponent<ScoreCanvasControl>().Show();     //Make Win Menu Visible
@@ -397,6 +399,7 @@ public class GameControllerScript : MonoBehaviour
     protected void OnDefeat()
     {
         Pause();  // Pause the game
+        theSoundController.audioS.Stop();
         theSoundController.playClip(theSoundController.SoundDefeat);
         GameMenuLose.GetComponent<ScoreCanvasControl>().Show();     //Make Defeat Menu Visible
         GameUIinGame.GetComponent<ScoreCanvasControl>().Hide();     //Make Defeat Menu InVisible
