@@ -11,6 +11,10 @@ public class JoyStickCustomController : Joystick {
     public bool SingleAxisInput = false;
     public bool Swapped = false;
 
+    private GameObject JoystickObject;
+    protected Vector3 JoystickObject_m_StartPos;
+    public bool PointerIsDown = false;
+
 
     public void configureJoystick(bool X, bool Y, bool swap,bool Single)
     {
@@ -24,53 +28,100 @@ public class JoyStickCustomController : Joystick {
 
     // Use this for initialization
     void Start () {
+
+        JoystickObject = transform.FindChild("MobileJoystick").gameObject;
+
         int wid = Screen.width;
         int hei = Screen.height;
 
         MovementRange = wid / 13;
 
-        m_StartPos = transform.position;
+        
+        JoystickObject_m_StartPos = JoystickObject.transform.position; ;
         CreateVirtualAxes();
     }
 
 
-    public new void OnDrag(PointerEventData data)
+    public override void OnDrag(PointerEventData data)
     {
         Vector3 newPos = Vector3.zero;
 
+
+        int delta;
         if (m_UseX)
         {
-            int delta = (int)(data.position.x - m_StartPos.x);
+            delta = (int)(data.position.x - m_StartPos.x);
             //delta = Mathf.Clamp(delta, - MovementRange, MovementRange); // modified
             newPos.x = delta;
         }
 
         if (m_UseY)
         {
-            int delta = (int)(data.position.y - m_StartPos.y);
+            delta = (int)(data.position.y - m_StartPos.y);
             //delta = Mathf.Clamp(delta, -MovementRange, MovementRange); // modified
             newPos.y = delta;
         }
 
+        Vector3 value = Vector3.ClampMagnitude(new Vector3(newPos.x, newPos.y, newPos.z), MovementRange) + JoystickObject_m_StartPos;
+
+
+            JoystickObject.transform.position = value;
+
+        /*
+            if (newPos.x >= newPos.y)
+            {
+                newPos.y = 0;
+            }
+            else if (newPos.x < newPos.y)
+                newPos.x = 0;
+*/
         /* ADDED Modification    <--- Might not be updating the 2D visually*/
-        if (newPos.x >= newPos.y)
-        {
-            newPos.y = 0;
-        }
-        else if (newPos.x < newPos.y)
-            newPos.x = 0;
+ 
 
 
-        transform.position = Vector3.ClampMagnitude(new Vector3(newPos.x, newPos.y, newPos.z), MovementRange) + m_StartPos;
-        UpdateVirtualAxes(transform.position);
+        value = Vector3.ClampMagnitude(new Vector3(newPos.x, newPos.y, newPos.z), MovementRange) + m_StartPos;
+        //JoystickObject.transform.position = value;
+        UpdateVirtualAxes(value);
     }
 
 
+    public override void OnPointerUp(PointerEventData data)
+    {
+        //transform.position = m_StartPos;
+        JoystickObject.transform.position = JoystickObject_m_StartPos;
+        UpdateVirtualAxes(m_StartPos);
+        PointerIsDown = false;
+    }
+
+    public override void OnPointerDown(PointerEventData data)
+    {
+      //  Debug.LogWarning("POINTER IS DOWN DETECTED");
+        if (!PointerIsDown)
+        {
+            
+            m_StartPos = data.position;
+          //  Debug.LogWarning("Selected dragging center" + m_StartPos);
+            PointerIsDown = true;
+        }
+            
+    }
 
     protected new void UpdateVirtualAxes(Vector3 value)
     {
+
+        if(value == m_StartPos)
+        {
+            m_HorizontalVirtualAxis.Update(0);
+            m_VerticalVirtualAxis.Update(0);
+            return;
+        }
+
+        
+
         var delta = m_StartPos - value;
+        
         delta.y = -delta.y;
+
         delta /= MovementRange;
         if (m_UseX)
         {
@@ -83,6 +134,9 @@ public class JoyStickCustomController : Joystick {
             if (Mathf.Abs(delta.x) < Mathf.Abs(delta.y))
                 m_VerticalVirtualAxis.Update(delta.y);
         }
+
+       //Debug.LogWarning("__AXIS X: " + -delta.x + " ___AXIS Y: " + delta.y);
+
     }
 
 
@@ -104,6 +158,8 @@ public class JoyStickCustomController : Joystick {
         if(m_UseY)
             valueY = CrossPlatformInputManager.GetAxisRaw(verticalAxisName);
 
+        Debug.LogWarning(valueX + "___" + valueY);
+
         float x = Mathf.Abs(valueX);
         float y = Mathf.Abs(valueY);
 
@@ -111,6 +167,7 @@ public class JoyStickCustomController : Joystick {
             valueX *= -1;
         if (InvertY)
             valueY *= -1;
+
         if (SingleAxisInput)
         {
             if (x > y)
@@ -125,17 +182,15 @@ public class JoyStickCustomController : Joystick {
                 valueX = 0;
             }
                 
-           
-
-
         }
-
-        
 
         if(Swapped)
             Output = new Vector2(valueY, valueX);
         else       
             Output = new Vector2(valueX, valueY);
+
+
+      //  Debug.LogError("AXIS OUTPUT: " + Output);
 
         return Output;
     }

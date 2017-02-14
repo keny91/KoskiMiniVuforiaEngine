@@ -115,6 +115,7 @@ public class JoystickCameraController : MonoBehaviour {
     public void SelectJoyStick(JoyStickCustomController theJoyStick)
     {
         joyStickController = theJoyStick;
+        Debug.Log("Selected Joystick: " + theJoyStick.transform.name);
     }
 
 

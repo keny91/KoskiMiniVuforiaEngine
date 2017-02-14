@@ -362,7 +362,7 @@ public class MultiPlayerController : NetworkBehaviour
         theTagReference.Initialize();
 
         // Get the joystick
-        GameObject joyObject = GameObject.Find("MobileJoystick");
+        GameObject joyObject = GameObject.Find("JoyStick");
         try
         {
             joyStickController = (JoyStickCustomController)joyObject.GetComponent<JoyStickCustomController>();
