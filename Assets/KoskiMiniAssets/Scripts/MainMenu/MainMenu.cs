@@ -25,14 +25,14 @@ public class MainMenu : MonoBehaviour {
         GetComponent<Canvas>().enabled = false;
         //LoadingScreen.GetObject().GetComponent<Canvas>().enabled = true;
 
-        //LoadingScreen.GetObject().Load("PreScene1");
-        SceneManager.LoadScene("PreScene1");
+        LoadingScreen.GetObject().Load("Main");
+        //SceneManager.LoadScene("Main");
 
 
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 	
 	}
 }

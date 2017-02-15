@@ -1,34 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PreSceneControl : MonoBehaviour
 {
 
-    CanvasGroup info, targetFound, continueButton;
-    bool WorldHidden = true;
-    public GameObject WorldObject;
-    LoadingScreen theLoadingScreen;
+    bool Visible = true;
+    public GameObject PreSceneObject;
+    public CanvasGroupDisplay thePreSceneUI;
+    
 
-    public void OnContinuePressed()
+    /// <summary>
+    /// Get the Prescene controller in the scene with a static call.
+    /// </summary>
+    /// <returns></returns>
+    public static PreSceneControl GetPreScene()
     {
-        //SceneManager.LoadScene("PreScene1");
-        GameObject.Find("UI").GetComponent<Canvas>().enabled = false;
-        LoadingScreen.GetObject().GetComponent<Canvas>().enabled = true;
-        LoadingScreen.GetObject().Load("Main");
-    }
+        PreSceneControl I;
+        try
+        {
+            I = GameObject.Find("GameControl").GetComponent<PreSceneControl>();
+        }
+        catch(NullReferenceException e)
+        {
+            Debug.LogError("No object \"PresceneScenario\" found in the scene." + e.Message);
+            Application.Quit();
+            I = null;
+        }
+        return I;
+    } 
 
 
-    // Use this for initialization
-    void Start()
+
+    /// <summary>
+    /// Used this for initialization of PreScene
+    /// </summary>
+
+    public void InitPreScene()
     {
-
-        WorldObject = GameObject.Find("WorldScene");
-        continueButton = GameObject.Find("ContinueButton").GetComponent<CanvasGroup>();
-        targetFound = GameObject.Find("findTargetText").GetComponent<CanvasGroup>();
-        info = GameObject.Find("infoText").GetComponent<CanvasGroup>();
-        theLoadingScreen = LoadingScreen.GetObject().GetComponent<LoadingScreen>();
-        changeWorldVisible(false);
+        PreSceneObject = GameObject.Find("PresceneScenario");
+        thePreSceneUI = GameObject.Find("PreSceneUI").GetComponent<CanvasGroupDisplay>();
+        makePreSceneVisible(true);
     }
 
 
@@ -36,77 +49,32 @@ public class PreSceneControl : MonoBehaviour
     /// <summary>
     /// Hide the elements located on the world
     /// </summary>
-    public void changeWorldVisible(bool hidTheWorld)
+    public void makePreSceneVisible(bool visible)
     {
-
-        if (hidTheWorld != WorldHidden) // Do only if it changes status
+        // Hide/show the UI
+        if (visible)
         {
-            try
-            {
-                if (!hidTheWorld) { // true
-                    DetectedMarker();
-                }
-                else  //false
-                {
-                    MarkerLost();
-                }
-
-                Renderer[] rendererComponents = WorldObject.GetComponentsInChildren<Renderer>(true);
-                //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
-
-                // Enable rendering:
-                foreach (Renderer component in rendererComponents)
-                {
-                    component.enabled = !hidTheWorld;
-                }
-
-
-                WorldHidden = hidTheWorld;
-            }
-            catch (UnassignedReferenceException e)
-            {
-                Debug.Log("Suppressed Error: " + e);
-            }
-
+            thePreSceneUI.Show();
+        }
+        else
+        {
+            thePreSceneUI.Hide();
+            //Debug.LogError("Trying to hide");
         }
 
-        // WorldObject.FIIIIINISHTHISSHIT;
+        // Disable PreSceneObject
+        Renderer[] rendererComponents = PreSceneObject.GetComponentsInChildren<Renderer>(true);
+        foreach (Renderer component in rendererComponents)
+        {
+            component.enabled = visible;
+        }
+        //PreSceneObject.SetActive(visible);
+       
     }
 
 
 
-    void DetectedMarker()
-    {
-        HideElement(targetFound);
-        ShowElement(continueButton);
-        ShowElement(info);
-    }
-
-    void MarkerLost()
-    {
-        HideElement(continueButton);
-        HideElement(info);
-        ShowElement(targetFound);
-    }
-
-    void HideElement(CanvasGroup uiElement)
-    {
-        uiElement.alpha = 0;
-        uiElement.interactable = false;
-        uiElement.blocksRaycasts = false;
-    }
-
-    void ShowElement(CanvasGroup uiElement)
-    {
-        uiElement.alpha = 1;
-        uiElement.interactable = true;
-        uiElement.blocksRaycasts = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
 
-    }
+
 }

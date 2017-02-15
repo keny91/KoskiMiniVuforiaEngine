@@ -89,6 +89,11 @@ public class HideTrackerOnLost : MonoBehaviour
         }
     }
 
+    public void DoCheck()
+    {
+        theController.changeWorldVisible(allUntracked);
+    }
+
 
 }
 

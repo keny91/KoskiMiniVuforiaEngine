@@ -17,8 +17,8 @@ public class SoundController : MonoBehaviour
     void Start()
     {
         // Don´t Destroy Background music from Level to Level
-        DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(GameObject.Find("Music"));
+       // DontDestroyOnLoad(gameObject);
+      //  DontDestroyOnLoad(GameObject.Find("Music"));
         audioS = gameObject.AddComponent<AudioSource>();
         AudioLevel = gameObject.AddComponent<AudioSource>();
         audioS.clip = AmbientalMusicForLevel;

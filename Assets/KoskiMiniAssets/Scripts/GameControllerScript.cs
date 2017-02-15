@@ -14,6 +14,8 @@ public class GameControllerScript : MonoBehaviour
 
     CrossPlatformInputManager.VirtualAxis theAxis;
 
+
+
     public Text LvlNumber;
     protected Text NameText;
     
@@ -21,14 +23,21 @@ public class GameControllerScript : MonoBehaviour
     protected Transform EndGame;
     protected Transform CheckPoint1;
 
-    public bool gameRunning = true;
-    public bool gameStopped = true;
 
-    public LoadingScreen theLoadingScreen;
+    public bool gameStarted = false;  // The game has passed the building phase ?
+    public bool gameRunning = false;  // The game is running ?
+    public bool gameStopped = true;
+    public bool gameEnded = false;
+
+    //public LoadingScreen theLoadingScreen;
+
+
 
     //Hidden world
     public bool WorldHidden;
     public GameObject WorldObject;
+    public bool trackerDetected = false;
+    public HideTrackerOnLost theTracker;
 
     public SoundController theSoundController;
 
@@ -42,30 +51,98 @@ public class GameControllerScript : MonoBehaviour
     protected GameObject GameMenuLose;
     protected GameObject GameMenuWin;
     protected GameObject GameUIinGame;
+    protected GameObject LostTrackerUI;
     public GameObject GamePause;
-
-
+    CanvasGroupDisplay [] UIs;
 
     // Collectibles
     protected GameObject[] coinObject; 
     public int collectibleRemaining;
     protected bool allCollectiblesCollected;
 
+
+
+
+
+    /// <summary>
+    ///  Start and unpause the game, enable movement, set the proper UI assets.
+    /// </summary>
+    public void StartGame()
+    {
+
+
+        LostTrackerUI.GetComponent<CanvasGroupDisplay>().Hide();
+
+        gameStarted = true;
+        changeWorldVisible(false);
+        PreSceneControl.GetPreScene().makePreSceneVisible(false);
+
+
+    }
+
     
+    public void EnableLostUI()
+    {
+
+        for (int i = 0; i < UIs.Length; i++)
+        {
+            if (UIs[i].transform.name == LostTrackerUI.transform.name)
+                UIs[i].Show();
+            else
+            {
+                UIs[i].Hide();
+            }
+        }
+        gameRunning = false;
+    }
+
+
+    public void DisableLostUI()
+    {
+        string thename;
+        if (gameStarted)
+            thename = "InGameUI";
+        else
+            thename = "PreSceneUI";
+
+            for (int i = 0; i < UIs.Length; i++)
+            {
+                if (UIs[i].transform.name == thename)
+                {
+                //Debug.LogError("Enabling UI: "+ UIs[i].transform.name);
+                UIs[i].Show();
+                }
+                    
+                else
+                {
+                    UIs[i].Hide();
+                }
+            }
+        gameRunning = true;
+    }
+
+
+    /// <summary>
+    /// Display UI elements and functionality to show how to physically build the scene with blocks.
+    /// </summary>
+    private void LoadPreScene()
+    {
+        // Set the interfaces to their proper states
+        GameMenuWin.GetComponent<ScoreCanvasControl>().Hide();
+        GameMenuLose.GetComponent<ScoreCanvasControl>().Hide();
+        GameUIinGame.GetComponent<ScoreCanvasControl>().Hide();
+        GamePause.GetComponent<ScoreCanvasControl>().Hide();
+        LostTrackerUI.GetComponent<CanvasGroupDisplay>().Show();
+
+        gameStarted = false;
+        PreSceneControl.GetPreScene().InitPreScene();
+        PreSceneControl.GetPreScene().makePreSceneVisible(true);
+    }
 
 
 
-    /*******************************************************/
-    /*****************   WORLD ACTIONS  ********************/
-    /*******************************************************/
-
-       
 
 
-
-    /*******************************************************/
-    /*****************    COLLECTION    ********************/
-    /*******************************************************/
 
     /// <summary> 
     /// A collectible has been picked. Depending on its properties modify game variables
@@ -153,39 +230,86 @@ public class GameControllerScript : MonoBehaviour
         gameStopped = false;
     }
 
-    /// <summary>
-    /// Hide the elements located on the world
-    /// </summary>
-    public void changeWorldVisible(bool hidTheWorld)
+
+    public void makeSceneVisible(bool visible)
     {
+        // Originally disable the scene render
+        Renderer[] rendererComponents = WorldObject.GetComponentsInChildren<Renderer>(true);
+        //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
 
-        if (hidTheWorld != WorldHidden) // Do only if it changes status
+        // Enable rendering:
+        foreach (Renderer component in rendererComponents)
         {
-            try
-            {
-                Renderer[] rendererComponents = WorldObject.GetComponentsInChildren<Renderer>(true);
-                //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
-
-                // Enable rendering:
-                foreach (Renderer component in rendererComponents)
-                {
-                    component.enabled = !hidTheWorld;
-                }
-
-                if (hidTheWorld)
-                    Stop();
-                else
-                    Run();
-
-                WorldHidden = hidTheWorld;
-            }
-            catch (UnassignedReferenceException e)
-            {
-                Debug.Log("Suppressed Error: "+ e);
-            }
-
+            component.enabled = visible;
         }
 
+    }
+
+
+
+
+    /// <summary>
+    /// Hide the elements located on the worldScene
+    /// </summary>
+    public void changeWorldVisible(bool untracked)
+    {
+        if (!gameEnded)
+        {
+            if (!untracked) // Do only if it changes status
+            {
+                //Debug.LogError("changing detection");
+                DisableLostUI();
+                if (gameStarted)
+                {
+                    try
+                    {
+                        makeSceneVisible(!untracked);
+
+                        if (untracked)
+                            Stop();
+                        else
+                            Run();
+
+                        WorldHidden = untracked;
+                    }
+                    catch (UnassignedReferenceException e)
+                    {
+                        Debug.Log("Suppressed Error: " + e);
+                    }
+                }
+
+                else
+                {
+                    PreSceneControl.GetPreScene().makePreSceneVisible(!untracked);
+                }
+
+            }
+            else if (gameRunning)
+            {
+                EnableLostUI();
+                if (gameStarted)
+                {
+                    makeSceneVisible(!untracked);
+                }
+                else
+                {
+                    PreSceneControl.GetPreScene().makePreSceneVisible(!untracked);
+                }
+            }
+
+
+            else
+            {
+                if (gameStarted)
+                {
+                    makeSceneVisible(!untracked);
+                }
+                else
+                {
+                    PreSceneControl.GetPreScene().makePreSceneVisible(!untracked);
+                }
+            }
+        }
         // WorldObject.FIIIIINISHTHISSHIT;
     }
 
@@ -267,10 +391,10 @@ public class GameControllerScript : MonoBehaviour
 
         try
         {
-            theLoadingScreen = LoadingScreen.GetObject().GetComponent<LoadingScreen>();
-            theLoadingScreen.HideLoadingScreen();
+            LoadingScreen.GetObject().GetComponent<LoadingScreen>().HideLoadingScreen(); 
+
         }
-  catch(NullReferenceException e)
+        catch(NullReferenceException e)
         {
             Debug.LogError("No LoadingScreen Object" + e.Message);
         }
@@ -280,38 +404,20 @@ public class GameControllerScript : MonoBehaviour
         GameMenuLose = (GameObject)GameObject.Find("LossMenu");
         GameUIinGame = (GameObject)GameObject.Find("InGameUI");
         GamePause = (GameObject)GameObject.Find("PauseMenu");
+        LostTrackerUI = (GameObject)GameObject.Find("LostTrackingMenu");
 
+        UIs = GameObject.Find("UI").transform.GetComponentsInChildren<CanvasGroupDisplay>();
 
-        // Set the interfaces to their proper states
-        GameMenuWin.GetComponent<ScoreCanvasControl>().Hide();
-        GameMenuLose.GetComponent<ScoreCanvasControl>().Hide();
-        GameUIinGame.GetComponent<ScoreCanvasControl>().Show();
-        GamePause.GetComponent<ScoreCanvasControl>().Hide();
+        theTracker = GameObject.Find("Targets").GetComponent<HideTrackerOnLost>();
 
         GameUIinGame.GetComponent<ScoreCanvasControl>().Start();  // Force to initialize the element
         GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
 
-        //Resume();
 
         // Set up maximum possible score and total of items required to pass the level
         coinObject = GameObject.FindGameObjectsWithTag("Collectable");
         collectibleRemaining = 0;
-        //Debug.Log(coinObject[0].name);
 
-        //Set material to transparent
-        /*
-                GameObject Object2Compensate = GameObject.Find("board_square_test");
-                Material theMat = Object2Compensate.GetComponent<Renderer>().material;
-                Color theNewColor = new Color();
-                theNewColor.a = 0;
-                theMat.color = theNewColor;
-
-                Object2Compensate.GetComponent<Renderer>().receiveShadows = true;
-                //Object2Compensate.GetComponent<Material>() = theMat;
-                //theMat = (Material)Object2Compensate.AddComponent(typeof(Material));
-                //Object2Compensate.AddComponent(theMat);
-
-                */
 
         for (int i =0; i < coinObject.Length; i++)
         {
@@ -324,25 +430,33 @@ public class GameControllerScript : MonoBehaviour
 
         }
 
+        // Originally disable the scene render
+        makeSceneVisible(false);
+
 
 
         GameObject objectRespawn = GameObject.Find("RespawnPosition");
         Respawn = objectRespawn.transform;
 
+
+        // Start on the PreSceneScreen
+        
+        LoadPreScene();
         
 
         theSoundController = (SoundController)GetComponent<SoundController>();
         theSoundController.PlayBackGroundMusic();
 
-        
-        //Debug.LogWarning(Lives);
+
 
     }
-	
-	// Update is called once per frame
-	protected void Update () {
 
+    
 
+    // Update is called once per frame
+    protected void Update () {
+
+        //if(trackerDetected)
 
 
     }
@@ -357,6 +471,7 @@ public class GameControllerScript : MonoBehaviour
     {
         if (allCollectiblesCollected)
         {
+            gameEnded = true;
             OnVictory();
         }
 
@@ -405,12 +520,20 @@ public class GameControllerScript : MonoBehaviour
 
     }
 
+    public void OnPressSceneContinueButton()
+    {
+        //SceneManager.LoadScene("PreScene1");
+        //PreSceneControl.GetPreScene().makePreSceneVisible(false);
+        StartGame();
+        
+    }
 
     /// <summary>
     /// Execute level end OnDefeat
     /// </summary>
     protected void OnDefeat()
     {
+        gameEnded = true;
         Pause();  // Pause the game
         theSoundController.audioS.Stop();
         theSoundController.playClip(theSoundController.SoundDefeat);
@@ -460,6 +583,8 @@ public class GameControllerScript : MonoBehaviour
         ClearAxis();
         SceneManager.LoadScene("MainMenu");
     }
+
+
 
     public void OnNextButton()
     {

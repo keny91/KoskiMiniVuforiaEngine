@@ -79,7 +79,7 @@ public class SinglePlayerController : MonoBehaviour
     //Respawn Process
     public void PlayerRespawn()
     {
-		theController.Start ();
+		
         gameObject.transform.position = theController.Respawn.position;
         Debug.Log("Respawned");
     }
@@ -309,6 +309,8 @@ public class SinglePlayerController : MonoBehaviour
         playerCollider.collisionMaskGround.value = 1 << LayerMask.NameToLayer("Ground");
         playerCollider.collisionMaskObjects.value = 1 << LayerMask.NameToLayer("WorldObjects");
 
+        
+
         // Access to extra functions stored in an outside class
         extraFunctionalities = new PhysicsController(accelerationTimeAirborne, accelerationTimeGrounded);
 
@@ -350,6 +352,7 @@ public class SinglePlayerController : MonoBehaviour
         //ObjectController = GameObject.Find("GameController");
         //theController = GetComponent<GameControllerScript>();
         theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
+        theController.Start();
 
 
         GameObject cameraRef = GameObject.Find("ARCamera");
@@ -386,7 +389,7 @@ public class SinglePlayerController : MonoBehaviour
     void Update()
     {
 
-        if (theController.gameRunning && !theController.gameStopped) // Only update player if game is running
+        if (theController.gameRunning && !theController.gameStopped && theController.gameStarted && !theController.gameEnded) // Only update player if game is running
         {
             animationElements.speed = 1;
             Vector3 MVector = new Vector3();

@@ -8,7 +8,7 @@ public class LoadingScreen : MonoBehaviour {
 
 
     public Texture2D texture;
-    private RawImage theTexture;
+    private Canvas theTexture;
     static LoadingScreen instance;
     public string levelToLoad;
     public int IDLevelToLoad;
@@ -34,8 +34,8 @@ public class LoadingScreen : MonoBehaviour {
             return;
         }
         instance = this;
-        theTexture = GetComponent<RawImage>();
-        theTexture.texture = texture;
+        theTexture = GetComponent<Canvas>();
+        //theTexture. = texture;
         continueButton = GameObject.Find("ContinueB");
         continueButton.SetActive(false);
 

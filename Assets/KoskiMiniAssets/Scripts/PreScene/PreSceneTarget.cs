@@ -85,7 +85,7 @@ public class PreSceneTarget : MonoBehaviour
 
             Debug.LogWarning("Updated Traked List: " + theTrackerName + isTracked.ToString());
             Debug.LogWarning("Is all untracked:" + allUntracked);
-            theController.changeWorldVisible(allUntracked);
+            //theController.chang(allUntracked);
         }
         catch (System.NullReferenceException e)
         {
