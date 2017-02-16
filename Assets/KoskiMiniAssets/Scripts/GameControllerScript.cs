@@ -258,7 +258,8 @@ public class GameControllerScript : MonoBehaviour
             if (!untracked) // Do only if it changes status
             {
                 //Debug.LogError("changing detection");
-                DisableLostUI();
+                if(theTracker.tracking != TrackableBehaviour.Status.EXTENDED_TRACKED)
+                    DisableLostUI();
                 if (gameStarted)
                 {
                     try

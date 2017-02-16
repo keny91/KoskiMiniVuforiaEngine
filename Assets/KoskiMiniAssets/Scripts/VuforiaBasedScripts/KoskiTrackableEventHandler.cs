@@ -51,11 +51,12 @@ namespace Vuforia
                                         TrackableBehaviour.Status previousStatus,
                                         TrackableBehaviour.Status newStatus)
         {
+
             if (newStatus == TrackableBehaviour.Status.DETECTED ||
                 newStatus == TrackableBehaviour.Status.TRACKED ||
                 newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
             {
-                OnTrackingFound();
+                OnTrackingFound(newStatus);
             }
             else
             {
@@ -70,7 +71,7 @@ namespace Vuforia
         #region PRIVATE_METHODS
 
 
-        private void OnTrackingFound()
+        private void OnTrackingFound(TrackableBehaviour.Status S)
         {
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
@@ -88,7 +89,7 @@ namespace Vuforia
             {
                 component.enabled = true;
             }
-            theTargetMainFrame.UpdateTrackedList(gameObject.name, true);
+            theTargetMainFrame.UpdateTrackedList(gameObject.name, true, S);
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 

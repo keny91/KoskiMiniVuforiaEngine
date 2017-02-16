@@ -7,6 +7,8 @@ public class HideTrackerOnLost : MonoBehaviour
                                                 
 {
 
+
+    public TrackableBehaviour.Status tracking;
     TrackerObj[] trackableList;
     //PlayerController thePlayer;
     public GameControllerScript theController;
@@ -61,7 +63,7 @@ public class HideTrackerOnLost : MonoBehaviour
     /// </summary>
     /// <param name="theTrackerName"></param>
     /// <param name="isTracked"></param>
-    public void UpdateTrackedList(string theTrackerName, bool isTracked)
+    public void UpdateTrackedList(string theTrackerName, bool isTracked, TrackableBehaviour.Status s = TrackableBehaviour.Status.NOT_FOUND)
         {
 
 
@@ -81,7 +83,13 @@ public class HideTrackerOnLost : MonoBehaviour
 
             //Debug.LogWarning("Updated Traked List: " + theTrackerName + isTracked.ToString());
             //Debug.LogWarning("Is all untracked:" + allUntracked);
-            theController.changeWorldVisible(allUntracked);
+
+            if(trackableList.Length == 1)
+            {
+                tracking = s;
+                DoCheck();
+            }
+           
         }
         catch(System.NullReferenceException e)
         {

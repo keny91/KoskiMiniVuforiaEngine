@@ -12,6 +12,7 @@ public class LoadingScreen : MonoBehaviour {
     static LoadingScreen instance;
     public string levelToLoad;
     public int IDLevelToLoad;
+    public float WaitingTime = 3f;
     protected GameObject continueButton;
     AsyncOperation async;
 
@@ -117,15 +118,18 @@ public class LoadingScreen : MonoBehaviour {
     /// <returns></returns>
     IEnumerator LoadLevel(string name)
     {
+        float ThePresent = Time.time;
+        float TheNewPresent = Time.time;
         async = SceneManager.LoadSceneAsync(name);
         async.allowSceneActivation = false;
-        while (!async.isDone)
+        while (!async.isDone && TheNewPresent-ThePresent< WaitingTime)
         {
+            TheNewPresent = Time.time;
             int progress = ((int)(async.progress * 100));
             //map.SetPixels(0, 0, progress, maxHeight, filler);
-            Debug.Log(progress);
-            if (progress > 85)
-                EnableContinue();
+            //Debug.Log(TheNewPresent - ThePresent);
+           // if (progress > 85)
+               // EnableContinue();
             //map.Apply();
             yield return (0);
         }
