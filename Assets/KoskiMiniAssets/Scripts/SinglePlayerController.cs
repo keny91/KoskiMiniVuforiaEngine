@@ -18,7 +18,8 @@ public class SinglePlayerController : MonoBehaviour
     PlayerCollisionController playerCollider;
     PhysicsController extraFunctionalities;
     JumpController jumpController;
-    JoyStickCustomController joyStickController;
+    //JoyStickCustomController joyStickController;
+    SmartARJoystick joyStickController;
     JoystickCameraController theCameraJoyStickController;
 
     public LayerMask collisionMaskGround;
@@ -33,7 +34,7 @@ public class SinglePlayerController : MonoBehaviour
     public float moveSpeed = 20f;
     public Vector3 velocity;
     VelocityLimit VelocityLimits;
-
+    public float JoystickManualCalibrationAngle = 0f;
     // Acceleration
     float accelerationTimeAirborne = 0.5f;
     float accelerationTimeGrounded = 0.25f;
@@ -290,6 +291,20 @@ public class SinglePlayerController : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Delay Jump to fit animation.
+    /// <para> There might be a better option in the animator.</para>
+    /// </summary>
+    /// <param name="delayTime"> Time to be delayed</param>
+    /// <returns></returns>
+    IEnumerator DelayedJump(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        // After Delay
+        theController.theSoundController.PlayRandomFrom(theController.theSoundController.SoundJump);
+        jumpController.performJump(ref velocity);
+    }
+
 
 
 
@@ -339,8 +354,10 @@ public class SinglePlayerController : MonoBehaviour
         GameObject joyObject = GameObject.Find("JoyStick");
         try
         {
-            joyStickController = (JoyStickCustomController)joyObject.GetComponent<JoyStickCustomController>();
-            joyStickController.configureJoystick(false, true, false, true);
+            //joyStickController = (JoyStickCustomController)joyObject.GetComponent<JoyStickCustomController>();
+            joyStickController = (SmartARJoystick)joyObject.GetComponent<SmartARJoystick>();
+            joyStickController.configureJoystick(true, JoystickManualCalibrationAngle);
+            //joyStickController.configureJoystick(false, true, false, true);
         }
         catch (Exception e)
         {
@@ -356,8 +373,8 @@ public class SinglePlayerController : MonoBehaviour
 
 
         GameObject cameraRef = GameObject.Find("ARCamera");
-        theCameraJoyStickController = (JoystickCameraController)cameraRef.GetComponent<JoystickCameraController>();
-        theCameraJoyStickController.SelectJoyStick(joyStickController);
+        // theCameraJoyStickController = (JoystickCameraController)cameraRef.GetComponent<JoystickCameraController>();
+        //  theCameraJoyStickController.SelectJoyStick(joyStickController);
 
 
 
@@ -370,20 +387,6 @@ public class SinglePlayerController : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Delay Jump to fit animation.
-    /// <para> There might be a better option in the animator.</para>
-    /// </summary>
-    /// <param name="delayTime"> Time to be delayed</param>
-    /// <returns></returns>
-    IEnumerator DelayedJump(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        // After Delay
-        theController.theSoundController.PlayRandomFrom(theController.theSoundController.SoundJump);
-        jumpController.performJump(ref velocity);
-    }
-
 
     // Update is called once per frame
     void Update()
@@ -395,7 +398,7 @@ public class SinglePlayerController : MonoBehaviour
             Vector3 MVector = new Vector3();
             if (isControllable)
             {
-                theCameraJoyStickController.DetermineZone();
+                //theCameraJoyStickController.DetermineZone();
                 MVector = joyStickController.getAxisOutput();
             }
 

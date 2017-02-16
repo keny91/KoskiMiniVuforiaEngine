@@ -16,16 +16,19 @@ public class CollisionControler : MonoBehaviour
 
     public RaycastHit ObjectHit;
 
-    public float XRaySpacing;
-    public float YRaySpacing;
-    public float ZRaySpacing;
+    protected float XRaySpacing;
+    protected float YRaySpacing;
+    protected float ZRaySpacing;
 
     protected float objectCollisionLenght = 1.2f;
 
     // Collision Status
-    public bool above, below;
+    [HideInInspector]public bool above, below;
+    [HideInInspector]
     public bool front, back;
+    [HideInInspector]
     public bool left, right;
+    [HideInInspector]
     public bool climbingSlope = false;
 
 

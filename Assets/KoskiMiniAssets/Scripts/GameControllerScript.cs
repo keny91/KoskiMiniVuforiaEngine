@@ -575,13 +575,13 @@ public class GameControllerScript : MonoBehaviour
     public void OnRetryButton()
     {
         ClearAxis();
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnMenuButton()
     {
         ClearAxis();
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenuTrue");
     }
 
 

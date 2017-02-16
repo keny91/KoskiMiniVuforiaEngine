@@ -37,8 +37,45 @@ public class JoyStickCustomController : Joystick {
         MovementRange = wid / 13;
 
         
-        JoystickObject_m_StartPos = JoystickObject.transform.position; ;
+        JoystickObject_m_StartPos = JoystickObject.transform.position;
         CreateVirtualAxes();
+    }
+
+
+    /// <summary>
+    ///  Checks which axis are to be expected as inputs and registers them as an input if they have not
+    ///  been registered already
+    /// </summary>
+    protected new void CreateVirtualAxes()
+    {
+        // set axes to use
+        m_UseX = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal);
+        m_UseY = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical);
+
+        // create new axes based on axes to use
+        if (m_UseX)
+        {
+            if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
+            {
+                Debug.LogWarning("Trying to register already registered JoyStick axis:" + horizontalAxisName);
+                CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
+            }
+
+            m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
+            CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
+        }
+        if (m_UseY)
+        {
+            if (CrossPlatformInputManager.AxisExists(verticalAxisName))
+            {
+                Debug.LogWarning("Trying to register already registered JoyStick axis:" + verticalAxisName);
+                CrossPlatformInputManager.UnRegisterVirtualAxis(verticalAxisName);
+            }
+
+            m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
+            CrossPlatformInputManager.RegisterVirtualAxis(m_VerticalVirtualAxis);
+        }
+
     }
 
 
