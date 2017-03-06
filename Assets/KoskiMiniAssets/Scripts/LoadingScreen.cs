@@ -37,8 +37,8 @@ public class LoadingScreen : MonoBehaviour {
         instance = this;
         theTexture = GetComponent<Canvas>();
         //theTexture. = texture;
-        continueButton = GameObject.Find("ContinueB");
-        continueButton.SetActive(false);
+        //continueButton = GameObject.Find("ContinueB");
+        //continueButton.SetActive(false);
 
     }
 
