@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class GrowingElement : MonoBehaviour {
 
-    public float distanceTH = 5;
-    protected float distance2Player;
+    public float distanceTH;
+    public float distance2Player;
     protected Transform thePlayer;
     protected Animator animationElements;
     protected bool growthTriggered = false;

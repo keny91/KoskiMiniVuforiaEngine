@@ -1,44 +1,42 @@
 fileFormatVersion: 2
-guid: b95fdbc2969841247a4de28e870cebc5
-timeCreated: 1488823201
+guid: f2ee2478e9c9fc94ea59605f634dcedf
+timeCreated: 1488886938
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Leaves_1
-    100004: Leaves_2
-    100006: Leaves_3
-    100008: Leaves_4
-    100010: Leaves_5
-    400000: //RootNode
-    400002: Leaves_1
-    400004: Leaves_2
-    400006: Leaves_3
-    400008: Leaves_4
-    400010: Leaves_5
-    2300000: //RootNode
-    2300002: Leaves_1
-    2300004: Leaves_2
-    2300006: Leaves_3
-    2300008: Leaves_4
-    2300010: Leaves_5
-    3300000: //RootNode
-    3300002: Leaves_1
-    3300004: Leaves_2
-    3300006: Leaves_3
-    3300008: Leaves_4
-    3300010: Leaves_5
+    100000: Leaves_1
+    100002: Leaves_2
+    100004: Leaves_3
+    100006: Leaves_4
+    100008: Leaves_5
+    100010: //RootNode
+    400000: Leaves_1
+    400002: Leaves_2
+    400004: Leaves_3
+    400006: Leaves_4
+    400008: Leaves_5
+    400010: //RootNode
+    2300000: Leaves_1
+    2300002: Leaves_2
+    2300004: Leaves_3
+    2300006: Leaves_4
+    2300008: Leaves_5
+    2300010: //RootNode
+    3300000: Leaves_1
+    3300002: Leaves_2
+    3300004: Leaves_3
+    3300006: Leaves_4
+    3300008: Leaves_5
+    3300010: //RootNode
     4300000: Christmas_trunk
     4300002: Leaves_1
     4300004: Leaves_2
     4300006: Leaves_3
     4300008: Leaves_4
     4300010: Leaves_5
-    7400000: Growth5
-    7400002: Growth4
-    7400004: Growth3
-    7400006: Growth2
+    7400000: idle_small
+    7400002: idle_big
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -62,17 +60,17 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Growth5
+      name: idle_small
       takeName: Take 001
-      firstFrame: -4
-      lastFrame: 53
+      firstFrame: -50
+      lastFrame: -4
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -102,97 +100,17 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Growth4
+      name: idle_big
       takeName: Take 001
-      firstFrame: -4
-      lastFrame: 38
+      firstFrame: 56
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Leaves_1
-        weight: 1
-      - path: Leaves_1/Leaves_2
-        weight: 1
-      - path: Leaves_1/Leaves_2/Leaves_3
-        weight: 1
-      - path: Leaves_1/Leaves_2/Leaves_3/Leaves_4
-        weight: 1
-      - path: Leaves_1/Leaves_2/Leaves_3/Leaves_4/Leaves_5
-        weight: 1
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Growth3
-      takeName: Take 001
-      firstFrame: -4
-      lastFrame: 32
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Leaves_1
-        weight: 1
-      - path: Leaves_1/Leaves_2
-        weight: 1
-      - path: Leaves_1/Leaves_2/Leaves_3
-        weight: 1
-      - path: Leaves_1/Leaves_2/Leaves_3/Leaves_4
-        weight: 1
-      - path: Leaves_1/Leaves_2/Leaves_3/Leaves_4/Leaves_5
-        weight: 1
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Growth2
-      takeName: Take 001
-      firstFrame: -4
-      lastFrame: 24
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
