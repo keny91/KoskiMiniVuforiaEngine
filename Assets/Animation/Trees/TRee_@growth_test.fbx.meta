@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: 2918ee058f2898242abd60cd28ec90fa
+timeCreated: 1488823200
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: _Branch_A_1
+    100002: _Branch_A_2
+    100004: _Branch_A_4
+    100006: _Branch_B_1
+    100008: _Branch_B_2
+    100010: _Branch_B_3
+    100012: _Branch_C_1
+    100014: _Branch_C_2
+    100016: _Branch_C_3
+    100018: _Branch_C_3_end
+    100020: _Branch_C_3b
+    100022: _Branch_C_3b_end
+    100024: _Leaves_A
+    100026: _Leaves_A2
+    100028: _Leaves_B
+    100030: _Leaves_C
+    100032: _Leaves_Cb
+    100034: _Leaves_Cb2
+    100036: _Tree
+    100038: _Tree_centrum
+    100040: Branch_A_1
+    100042: Branch_A_2
+    100044: Branch_A_4
+    100046: Branch_B_1
+    100048: Branch_B_2
+    100050: Branch_B_3
+    100052: Branch_C_1
+    100054: Branch_C_2
+    100056: Branch_C_3
+    100058: Branch_C_3_end
+    100060: Branch_C_3b
+    100062: Branch_C_3b_end
+    100064: Character
+    100066: Leaves
+    100068: Leaves_A
+    100070: Leaves_A2
+    100072: Leaves_B
+    100074: Leaves_C
+    100076: Leaves_Cb
+    100078: Leaves_Cb2
+    100080: offset__Branch_A_1
+    100082: offset__Branch_A_2
+    100084: offset__Branch_A_4
+    100086: offset__Branch_B_1
+    100088: offset__Branch_B_2
+    100090: offset__Branch_B_3
+    100092: offset__Branch_C_1
+    100094: offset__Branch_C_2
+    100096: offset__Branch_C_3
+    100098: offset__Branch_C_3_end
+    100100: offset__Branch_C_3b
+    100102: offset__Branch_C_3b_end
+    100104: offset__Tree_centrum
+    100106: RIG
+    100108: Tree
+    100110: //RootNode
+    100112: Tree_centrum
+    100114: Tree_Growth
+    400000: _Branch_A_1
+    400002: _Branch_A_2
+    400004: _Branch_A_4
+    400006: _Branch_B_1
+    400008: _Branch_B_2
+    400010: _Branch_B_3
+    400012: _Branch_C_1
+    400014: _Branch_C_2
+    400016: _Branch_C_3
+    400018: _Branch_C_3_end
+    400020: _Branch_C_3b
+    400022: _Branch_C_3b_end
+    400024: _Leaves_A
+    400026: _Leaves_A2
+    400028: _Leaves_B
+    400030: _Leaves_C
+    400032: _Leaves_Cb
+    400034: _Leaves_Cb2
+    400036: _Tree
+    400038: _Tree_centrum
+    400040: Branch_A_1
+    400042: Branch_A_2
+    400044: Branch_A_4
+    400046: Branch_B_1
+    400048: Branch_B_2
+    400050: Branch_B_3
+    400052: Branch_C_1
+    400054: Branch_C_2
+    400056: Branch_C_3
+    400058: Branch_C_3_end
+    400060: Branch_C_3b
+    400062: Branch_C_3b_end
+    400064: Character
+    400066: Leaves
+    400068: Leaves_A
+    400070: Leaves_A2
+    400072: Leaves_B
+    400074: Leaves_C
+    400076: Leaves_Cb
+    400078: Leaves_Cb2
+    400080: offset__Branch_A_1
+    400082: offset__Branch_A_2
+    400084: offset__Branch_A_4
+    400086: offset__Branch_B_1
+    400088: offset__Branch_B_2
+    400090: offset__Branch_B_3
+    400092: offset__Branch_C_1
+    400094: offset__Branch_C_2
+    400096: offset__Branch_C_3
+    400098: offset__Branch_C_3_end
+    400100: offset__Branch_C_3b
+    400102: offset__Branch_C_3b_end
+    400104: offset__Tree_centrum
+    400106: RIG
+    400108: Tree
+    400110: //RootNode
+    400112: Tree_centrum
+    400114: Tree_Growth
+    4300000: Tree_Growth
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Tree_Growth
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
