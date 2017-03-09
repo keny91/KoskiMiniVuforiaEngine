@@ -12,6 +12,8 @@ public class GrowingElement : MonoBehaviour {
     protected Transform thePlayer;
     protected Animator animationElements;
     protected bool growthTriggered = false;
+    protected bool doOneTime = false;
+    public int numAnimatorBranches = 2;
 
     // Use this for initialization
     protected void Start() {
@@ -35,11 +37,15 @@ public class GrowingElement : MonoBehaviour {
 
         
 
-        if (growthTriggered)
+        if (growthTriggered && !doOneTime)
         {
             animationElements.SetBool("DoGrowth", growthTriggered);
+            int selected = (int)Random.Range(0, numAnimatorBranches);
+            Debug.LogError("Triggered: " + selected);
+            animationElements.SetInteger("AnimVersion", selected);
+            doOneTime = true;
         }
-        else
+        else if(!doOneTime)
         {
             checkDistance();
         }        

@@ -95,7 +95,7 @@ public class SoundController : MonoBehaviour
     {
         int len = clipList.Length;
         int selected = (int)Random.Range(0, len);
-        Debug.LogWarning("ClipsSelected from " + clipList + "is the number " + selected);
+        //Debug.LogWarning("ClipsSelected from " + clipList + "is the number " + selected);
         playClip(clipList[selected]);
 
     }
