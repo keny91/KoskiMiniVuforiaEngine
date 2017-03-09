@@ -41,8 +41,12 @@ public class GrowingElement : MonoBehaviour {
         {
             animationElements.SetBool("DoGrowth", growthTriggered);
             int selected = (int)Random.Range(0, numAnimatorBranches);
-            Debug.LogError("Triggered: " + selected);
+            //Debug.LogError("Triggered: " + selected);
             animationElements.SetInteger("AnimVersion", selected);
+            if (!GetComponent<ParticleSystem>().isPlaying)
+            {
+                GetComponent<ParticleSystem>().Play();
+            }
             doOneTime = true;
         }
         else if(!doOneTime)
