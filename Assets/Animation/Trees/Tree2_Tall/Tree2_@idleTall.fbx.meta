@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: dcba6913325f8ef46bb68ef7b31f46ff
+timeCreated: 1489068454
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: _Branch_A
+    100002: _Branch_A2
+    100004: _Branch_B
+    100006: _Branch_B2
+    100008: _Branch_C
+    100010: _Branch_C2
+    100012: _Branch_D
+    100014: _Branch_E
+    100016: _offset_T_HighTree_Leaves_A
+    100018: _offset_T_HighTree_Leaves_B
+    100020: _offset_T_HighTree_Leaves_C
+    100022: _offset_T_HighTree_Leaves_D
+    100024: _offset_T_HighTree_Leaves_E
+    100026: _offset_T_HighTree_Leaves_T
+    100028: _Trunk2
+    100030: _Trunk3
+    100032: _Trunk4
+    100034: _Trunk5
+    100036: _Trunk6
+    100038: Branch_A
+    100040: Branch_A2
+    100042: Branch_B
+    100044: Branch_B2
+    100046: Branch_C
+    100048: Branch_C2
+    100050: Branch_D
+    100052: Branch_E
+    100054: Character
+    100056: Leaves
+    100058: offset__Branch_A
+    100060: offset__Branch_A2
+    100062: offset__Branch_B
+    100064: offset__Branch_B2
+    100066: offset__Branch_C
+    100068: offset__Branch_C2
+    100070: offset__Branch_D
+    100072: offset__Branch_E
+    100074: offset__Trunk2
+    100076: offset__Trunk3
+    100078: offset__Trunk4
+    100080: offset__Trunk5
+    100082: offset__Trunk6
+    100084: offset_T_HighTree_Leaves_A
+    100086: offset_T_HighTree_Leaves_B
+    100088: offset_T_HighTree_Leaves_C
+    100090: offset_T_HighTree_Leaves_D
+    100092: offset_T_HighTree_Leaves_E
+    100094: offset_T_HighTree_Leaves_T
+    100096: ROOT
+    100098: T_HighTree_Leaves1
+    100100: T_HighTree_Leaves2
+    100102: T_HighTree_Leaves3
+    100104: T_HighTree_Leaves4
+    100106: T_HighTree_Leaves5
+    100108: T_HighTree_Leaves6
+    100110: T_HighTree_Trunk
+    100112: //RootNode
+    100114: Trunk1
+    100116: Trunk2
+    100118: Trunk3
+    100120: Trunk4
+    100122: Trunk5
+    100124: Trunk6
+    400000: _Branch_A
+    400002: _Branch_A2
+    400004: _Branch_B
+    400006: _Branch_B2
+    400008: _Branch_C
+    400010: _Branch_C2
+    400012: _Branch_D
+    400014: _Branch_E
+    400016: _offset_T_HighTree_Leaves_A
+    400018: _offset_T_HighTree_Leaves_B
+    400020: _offset_T_HighTree_Leaves_C
+    400022: _offset_T_HighTree_Leaves_D
+    400024: _offset_T_HighTree_Leaves_E
+    400026: _offset_T_HighTree_Leaves_T
+    400028: _Trunk2
+    400030: _Trunk3
+    400032: _Trunk4
+    400034: _Trunk5
+    400036: _Trunk6
+    400038: Branch_A
+    400040: Branch_A2
+    400042: Branch_B
+    400044: Branch_B2
+    400046: Branch_C
+    400048: Branch_C2
+    400050: Branch_D
+    400052: Branch_E
+    400054: Character
+    400056: Leaves
+    400058: offset__Branch_A
+    400060: offset__Branch_A2
+    400062: offset__Branch_B
+    400064: offset__Branch_B2
+    400066: offset__Branch_C
+    400068: offset__Branch_C2
+    400070: offset__Branch_D
+    400072: offset__Branch_E
+    400074: offset__Trunk2
+    400076: offset__Trunk3
+    400078: offset__Trunk4
+    400080: offset__Trunk5
+    400082: offset__Trunk6
+    400084: offset_T_HighTree_Leaves_A
+    400086: offset_T_HighTree_Leaves_B
+    400088: offset_T_HighTree_Leaves_C
+    400090: offset_T_HighTree_Leaves_D
+    400092: offset_T_HighTree_Leaves_E
+    400094: offset_T_HighTree_Leaves_T
+    400096: ROOT
+    400098: T_HighTree_Leaves1
+    400100: T_HighTree_Leaves2
+    400102: T_HighTree_Leaves3
+    400104: T_HighTree_Leaves4
+    400106: T_HighTree_Leaves5
+    400108: T_HighTree_Leaves6
+    400110: T_HighTree_Trunk
+    400112: //RootNode
+    400114: Trunk1
+    400116: Trunk2
+    400118: Trunk3
+    400120: Trunk4
+    400122: Trunk5
+    400124: Trunk6
+    2300000: T_HighTree_Leaves1
+    2300002: T_HighTree_Leaves2
+    2300004: T_HighTree_Leaves3
+    2300006: T_HighTree_Leaves4
+    2300008: T_HighTree_Leaves5
+    2300010: T_HighTree_Leaves6
+    3300000: T_HighTree_Leaves1
+    3300002: T_HighTree_Leaves2
+    3300004: T_HighTree_Leaves3
+    3300006: T_HighTree_Leaves4
+    3300008: T_HighTree_Leaves5
+    3300010: T_HighTree_Leaves6
+    4300000: T_HighTree_Trunk
+    4300002: T_HighTree_Leaves6
+    4300004: T_HighTree_Leaves5
+    4300006: T_HighTree_Leaves4
+    4300008: T_HighTree_Leaves3
+    4300010: T_HighTree_Leaves2
+    4300012: T_HighTree_Leaves1
+    7400000: idleTall
+    9500000: //RootNode
+    13700000: T_HighTree_Trunk
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idleTall
+      takeName: Take 001
+      firstFrame: 64
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Character
+        weight: 1
+      - path: Character/Leaves
+        weight: 1
+      - path: Character/ROOT
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Branch_A
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Branch_A/_Branch_A
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Branch_A/_Branch_A/offset__Branch_A2
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Branch_A/_Branch_A/offset__Branch_A2/_Branch_A2
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Branch_A/_Branch_A/offset__Branch_A2/_Branch_A2/_offset_T_HighTree_Leaves_A
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Branch_B
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Branch_B/_Branch_B
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Branch_B/_Branch_B/offset__Branch_B2
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Branch_B/_Branch_B/offset__Branch_B2/_Branch_B2
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Branch_B/_Branch_B/offset__Branch_B2/_Branch_B2/_offset_T_HighTree_Leaves_B
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Branch_C
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Branch_C/_Branch_C
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Branch_C/_Branch_C/offset__Branch_C2
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Branch_C/_Branch_C/offset__Branch_C2/_Branch_C2
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Branch_C/_Branch_C/offset__Branch_C2/_Branch_C2/_offset_T_HighTree_Leaves_C
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Trunk6
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Trunk6/_Trunk6
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Trunk6/_Trunk6/_offset_T_HighTree_Leaves_T
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Trunk6/_Trunk6/offset__Branch_D
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Trunk6/_Trunk6/offset__Branch_D/_Branch_D
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Trunk6/_Trunk6/offset__Branch_D/_Branch_D/_offset_T_HighTree_Leaves_D
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Trunk6/_Trunk6/offset__Branch_E
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Trunk6/_Trunk6/offset__Branch_E/_Branch_E
+        weight: 1
+      - path: Character/ROOT/offset__Trunk2/_Trunk2/offset__Trunk3/_Trunk3/offset__Trunk4/_Trunk4/offset__Trunk5/_Trunk5/offset__Trunk6/_Trunk6/offset__Branch_E/_Branch_E/_offset_T_HighTree_Leaves_E
+        weight: 1
+      - path: T_HighTree_Trunk
+        weight: 1
+      - path: Trunk1
+        weight: 1
+      - path: Trunk1/Trunk2
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Branch_A
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Branch_A/Branch_A2
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Branch_A/Branch_A2/offset_T_HighTree_Leaves_A
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Branch_A/Branch_A2/offset_T_HighTree_Leaves_A/T_HighTree_Leaves1
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Branch_B
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Branch_B/Branch_B2
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Branch_B/Branch_B2/offset_T_HighTree_Leaves_B
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Branch_B/Branch_B2/offset_T_HighTree_Leaves_B/T_HighTree_Leaves2
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Branch_C
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Branch_C/Branch_C2
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Branch_C/Branch_C2/offset_T_HighTree_Leaves_C
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Branch_C/Branch_C2/offset_T_HighTree_Leaves_C/T_HighTree_Leaves3
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Trunk6
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Trunk6/Branch_D
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Trunk6/Branch_D/offset_T_HighTree_Leaves_D
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Trunk6/Branch_D/offset_T_HighTree_Leaves_D/T_HighTree_Leaves5
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Trunk6/Branch_E
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Trunk6/Branch_E/offset_T_HighTree_Leaves_E
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Trunk6/Branch_E/offset_T_HighTree_Leaves_E/T_HighTree_Leaves6
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Trunk6/offset_T_HighTree_Leaves_T
+        weight: 1
+      - path: Trunk1/Trunk2/Trunk3/Trunk4/Trunk5/Trunk6/offset_T_HighTree_Leaves_T/T_HighTree_Leaves4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 98812f5d0504da145a214cd907e3ba48
-timeCreated: 1488822845
+guid: ab4457499acda744ba528d3e0d04b8f9
+timeCreated: 1489057994
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -39,8 +39,8 @@ ModelImporter:
     100062: mixamorig:Spine
     100064: mixamorig:Spine1
     100066: mixamorig:Spine2
-    100068: //RootNode
-    100070: MrDrop1
+    100068: MrDrop1
+    100070: //RootNode
     400000: default1
     400002: mixamorig:Head
     400004: mixamorig:HeadTop_End
@@ -75,8 +75,8 @@ ModelImporter:
     400062: mixamorig:Spine
     400064: mixamorig:Spine1
     400066: mixamorig:Spine2
-    400068: //RootNode
-    400070: MrDrop1
+    400068: MrDrop1
+    400070: //RootNode
     2300000: default1
     3300000: default1
     4300000: default1
@@ -84,7 +84,7 @@ ModelImporter:
     9500000: //RootNode
     13700000: MrDrop1
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
@@ -93,11 +93,12 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    animationImportErrors: 
+    animationImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftFoot' not found\n"
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -142,7 +143,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
