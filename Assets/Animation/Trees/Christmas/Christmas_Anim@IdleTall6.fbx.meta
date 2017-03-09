@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 67e17e578c1c40b41af814f9bb618b52
-timeCreated: 1489077536
+guid: 67a798b6c6596644ea9c0ac9756e7896
+timeCreated: 1489081434
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -35,10 +35,10 @@ ModelImporter:
     4300006: Leaves_3
     4300008: Leaves_4
     4300010: Leaves_5
-    7400000: IdleTall2
+    7400000: Take 001
     9500000: //RootNode
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
@@ -57,51 +57,11 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: IdleTall2
-      takeName: Take 001
-      firstFrame: 56
-      lastFrame: 120
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Leaves_1
-        weight: 1
-      - path: Leaves_1/Leaves_2
-        weight: 1
-      - path: Leaves_1/Leaves_2/Leaves_3
-        weight: 1
-      - path: Leaves_1/Leaves_2/Leaves_3/Leaves_4
-        weight: 1
-      - path: Leaves_1/Leaves_2/Leaves_3/Leaves_4/Leaves_5
-        weight: 1
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
