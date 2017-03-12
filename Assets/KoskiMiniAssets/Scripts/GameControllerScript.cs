@@ -29,6 +29,9 @@ public class GameControllerScript : MonoBehaviour
     public bool gameStopped = true;
     public bool gameEnded = false;
 
+    public int subSceneIndex = 1;
+    bool buildingphase = false;
+
     //public LoadingScreen theLoadingScreen;
 
 
@@ -54,6 +57,12 @@ public class GameControllerScript : MonoBehaviour
     protected GameObject LostTrackerUI;
     public GameObject GamePause;
     CanvasGroupDisplay [] UIs;
+
+    GameObject NewBlocksContainer;
+    GameObject SubScenesContainer;
+    int numberSubscenes;
+    string prefix = "Sub";
+
 
     // Collectibles
     protected GameObject[] coinObject; 
@@ -406,6 +415,12 @@ public class GameControllerScript : MonoBehaviour
         GameUIinGame = (GameObject)GameObject.Find("InGameUI");
         GamePause = (GameObject)GameObject.Find("PauseMenu");
         LostTrackerUI = (GameObject)GameObject.Find("LostTrackingMenu");
+        NewBlocksContainer = (GameObject)GameObject.Find("NewBlocksContainer"); 
+        SubScenesContainer = (GameObject)GameObject.Find("SubscenesContainer"); ;
+        numberSubscenes = SubScenesContainer.transform.childCount;
+
+
+
 
         UIs = GameObject.Find("UI").transform.GetComponentsInChildren<CanvasGroupDisplay>();
 
@@ -442,7 +457,7 @@ public class GameControllerScript : MonoBehaviour
 
         // Start on the PreSceneScreen
         
-        LoadPreScene();
+        LoadPreScene(); //
         
 
         theSoundController = (SoundController)GetComponent<SoundController>();
@@ -453,6 +468,25 @@ public class GameControllerScript : MonoBehaviour
     }
 
     
+    void InitSubScene(int id)
+    {
+        buildingphase = false;
+        if (SubScenesContainer.transform.FindChild(prefix + subSceneIndex))
+        {
+            SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("placeholders").GetComponentInChildren<Renderer>().enabled = true;
+        }
+    }
+
+    void ChangeToBuildingStatus()
+    {
+        SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("placeholders").GetComponentInChildren<Renderer>().enabled = false;
+        SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("Blocks").GetComponentInChildren<Renderer>().enabled = true;
+        int numberOfChilds = SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("Blocks").childCount;
+        for (int i = 0; i < numberOfChilds; i++)
+            SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.GetChild(i).SetParent(NewBlocksContainer.transform);
+    }
+
+
 
     // Update is called once per frame
     protected void Update () {
@@ -525,7 +559,8 @@ public class GameControllerScript : MonoBehaviour
     {
         //SceneManager.LoadScene("PreScene1");
         //PreSceneControl.GetPreScene().makePreSceneVisible(false);
-        StartGame();
+        subSceneIndex += 1;
+        InitSubScene(subSceneIndex);
         
     }
 
