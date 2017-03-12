@@ -484,8 +484,23 @@ public class GameControllerScript : MonoBehaviour
         int numberOfChilds = SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("Blocks").childCount;
         for (int i = 0; i < numberOfChilds; i++)
             SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.GetChild(i).SetParent(NewBlocksContainer.transform);
+
     }
 
+
+    /// <summary>
+    /// Occlude everything in everysingle subscene
+    /// </summary>
+    void OcludeAllSubscenes()
+    {
+
+    }
+
+
+    void ReachedProximityTrigger()
+    {
+        SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("placeholders").GetComponentInChildren<Renderer>().enabled = true;
+    }
 
 
     // Update is called once per frame
