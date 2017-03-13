@@ -90,6 +90,11 @@ public class SubSceneController : MonoBehaviour {
     public void TransferPhysicalBlocks2Scene()
     {
         HidePlaceHolders();
+        Rigidbody[] rendererComponents = placeHolders[0].GetComponentsInChildren<Rigidbody>(true);
+        foreach (Rigidbody component in rendererComponents)
+        {
+            component.isKinematic = false;
+        }
         DisplayPhysicalBlocks();
         for (int i = 0; i < blockCount; i++)
         {
@@ -142,7 +147,7 @@ public class SubSceneController : MonoBehaviour {
    public void Start () {
         TargetReached = false;
         thePlayer = GameObject.Find("Player").transform;
-
+        position = transform.FindChild("ReferencePoint");
 
         if (transform.FindChild("Placeholders").childCount == transform.FindChild("Blocks").childCount)
         {
@@ -158,10 +163,18 @@ public class SubSceneController : MonoBehaviour {
             BlockDirectory = (Transform)GameObject.Find("NewBlocksContainer").transform;
 
 
+            Rigidbody[] rendererComponents = placeHolders[0].GetComponentsInChildren<Rigidbody>(true);
+           // Debug.Log(placeHolders[0].name);
+            foreach (Rigidbody component in rendererComponents)
+            {
+                //Debug.Log(component.name);
+                component.isKinematic = true;
+            }
+
             theSubSceneUI = GameObject.Find("PreSceneUI").GetComponent<CanvasGroupDisplay>();
             theSubSceneUI.Hide();
             HideAllContent();
-            position = transform.FindChild("ReferencePoint");
+            
 
 
 
