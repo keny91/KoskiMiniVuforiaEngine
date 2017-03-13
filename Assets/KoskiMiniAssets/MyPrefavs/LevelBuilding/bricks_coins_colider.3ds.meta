@@ -43,7 +43,7 @@ ModelImporter:
     4300010: Obj_000006
     4300012: Obj_000007
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
