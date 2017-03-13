@@ -60,6 +60,7 @@ public class GameControllerScript : MonoBehaviour
 
     GameObject NewBlocksContainer;
     GameObject SubScenesContainer;
+    SubSceneController PresentSubScene;
     int numberSubscenes;
     string prefix = "Sub";
 
@@ -84,8 +85,7 @@ public class GameControllerScript : MonoBehaviour
 
         gameStarted = true;
         changeWorldVisible(false);
-        PreSceneControl.GetPreScene().makePreSceneVisible(false);
-
+        //PreSceneControl.GetPreScene().makePreSceneVisible(false);
 
     }
 
@@ -144,8 +144,8 @@ public class GameControllerScript : MonoBehaviour
         LostTrackerUI.GetComponent<CanvasGroupDisplay>().Show();
 
         gameStarted = false;
-        PreSceneControl.GetPreScene().InitPreScene();
-        PreSceneControl.GetPreScene().makePreSceneVisible(true);
+        //PreSceneControl.GetPreScene().InitPreScene();
+        //PreSceneControl.GetPreScene().makePreSceneVisible(true);
     }
 
 
@@ -290,7 +290,7 @@ public class GameControllerScript : MonoBehaviour
 
                 else
                 {
-                    PreSceneControl.GetPreScene().makePreSceneVisible(!untracked);
+                    //PreSceneControl.GetPreScene().makePreSceneVisible(!untracked);
                 }
 
             }
@@ -303,7 +303,7 @@ public class GameControllerScript : MonoBehaviour
                 }
                 else
                 {
-                    PreSceneControl.GetPreScene().makePreSceneVisible(!untracked);
+                    //PreSceneControl.GetPreScene().makePreSceneVisible(!untracked);
                 }
             }
 
@@ -429,6 +429,8 @@ public class GameControllerScript : MonoBehaviour
         GameUIinGame.GetComponent<ScoreCanvasControl>().Start();  // Force to initialize the element
         GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
 
+        gameRunning = true;
+        gameStarted = true;
 
         // Set up maximum possible score and total of items required to pass the level
         coinObject = GameObject.FindGameObjectsWithTag("Collectable");
@@ -457,35 +459,48 @@ public class GameControllerScript : MonoBehaviour
 
         // Start on the PreSceneScreen
         
-        LoadPreScene(); //
+        //LoadPreScene(); //
         
 
         theSoundController = (SoundController)GetComponent<SoundController>();
         theSoundController.PlayBackGroundMusic();
-
+        InitSubScene(subSceneIndex);
 
 
     }
 
+
+
+
+
+
+    /*****************   SubSceneControll   *******************/
     
     void InitSubScene(int id)
     {
-        buildingphase = false;
-        if (SubScenesContainer.transform.FindChild(prefix + subSceneIndex))
+        if(id <= numberSubscenes)
         {
-            SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("placeholders").GetComponentInChildren<Renderer>().enabled = true;
+            buildingphase = false;
+            Debug.LogWarning(prefix + subSceneIndex);
+            if (SubScenesContainer.transform.FindChild(prefix + subSceneIndex))
+            {
+                PresentSubScene = SubScenesContainer.transform.FindChild(prefix + subSceneIndex).GetComponent<SubSceneController>();
+                //    PresentSubScene.Start();
+                PresentSubScene.InitSubScene();
+            }
         }
+        else
+        {
+            Debug.LogWarning("No more subScenes to be loaded.");
+        }
+
     }
 
     void ChangeToBuildingStatus()
     {
-        SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("placeholders").GetComponentInChildren<Renderer>().enabled = false;
-        SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("Blocks").GetComponentInChildren<Renderer>().enabled = true;
-        int numberOfChilds = SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("Blocks").childCount;
-        for (int i = 0; i < numberOfChilds; i++)
-            SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.GetChild(i).SetParent(NewBlocksContainer.transform);
 
     }
+
 
 
     /// <summary>
@@ -493,11 +508,28 @@ public class GameControllerScript : MonoBehaviour
     /// </summary>
     void OcludeAllSubscenes()
     {
+        int numberOfChildsSubScenes = SubScenesContainer.transform.childCount;
+        
+        for (int i = 0; i < numberOfChildsSubScenes; i++)
+        {
+            // Determine the number of blocks in the subscene
+            int numberOfElements = SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Placeholders").childCount;
+            // Disable all renderers for both 
+            for (int j = 0; j < numberOfElements; j++)
+            {
+                SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Placeholders").GetChild(j).GetComponent<Renderer>().enabled = false;
+                SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Placeholders").GetChild(j).GetComponent<BoxCollider>().enabled = false;
+                SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Blocks").GetChild(j).GetComponent<Renderer>().enabled = false;
+                SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Blocks").GetChild(j).GetComponent<BoxCollider>().enabled = false;
+            }
 
+
+        }
+            int numberOfChilds = SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("Blocks").childCount;
     }
 
 
-    void ReachedProximityTrigger()
+   public void ReachedProximityTrigger()
     {
         SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("placeholders").GetComponentInChildren<Renderer>().enabled = true;
     }
@@ -574,6 +606,8 @@ public class GameControllerScript : MonoBehaviour
     {
         //SceneManager.LoadScene("PreScene1");
         //PreSceneControl.GetPreScene().makePreSceneVisible(false);
+        PresentSubScene.TransferPhysicalBlocks2Scene();
+        PresentSubScene.ExitSubScene();
         subSceneIndex += 1;
         InitSubScene(subSceneIndex);
         
