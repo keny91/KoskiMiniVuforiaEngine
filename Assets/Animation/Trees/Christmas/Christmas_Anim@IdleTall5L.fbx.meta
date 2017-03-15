@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 67a798b6c6596644ea9c0ac9756e7896
-timeCreated: 1489081434
+guid: 18a9ed9d0d8288b4db7cddabaf72ca3e
+timeCreated: 1489577716
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -35,7 +35,7 @@ ModelImporter:
     4300006: Leaves_3
     4300008: Leaves_4
     4300010: Leaves_5
-    7400000: IdleTall6
+    7400000: IdleTall5L
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -59,7 +59,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: IdleTall6
+      name: IdleTall5L
       takeName: Take 001
       firstFrame: 56
       lastFrame: 120
