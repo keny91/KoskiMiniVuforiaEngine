@@ -19,7 +19,7 @@ void Awake ()
 void Update ()
     {
         curX += Time.deltaTime * speedX;
-        curY += Time.deltaTime * speedY;
+        curY += Time.deltaTime * speedY; //Mathf.Sin()
         GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", new Vector2(curX, curY));
     }
 }
