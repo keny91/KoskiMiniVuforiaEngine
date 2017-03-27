@@ -23,6 +23,7 @@ public class SubSceneController : MonoBehaviour {
         TargetReached = false;
         isActive = true;
         thePlayer = GameObject.Find("Player").transform;
+        VisualReference = transform.FindChild("RefItem").gameObject;
         DisplayVisualReference();
 
         // Display reference marker
@@ -43,12 +44,28 @@ public class SubSceneController : MonoBehaviour {
 
     void DisplayVisualReference()
     {
-        VisualReference.GetComponentInChildren<Renderer>().enabled = true;
+        //VisualReference.GetComponentInChildren<Renderer>().enabled = true;
+
+        Renderer[] rendererComponents = VisualReference.GetComponentsInChildren<Renderer>(true);
+        //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
+        // Enable rendering:
+        foreach (Renderer component in rendererComponents)
+        {
+            component.enabled = true;
+        }
+
     }
 
     void HideVisualReference()
     {
-        VisualReference.GetComponentInChildren<Renderer>().enabled = false;
+        //      VisualReference.GetComponentInChildren<Renderer>().enabled = false;
+        Renderer[] rendererComponents = VisualReference.GetComponentsInChildren<Renderer>(true);
+        //Collider[] colliderComponents = WorldObject.GetComponentsInChildren<Collider>(true);
+        // Enable rendering:
+        foreach (Renderer component in rendererComponents)
+        {
+            component.enabled = false;
+        }
     }
 
     void DisplayPlaceHolders()
