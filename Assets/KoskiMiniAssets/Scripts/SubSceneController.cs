@@ -43,12 +43,12 @@ public class SubSceneController : MonoBehaviour {
 
     void DisplayVisualReference()
     {
-        VisualReference.GetComponent<Renderer>().enabled = true;
+        VisualReference.GetComponentInChildren<Renderer>().enabled = true;
     }
 
     void HideVisualReference()
     {
-        VisualReference.GetComponent<Renderer>().enabled = false;
+        VisualReference.GetComponentInChildren<Renderer>().enabled = false;
     }
 
     void DisplayPlaceHolders()
