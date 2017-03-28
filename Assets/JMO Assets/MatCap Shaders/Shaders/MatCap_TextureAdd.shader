@@ -8,6 +8,7 @@ Shader "MatCap/Vertex/Textured Add"
 	{
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_MatCap ("MatCap (RGB)", 2D) = "white" {}
+		_Color("Main Color", Color) = (1.000000,1.000000,1.000000,1.000000)
 	}
 	
 	Subshader
