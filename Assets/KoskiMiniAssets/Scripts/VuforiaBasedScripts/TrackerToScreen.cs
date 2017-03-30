@@ -1,44 +1,57 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using Vuforia;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class TrackerToScreen : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-        //StateManager SM;
-        TrackableBehaviour a;
-        VuforiaUnity.GetProjectionGL();
-    }
-	
-	// Update is called once per frame
-	void Update () {
 
-        VideoMode videoMode = CameraDevice::getInstance().getVideoMode(Vuforia::CameraDevice::MODE_DEFAULT);
-    }
+  //  QCARRenderer.VideoTextureInfo textureInfo;
+    private ImageTargetBehaviour mImageTargetBehaviour = null;
 
-    Vuforia:: cameraPointToScreenPoint(Vuforia::Vec2F cameraPoint)
+    // Use this for initialization
+    void Start()
     {
-        Vuforia::VideoMode videoMode = Vuforia::CameraDevice::getInstance().getVideoMode(Vuforia::CameraDevice::MODE_DEFAULT);
-        Vuforia::VideoBackgroundConfig config = Vuforia::Renderer::getInstance().getVideoBackgroundConfig();
-        int xOffset = ((int)screenWidth - config.mSize.data[0]) / 2.0f + config.mPosition.data[0];
-        int yOffset = ((int)screenHeight - config.mSize.data[1]) / 2.0f - config.mPosition.data[1];
-        if (isActivityInPortraitMode)
+        // We retrieve the ImageTargetBehaviour component
+        // Note: This only works if this script is attached to an ImageTarget
+        mImageTargetBehaviour = GetComponent<ImageTargetBehaviour>();
+
+        if (mImageTargetBehaviour == null)
         {
-            // camera image is rotated 90 degrees
-            int rotatedX = videoMode.mHeight - cameraPoint.data[1];
-            int rotatedY = cameraPoint.data[0];
-            return Vuforia::Vec2F(rotatedX * config.mSize.data[0] / (float)videoMode.mHeight + xOffset,
-            rotatedY * config.mSize.data[1] / (float)videoMode.mWidth + yOffset);
-        }
-        else
-        {
-            return Vuforia::Vec2F(cameraPoint.data[0] * config.mSize.data[0] / (float)videoMode.mWidth + xOffset,
-            cameraPoint.data[1] * config.mSize.data[1] / (float)videoMode.mHeight + yOffset);
+            Debug.Log("ImageTargetBehaviour not found ");
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (mImageTargetBehaviour == null)
+        {
+            Debug.Log("ImageTargetBehaviour not found");
+            return;
+        }
+
+        Vector2 targetSize = mImageTargetBehaviour.GetSize();
+        float targetAspect = targetSize.x / targetSize.y;
+
+        // We define a point in the target local reference 
+        // we take the bottom-left corner of the target, 
+        // just as an example
+        // Note: the target reference plane in Unity is X-Z, 
+        // while Y is the normal direction to the target plane
+        Vector3 pointOnTarget = new Vector3(-0.5f, 0, -0.5f / targetAspect);
+
+        // We convert the local point to world coordinates
+        Vector3 targetPointInWorldRef = transform.TransformPoint(pointOnTarget);
+        QCARRenderer
+        // We project the world coordinates to screen coords (pixels)
+        Vector3 screenPoint = Camera.main.WorldToScreenPoint(targetPointInWorldRef);
+
+        Debug.Log("target point in screen coords: " + screenPoint.x + ", " + screenPoint.y);
+
+    }
 
 }
