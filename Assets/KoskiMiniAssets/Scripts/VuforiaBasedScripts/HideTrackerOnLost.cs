@@ -86,8 +86,10 @@ public class HideTrackerOnLost : MonoBehaviour
 
             if(trackableList.Length == 1)
             {
+                
                 tracking = s;
                 DoCheck();
+                
             }
            
         }

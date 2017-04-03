@@ -166,8 +166,7 @@ public class GameControllerScript : MonoBehaviour
 
             modifyScore(collect.value);
             theSoundController.playClip(theSoundController.SoundCoinCollected);
-        }
-            
+        }          
         else
         {
             // depending on the powerup collected
@@ -186,7 +185,6 @@ public class GameControllerScript : MonoBehaviour
                 
                     // ... MORE IN THE FUTURE
             }
-
         }
 
         if (collect.requiredToPassLevel)
@@ -436,7 +434,8 @@ public class GameControllerScript : MonoBehaviour
         coinObject = GameObject.FindGameObjectsWithTag("Collectable");
         collectibleRemaining = 0;
 
-
+        CheckNumberOfCollectables();
+        /*
         for (int i =0; i < coinObject.Length; i++)
         {
             Collectible theCollectible = (Collectible)coinObject[i].GetComponent(typeof(Collectible));
@@ -447,6 +446,7 @@ public class GameControllerScript : MonoBehaviour
                 max_score += theCollectible.value;
 
         }
+        */
 
         // Originally disable the scene render
         makeSceneVisible(false);
@@ -469,6 +469,23 @@ public class GameControllerScript : MonoBehaviour
 
     }
 
+
+
+    void CheckNumberOfCollectables()
+    {
+
+        collectibleRemaining = 0;
+        for (int i = 0; i < coinObject.Length; i++)
+        {
+            Collectible theCollectible = (Collectible)coinObject[i].GetComponent(typeof(Collectible));
+            if (theCollectible.requiredToPassLevel)
+                collectibleRemaining++;
+
+            if (theCollectible.value > 0)
+                max_score += theCollectible.value;
+
+        }
+    }
 
 
 
@@ -512,6 +529,8 @@ public class GameControllerScript : MonoBehaviour
         
         for (int i = 0; i < numberOfChildsSubScenes; i++)
         {
+            SubScenesContainer.transform.FindChild(prefix + i).GetComponent<SubSceneController>().HideAllContent();
+            /*
             // Determine the number of blocks in the subscene
             int numberOfElements = SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Placeholders").childCount;
             // Disable all renderers for both 
@@ -522,7 +541,7 @@ public class GameControllerScript : MonoBehaviour
                 SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Blocks").GetChild(j).GetComponent<Renderer>().enabled = false;
                 SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Blocks").GetChild(j).GetComponent<BoxCollider>().enabled = false;
             }
-
+*/
 
         }
             int numberOfChilds = SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("Blocks").childCount;

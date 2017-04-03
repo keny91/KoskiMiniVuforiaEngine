@@ -45,7 +45,7 @@ public class GrowingElement : MonoBehaviour {
             animationElements.SetInteger("AnimVersion", selected);
             if (transform.FindChild("Particles").GetComponent<ParticleSystem>())
             {
-                Debug.LogError("Starting particles");
+               // Debug.LogError("Starting particles");
                 transform.FindChild("Particles").GetComponent<ParticleSystem>().enableEmission = true;
                 transform.FindChild("Particles").GetComponent<ParticleSystem>().Play();
             }
