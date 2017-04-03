@@ -20,12 +20,15 @@ public class SubSceneController : MonoBehaviour {
     int blockCount;
     int othersCount;
     public CanvasGroupDisplay theSubSceneUI;
+    GameControllerScript theController;
+
 
     public void InitSubScene()
     {
         TargetReached = false;
         isActive = true;
         thePlayer = GameObject.Find("Player").transform;
+        theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
         VisualReference = transform.FindChild("RefItem").gameObject;
         DisplayVisualReference();
 
@@ -36,7 +39,7 @@ public class SubSceneController : MonoBehaviour {
     public void ExitSubScene()
     {
 
-
+        theController.changeWorldVisible(false, false);
         TargetReached = false;
         isActive = false;
         
@@ -161,7 +164,7 @@ public class SubSceneController : MonoBehaviour {
         }
 
 
-        theSubSceneUI.Hide();
+        //theSubSceneUI.Hide();
     }
 
     public void HideAllContent()
@@ -191,14 +194,15 @@ public class SubSceneController : MonoBehaviour {
 
     void SetBuildingPhase()
     {
-        theSubSceneUI.Show();
+        theController.changeWorldVisible(true, false);
+        //theSubSceneUI.Show();
         HideVisualReference();
         DisplayPlaceHolders();
     }
 
     void RollBackToRefStatus()
     {
-        theSubSceneUI.Hide();
+       // theSubSceneUI.Hide();
         DisplayVisualReference();
         HidePlaceHolders();
     }

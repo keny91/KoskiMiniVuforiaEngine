@@ -258,7 +258,7 @@ public class GameControllerScript : MonoBehaviour
     /// <summary>
     /// Hide the elements located on the worldScene
     /// </summary>
-    public void changeWorldVisible(bool untracked)
+    public void changeWorldVisible(bool untracked, bool displayUi = true)
     {
         if (!gameEnded)
         {
@@ -318,6 +318,10 @@ public class GameControllerScript : MonoBehaviour
                 }
             }
         }
+
+        if (!displayUi)
+            DisableLostUI();
+
         // WorldObject.FIIIIINISHTHISSHIT;
     }
 
@@ -432,7 +436,6 @@ public class GameControllerScript : MonoBehaviour
 
         // Set up maximum possible score and total of items required to pass the level
         coinObject = GameObject.FindGameObjectsWithTag("Collectable");
-        Debug.LogError("Num of collectables" + coinObject.Length);
         collectibleRemaining = 0;
 
         CheckNumberOfCollectables();
@@ -633,6 +636,18 @@ public class GameControllerScript : MonoBehaviour
         
     }
 
+
+    public void NextSubScene()
+    {
+        //SceneManager.LoadScene("PreScene1");
+        //PreSceneControl.GetPreScene().makePreSceneVisible(false);
+        PresentSubScene.TransferPhysicalBlocks2Scene();
+        PresentSubScene.ExitSubScene();
+        subSceneIndex += 1;
+        InitSubScene(subSceneIndex);
+
+    }
+    
     /// <summary>
     /// Execute level end OnDefeat
     /// </summary>
