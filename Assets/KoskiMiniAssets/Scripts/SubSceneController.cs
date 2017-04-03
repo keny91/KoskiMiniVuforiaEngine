@@ -66,7 +66,7 @@ public class SubSceneController : MonoBehaviour {
 
         Renderer[] rendererComponents;
         // Enable rendering:
-        for (int i = 0; i < blockCount; i++)
+        for (int i = 0; i < othersCount; i++)
         {
             rendererComponents = otherAssets[i].GetComponentsInChildren<Renderer>(true);
             foreach (Renderer component in rendererComponents)
@@ -83,7 +83,7 @@ public class SubSceneController : MonoBehaviour {
 
         Renderer[] rendererComponents;
         // Enable rendering:
-        for (int i = 0; i < blockCount; i++)
+        for (int i = 0; i < othersCount; i++)
         {
             rendererComponents = otherAssets[i].GetComponentsInChildren<Renderer>(true);
             foreach (Renderer component in rendererComponents)
@@ -154,13 +154,17 @@ public class SubSceneController : MonoBehaviour {
             physicalblocks[i].transform.SetParent(BlockDirectory);
         }
 
-        for(int j = 0;j< othersCount; j++)
-            otherAssets[j].transform.SetParent(OthersDirectory);
+        if (othersCount > 0)
+        {
+            for (int j = 0; j < othersCount; j++)
+                otherAssets[j].transform.SetParent(OthersDirectory);
+        }
+
 
         theSubSceneUI.Hide();
     }
 
-    void HideAllContent()
+    public void HideAllContent()
     {
         HidePhysicalBlocks();
         HidePlaceHolders();
@@ -213,8 +217,10 @@ public class SubSceneController : MonoBehaviour {
             placeHolders = new GameObject[blockCount];
             physicalblocks = new GameObject[blockCount];
             othersCount = transform.FindChild("Others").childCount;
+            otherAssets = new GameObject[othersCount];
+            Debug.LogWarning(othersCount);
 
-            for(int j =0; j < othersCount; j++)
+            for(int j = 0; j < othersCount; j++)
             {
                 otherAssets[j] = transform.FindChild("Others").GetChild(j).transform.gameObject;
             }
