@@ -12,13 +12,10 @@ public class SubSceneController : MonoBehaviour {
     public float distanceTH = 20f;
 
     GameObject[] placeHolders;
-    GameObject[] otherAssets;
     GameObject[] physicalblocks;
     GameObject VisualReference;
     Transform BlockDirectory;
-    Transform OthersDirectory;
     int blockCount;
-    int othersCount;
     public CanvasGroupDisplay theSubSceneUI;
 
     public void InitSubScene()
@@ -58,42 +55,6 @@ public class SubSceneController : MonoBehaviour {
         }
 
     }
-
-
-    void DisplayOthers()
-    {
-        //VisualReference.GetComponentInChildren<Renderer>().enabled = true;
-
-        Renderer[] rendererComponents;
-        // Enable rendering:
-        for (int i = 0; i < blockCount; i++)
-        {
-            rendererComponents = otherAssets[i].GetComponentsInChildren<Renderer>(true);
-            foreach (Renderer component in rendererComponents)
-            {
-                component.enabled = true;
-            }
-        }
-    }
-
-
-    void HideOthers()
-    {
-        //VisualReference.GetComponentInChildren<Renderer>().enabled = true;
-
-        Renderer[] rendererComponents;
-        // Enable rendering:
-        for (int i = 0; i < blockCount; i++)
-        {
-            rendererComponents = otherAssets[i].GetComponentsInChildren<Renderer>(true);
-            foreach (Renderer component in rendererComponents)
-            {
-                component.enabled = false;
-            }
-        }
-    }
-
-
 
     void HideVisualReference()
     {
@@ -147,16 +108,10 @@ public class SubSceneController : MonoBehaviour {
     {
         HidePlaceHolders();
         DisplayPhysicalBlocks();
-        DisplayOthers();
-
         for (int i = 0; i < blockCount; i++)
         {
             physicalblocks[i].transform.SetParent(BlockDirectory);
         }
-
-        for(int j = 0;j< othersCount; j++)
-            otherAssets[j].transform.SetParent(OthersDirectory);
-
         theSubSceneUI.Hide();
     }
 
@@ -165,7 +120,6 @@ public class SubSceneController : MonoBehaviour {
         HidePhysicalBlocks();
         HidePlaceHolders();
         HideVisualReference();
-        HideOthers();
     }
 
 
@@ -212,22 +166,13 @@ public class SubSceneController : MonoBehaviour {
             blockCount = transform.FindChild("Placeholders").childCount;
             placeHolders = new GameObject[blockCount];
             physicalblocks = new GameObject[blockCount];
-            othersCount = transform.FindChild("Others").childCount;
-
-            for(int j =0; j < othersCount; j++)
-            {
-                otherAssets[j] = transform.FindChild("Others").GetChild(j).transform.gameObject;
-            }
-                
-
-            for (int i = 0; i< blockCount; i++)
+            for(int i = 0; i< blockCount; i++)
             {
                 placeHolders[i] = transform.FindChild("Placeholders").GetChild(i).transform.gameObject;
                 physicalblocks[i] = transform.FindChild("Blocks").GetChild(i).transform.gameObject;
             }
             VisualReference = transform.FindChild("RefItem").gameObject;
             BlockDirectory = (Transform)GameObject.Find("NewBlocksContainer").transform;
-            OthersDirectory = (Transform)GameObject.Find("OtherContainer").transform;
 
 
             theSubSceneUI = GameObject.Find("PreSceneUI").GetComponent<CanvasGroupDisplay>();
