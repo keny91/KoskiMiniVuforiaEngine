@@ -432,6 +432,7 @@ public class GameControllerScript : MonoBehaviour
 
         // Set up maximum possible score and total of items required to pass the level
         coinObject = GameObject.FindGameObjectsWithTag("Collectable");
+        Debug.LogError("Num of collectables" + coinObject.Length);
         collectibleRemaining = 0;
 
         CheckNumberOfCollectables();
