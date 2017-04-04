@@ -34,7 +34,14 @@ public class GameControllerScript : MonoBehaviour
 
     //public LoadingScreen theLoadingScreen;
 
+/*
+    private Color alphaColor;
+    public Color fadeColor = new Color(0, 0, 0, 0);
+    private float timeToFade = 1.0f;
 
+    private Material m_Material;    // Used to store material reference.
+    private Color m_Color;            // Used to store color reference.
+*/
 
     //Hidden world
     public bool WorldHidden;
@@ -72,7 +79,81 @@ public class GameControllerScript : MonoBehaviour
 
 
 
+    public IEnumerator FadeOut()
+    {
+        EnableOccludingCut();
+        float alpha = 0f;
+        Vector3 FinalPosition = WorldObject.transform.position;
+        FinalPosition.y -= 3000f;
+        float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
+        while (alpha < 20)
+        {
+            //WorldObject.transform.position.translate
+            WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, Time.deltaTime/10);
+            // Reduce alpha by fadeSpeed amount.
+            alpha++;
+            yield return new WaitForEndOfFrame();
 
+        }
+    }
+
+    public void EnableOccludingCut()
+    {
+        GameObject.Find("OcclusionBoard").GetComponent<MeshRenderer>().enabled = true;
+    }
+
+    public void DisableOccludingCut()
+    {
+        GameObject.Find("OcclusionBoard").GetComponent<MeshRenderer>().enabled = false;
+    }
+
+    public IEnumerator FadeIn()
+    {
+        
+        SubSceneController theSub = PresentSubScene;
+        float alpha = 0f;
+        Vector3 FinalPosition = WorldObject.transform.position;
+        FinalPosition.y += 3000f;
+        float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
+        while (alpha < 20)
+        {
+            //WorldObject.transform.position.translate
+            WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, Time.deltaTime / 10);
+            // Reduce alpha by fadeSpeed amount.
+            alpha++;
+            yield return new WaitForEndOfFrame();
+
+        }
+        DisableOccludingCut();
+        theSub.TransferPhysicalBlocks2Scene();
+    }
+
+
+
+    public IEnumerator AlphaWait()
+    {
+        yield return new WaitForEndOfFrame();
+    }
+    public IEnumerator AlphaFade()
+    {
+
+        Debug.LogError("FAAAAAAADING");
+        // Alpha start value.
+        float alpha = 0f;
+        
+        Vector3 FinalPosition = WorldObject.transform.position;
+        FinalPosition.y -= 3000f;
+        float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
+        // Loop until aplha is below zero (completely invisalbe)
+        while (alpha < 10.0f)
+        {
+            //WorldObject.transform.position.translate
+            WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, journeyLength);
+            // Reduce alpha by fadeSpeed amount.
+            alpha++;
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
     /// <summary>
     ///  Start and unpause the game, enable movement, set the proper UI assets.
@@ -248,6 +329,8 @@ public class GameControllerScript : MonoBehaviour
         foreach (Renderer component in rendererComponents)
         {
             component.enabled = visible;
+            //StartCoroutine(AlphaFade());
+            //component.material = Material.Color.Lerp(component.material.color, alphaColor, timeToFade * Time.deltaTime);
         }
 
     }
@@ -390,8 +473,7 @@ public class GameControllerScript : MonoBehaviour
     // Use this for initialization
 	public void Start () {
 
-        // Box Collider init
-        
+        DisableOccludingCut();
 
         // Init params
         score = 0;
@@ -422,6 +504,11 @@ public class GameControllerScript : MonoBehaviour
         numberSubscenes = SubScenesContainer.transform.childCount;
 
 
+        // Get reference to object's material.
+        // m_Material = GameObject.Find("Cube").GetComponent<Renderer>().material;
+
+        // Get material's starting color value.
+        // m_Color = m_Material.color;
 
 
         UIs = GameObject.Find("UI").transform.GetComponentsInChildren<CanvasGroupDisplay>();
@@ -641,7 +728,7 @@ public class GameControllerScript : MonoBehaviour
     {
         //SceneManager.LoadScene("PreScene1");
         //PreSceneControl.GetPreScene().makePreSceneVisible(false);
-        PresentSubScene.TransferPhysicalBlocks2Scene();
+        //PresentSubScene.TransferPhysicalBlocks2Scene();
         PresentSubScene.ExitSubScene();
         subSceneIndex += 1;
         InitSubScene(subSceneIndex);

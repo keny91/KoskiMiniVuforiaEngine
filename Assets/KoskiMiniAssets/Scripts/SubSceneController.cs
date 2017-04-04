@@ -39,7 +39,9 @@ public class SubSceneController : MonoBehaviour {
     public void ExitSubScene()
     {
 
-        theController.changeWorldVisible(false, false);
+       // theController.changeWorldVisible(false, false);
+        StartCoroutine(theController.FadeIn());
+        HideVisualReference();
         TargetReached = false;
         isActive = false;
         
@@ -194,7 +196,9 @@ public class SubSceneController : MonoBehaviour {
 
     void SetBuildingPhase()
     {
-        theController.changeWorldVisible(true, false);
+        //theController.changeWorldVisible(true, false);
+        StartCoroutine(theController.FadeOut());
+        //theController.FadeOut();
         //theSubSceneUI.Show();
         HideVisualReference();
         DisplayPlaceHolders();
@@ -267,9 +271,11 @@ public class SubSceneController : MonoBehaviour {
             {
                 SetBuildingPhase();
             }
+
             else if (!TargetReached)
             {
-                RollBackToRefStatus();
+                //RollBackToRefStatus();
+                DisplayVisualReference();
             }
         }
         // get to building phase
