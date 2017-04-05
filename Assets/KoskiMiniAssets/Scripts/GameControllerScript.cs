@@ -348,7 +348,7 @@ public class GameControllerScript : MonoBehaviour
             if (!untracked) // Do only if it changes status
             {
                 //Debug.LogError("changing detection");
-                if(theTracker.tracking != TrackableBehaviour.Status.EXTENDED_TRACKED)
+                if(true)
                     DisableLostUI();
                 if (gameStarted)
                 {
@@ -513,13 +513,14 @@ public class GameControllerScript : MonoBehaviour
 
         UIs = GameObject.Find("UI").transform.GetComponentsInChildren<CanvasGroupDisplay>();
 
-        theTracker = GameObject.Find("Targets").GetComponent<HideTrackerOnLost>();
+        //theTracker = GameObject.Find("Targets").GetComponent<HideTrackerOnLost>();
 
         GameUIinGame.GetComponent<ScoreCanvasControl>().Start();  // Force to initialize the element
         GameUIinGame.GetComponent<ScoreCanvasControl>().changeLifeSprite(Lives);
 
         gameRunning = true;
         gameStarted = true;
+        Run();
 
         // Set up maximum possible score and total of items required to pass the level
         coinObject = GameObject.FindGameObjectsWithTag("Collectable");
@@ -540,8 +541,9 @@ public class GameControllerScript : MonoBehaviour
         */
 
         // Originally disable the scene render
-        makeSceneVisible(false);
-
+        makeSceneVisible(true);
+        StartGame();
+        GameUIinGame.GetComponent<ScoreCanvasControl>().Show();
 
 
         GameObject objectRespawn = GameObject.Find("RespawnPosition");
