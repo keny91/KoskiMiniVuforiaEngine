@@ -1,0 +1,568 @@
+fileFormatVersion: 2
+guid: c660965e1ee44ea4b939e7c9516dc7f4
+timeCreated: 1491501292
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: _Body
+    100002: _Head
+    100004: _L1_tentacle10
+    100006: _L1_tentacle11
+    100008: _L1_tentacle5
+    100010: _L1_tentacle6
+    100012: _L1_tentacle7
+    100014: _L1_tentacle8
+    100016: _L1_tentacle9
+    100018: _L2_tentacle10
+    100020: _L2_tentacle11
+    100022: _L2_tentacle5
+    100024: _L2_tentacle6
+    100026: _L2_tentacle7
+    100028: _L2_tentacle8
+    100030: _L2_tentacle9
+    100032: _L3_tentacle10
+    100034: _L3_tentacle11
+    100036: _L3_tentacle5
+    100038: _L3_tentacle6
+    100040: _L3_tentacle7
+    100042: _L3_tentacle8
+    100044: _L3_tentacle9
+    100046: _R1_tentacle10
+    100048: _R1_tentacle11
+    100050: _R1_tentacle5
+    100052: _R1_tentacle6
+    100054: _R1_tentacle7
+    100056: _R1_tentacle8
+    100058: _R1_tentacle9
+    100060: _R2_tentacle10
+    100062: _R2_tentacle11
+    100064: _R2_tentacle5
+    100066: _R2_tentacle6
+    100068: _R2_tentacle7
+    100070: _R2_tentacle8
+    100072: _R2_tentacle9
+    100074: _R3_tentacle10
+    100076: _R3_tentacle11
+    100078: _R3_tentacle5
+    100080: _R3_tentacle6
+    100082: _R3_tentacle7
+    100084: _R3_tentacle8
+    100086: _R3_tentacle9
+    100088: _Root
+    100090: Body
+    100092: Character
+    100094: Head
+    100096: L1_tentacle
+    100098: L1_tentacle10
+    100100: L1_tentacle11
+    100102: L1_tentacle5
+    100104: L1_tentacle6
+    100106: L1_tentacle7
+    100108: L1_tentacle8
+    100110: L1_tentacle9
+    100112: L2_tentacle
+    100114: L3_tentacle
+    100116: L_Arms
+    100118: L_eye
+    100120: Mouth
+    100122: //RootNode
+    100124: Octo_face
+    100126: Octopus5
+    100128: offset__Body
+    100130: offset__Head
+    100132: offset__L1
+    100134: offset__L2
+    100136: offset__L3
+    100138: offset__R1
+    100140: offset__R2
+    100142: offset__R3
+    100144: R1_tentacle
+    100146: R1_tentacle10
+    100148: R1_tentacle11
+    100150: R1_tentacle5
+    100152: R1_tentacle6
+    100154: R1_tentacle7
+    100156: R1_tentacle8
+    100158: R1_tentacle9
+    100160: R2_tentacle
+    100162: R2_tentacle10
+    100164: R2_tentacle11
+    100166: R2_tentacle5
+    100168: R2_tentacle6
+    100170: R2_tentacle7
+    100172: R2_tentacle8
+    100174: R2_tentacle9
+    100176: R3_tentacle
+    100178: R3_tentacle10
+    100180: R3_tentacle11
+    100182: R3_tentacle5
+    100184: R3_tentacle6
+    100186: R3_tentacle7
+    100188: R3_tentacle8
+    100190: R3_tentacle9
+    100192: R5_tentacle10
+    100194: R5_tentacle11
+    100196: R5_tentacle5
+    100198: R5_tentacle6
+    100200: R5_tentacle7
+    100202: R5_tentacle8
+    100204: R5_tentacle9
+    100206: R6_tentacle10
+    100208: R6_tentacle11
+    100210: R6_tentacle5
+    100212: R6_tentacle6
+    100214: R6_tentacle7
+    100216: R6_tentacle8
+    100218: R6_tentacle9
+    100220: R_Arms1
+    100222: R_eye
+    100224: Root
+    400000: _Body
+    400002: _Head
+    400004: _L1_tentacle10
+    400006: _L1_tentacle11
+    400008: _L1_tentacle5
+    400010: _L1_tentacle6
+    400012: _L1_tentacle7
+    400014: _L1_tentacle8
+    400016: _L1_tentacle9
+    400018: _L2_tentacle10
+    400020: _L2_tentacle11
+    400022: _L2_tentacle5
+    400024: _L2_tentacle6
+    400026: _L2_tentacle7
+    400028: _L2_tentacle8
+    400030: _L2_tentacle9
+    400032: _L3_tentacle10
+    400034: _L3_tentacle11
+    400036: _L3_tentacle5
+    400038: _L3_tentacle6
+    400040: _L3_tentacle7
+    400042: _L3_tentacle8
+    400044: _L3_tentacle9
+    400046: _R1_tentacle10
+    400048: _R1_tentacle11
+    400050: _R1_tentacle5
+    400052: _R1_tentacle6
+    400054: _R1_tentacle7
+    400056: _R1_tentacle8
+    400058: _R1_tentacle9
+    400060: _R2_tentacle10
+    400062: _R2_tentacle11
+    400064: _R2_tentacle5
+    400066: _R2_tentacle6
+    400068: _R2_tentacle7
+    400070: _R2_tentacle8
+    400072: _R2_tentacle9
+    400074: _R3_tentacle10
+    400076: _R3_tentacle11
+    400078: _R3_tentacle5
+    400080: _R3_tentacle6
+    400082: _R3_tentacle7
+    400084: _R3_tentacle8
+    400086: _R3_tentacle9
+    400088: _Root
+    400090: Body
+    400092: Character
+    400094: Head
+    400096: L1_tentacle
+    400098: L1_tentacle10
+    400100: L1_tentacle11
+    400102: L1_tentacle5
+    400104: L1_tentacle6
+    400106: L1_tentacle7
+    400108: L1_tentacle8
+    400110: L1_tentacle9
+    400112: L2_tentacle
+    400114: L3_tentacle
+    400116: L_Arms
+    400118: L_eye
+    400120: Mouth
+    400122: //RootNode
+    400124: Octo_face
+    400126: Octopus5
+    400128: offset__Body
+    400130: offset__Head
+    400132: offset__L1
+    400134: offset__L2
+    400136: offset__L3
+    400138: offset__R1
+    400140: offset__R2
+    400142: offset__R3
+    400144: R1_tentacle
+    400146: R1_tentacle10
+    400148: R1_tentacle11
+    400150: R1_tentacle5
+    400152: R1_tentacle6
+    400154: R1_tentacle7
+    400156: R1_tentacle8
+    400158: R1_tentacle9
+    400160: R2_tentacle
+    400162: R2_tentacle10
+    400164: R2_tentacle11
+    400166: R2_tentacle5
+    400168: R2_tentacle6
+    400170: R2_tentacle7
+    400172: R2_tentacle8
+    400174: R2_tentacle9
+    400176: R3_tentacle
+    400178: R3_tentacle10
+    400180: R3_tentacle11
+    400182: R3_tentacle5
+    400184: R3_tentacle6
+    400186: R3_tentacle7
+    400188: R3_tentacle8
+    400190: R3_tentacle9
+    400192: R5_tentacle10
+    400194: R5_tentacle11
+    400196: R5_tentacle5
+    400198: R5_tentacle6
+    400200: R5_tentacle7
+    400202: R5_tentacle8
+    400204: R5_tentacle9
+    400206: R6_tentacle10
+    400208: R6_tentacle11
+    400210: R6_tentacle5
+    400212: R6_tentacle6
+    400214: R6_tentacle7
+    400216: R6_tentacle8
+    400218: R6_tentacle9
+    400220: R_Arms1
+    400222: R_eye
+    400224: Root
+    2300000: L_eye
+    2300002: Mouth
+    2300004: R_eye
+    3300000: L_eye
+    3300002: Mouth
+    3300004: R_eye
+    4300000: Octopus5
+    4300002: L_eye
+    4300004: R_eye
+    4300006: Mouth
+    7400000: Idlev1
+    9500000: //RootNode
+    13700000: Octopus5
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idlev1
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Character
+        weight: 1
+      - path: Character/_Root
+        weight: 1
+      - path: Character/_Root/L_Arms
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L1
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L1/_L1_tentacle5
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L1/_L1_tentacle5/_L1_tentacle6
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L1/_L1_tentacle5/_L1_tentacle6/_L1_tentacle7
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L1/_L1_tentacle5/_L1_tentacle6/_L1_tentacle7/_L1_tentacle8
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L1/_L1_tentacle5/_L1_tentacle6/_L1_tentacle7/_L1_tentacle8/_L1_tentacle9
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L1/_L1_tentacle5/_L1_tentacle6/_L1_tentacle7/_L1_tentacle8/_L1_tentacle9/_L1_tentacle10
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L1/_L1_tentacle5/_L1_tentacle6/_L1_tentacle7/_L1_tentacle8/_L1_tentacle9/_L1_tentacle10/_L1_tentacle11
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L1/_L1_tentacle5/L1_tentacle
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L2
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L2/_L2_tentacle5
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L2/_L2_tentacle5/_L2_tentacle6
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L2/_L2_tentacle5/_L2_tentacle6/_L2_tentacle7
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L2/_L2_tentacle5/_L2_tentacle6/_L2_tentacle7/_L2_tentacle8
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L2/_L2_tentacle5/_L2_tentacle6/_L2_tentacle7/_L2_tentacle8/_L2_tentacle9
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L2/_L2_tentacle5/_L2_tentacle6/_L2_tentacle7/_L2_tentacle8/_L2_tentacle9/_L2_tentacle10
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L2/_L2_tentacle5/_L2_tentacle6/_L2_tentacle7/_L2_tentacle8/_L2_tentacle9/_L2_tentacle10/_L2_tentacle11
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L2/_L2_tentacle5/L2_tentacle
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L3
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L3/_L3_tentacle5
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L3/_L3_tentacle5/_L3_tentacle6
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L3/_L3_tentacle5/_L3_tentacle6/_L3_tentacle7
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L3/_L3_tentacle5/_L3_tentacle6/_L3_tentacle7/_L3_tentacle8
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L3/_L3_tentacle5/_L3_tentacle6/_L3_tentacle7/_L3_tentacle8/_L3_tentacle9
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L3/_L3_tentacle5/_L3_tentacle6/_L3_tentacle7/_L3_tentacle8/_L3_tentacle9/_L3_tentacle10
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L3/_L3_tentacle5/_L3_tentacle6/_L3_tentacle7/_L3_tentacle8/_L3_tentacle9/_L3_tentacle10/_L3_tentacle11
+        weight: 1
+      - path: Character/_Root/L_Arms/offset__L3/_L3_tentacle5/L3_tentacle
+        weight: 1
+      - path: Character/_Root/offset__Body
+        weight: 1
+      - path: Character/_Root/offset__Body/_Body
+        weight: 1
+      - path: Character/_Root/offset__Body/_Body/offset__Head
+        weight: 1
+      - path: Character/_Root/offset__Body/_Body/offset__Head/_Head
+        weight: 1
+      - path: Character/_Root/R_Arms1
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R1
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R1/_R1_tentacle5
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R1/_R1_tentacle5/_R1_tentacle6
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R1/_R1_tentacle5/_R1_tentacle6/_R1_tentacle7
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R1/_R1_tentacle5/_R1_tentacle6/_R1_tentacle7/_R1_tentacle8
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R1/_R1_tentacle5/_R1_tentacle6/_R1_tentacle7/_R1_tentacle8/_R1_tentacle9
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R1/_R1_tentacle5/_R1_tentacle6/_R1_tentacle7/_R1_tentacle8/_R1_tentacle9/_R1_tentacle10
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R1/_R1_tentacle5/_R1_tentacle6/_R1_tentacle7/_R1_tentacle8/_R1_tentacle9/_R1_tentacle10/_R1_tentacle11
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R1/_R1_tentacle5/R1_tentacle
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R2
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R2/_R2_tentacle5
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R2/_R2_tentacle5/_R2_tentacle6
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R2/_R2_tentacle5/_R2_tentacle6/_R2_tentacle7
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R2/_R2_tentacle5/_R2_tentacle6/_R2_tentacle7/_R2_tentacle8
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R2/_R2_tentacle5/_R2_tentacle6/_R2_tentacle7/_R2_tentacle8/_R2_tentacle9
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R2/_R2_tentacle5/_R2_tentacle6/_R2_tentacle7/_R2_tentacle8/_R2_tentacle9/_R2_tentacle10
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R2/_R2_tentacle5/_R2_tentacle6/_R2_tentacle7/_R2_tentacle8/_R2_tentacle9/_R2_tentacle10/_R2_tentacle11
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R2/_R2_tentacle5/R2_tentacle
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R3
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R3/_R3_tentacle5
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R3/_R3_tentacle5/_R3_tentacle6
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R3/_R3_tentacle5/_R3_tentacle6/_R3_tentacle7
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R3/_R3_tentacle5/_R3_tentacle6/_R3_tentacle7/_R3_tentacle8
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R3/_R3_tentacle5/_R3_tentacle6/_R3_tentacle7/_R3_tentacle8/_R3_tentacle9
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R3/_R3_tentacle5/_R3_tentacle6/_R3_tentacle7/_R3_tentacle8/_R3_tentacle9/_R3_tentacle10
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R3/_R3_tentacle5/_R3_tentacle6/_R3_tentacle7/_R3_tentacle8/_R3_tentacle9/_R3_tentacle10/_R3_tentacle11
+        weight: 1
+      - path: Character/_Root/R_Arms1/offset__R3/_R3_tentacle5/R3_tentacle
+        weight: 1
+      - path: Character/Octo_face
+        weight: 1
+      - path: Character/Octo_face/L_eye
+        weight: 1
+      - path: Character/Octo_face/Mouth
+        weight: 1
+      - path: Character/Octo_face/R_eye
+        weight: 1
+      - path: Octopus5
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Body
+        weight: 1
+      - path: Root/Body/Head
+        weight: 1
+      - path: Root/L1_tentacle5
+        weight: 1
+      - path: Root/L1_tentacle5/L1_tentacle6
+        weight: 1
+      - path: Root/L1_tentacle5/L1_tentacle6/L1_tentacle7
+        weight: 1
+      - path: Root/L1_tentacle5/L1_tentacle6/L1_tentacle7/L1_tentacle8
+        weight: 1
+      - path: Root/L1_tentacle5/L1_tentacle6/L1_tentacle7/L1_tentacle8/L1_tentacle9
+        weight: 1
+      - path: Root/L1_tentacle5/L1_tentacle6/L1_tentacle7/L1_tentacle8/L1_tentacle9/L1_tentacle10
+        weight: 1
+      - path: Root/L1_tentacle5/L1_tentacle6/L1_tentacle7/L1_tentacle8/L1_tentacle9/L1_tentacle10/L1_tentacle11
+        weight: 1
+      - path: Root/R1_tentacle5
+        weight: 1
+      - path: Root/R1_tentacle5/R1_tentacle6
+        weight: 1
+      - path: Root/R1_tentacle5/R1_tentacle6/R1_tentacle7
+        weight: 1
+      - path: Root/R1_tentacle5/R1_tentacle6/R1_tentacle7/R1_tentacle8
+        weight: 1
+      - path: Root/R1_tentacle5/R1_tentacle6/R1_tentacle7/R1_tentacle8/R1_tentacle9
+        weight: 1
+      - path: Root/R1_tentacle5/R1_tentacle6/R1_tentacle7/R1_tentacle8/R1_tentacle9/R1_tentacle10
+        weight: 1
+      - path: Root/R1_tentacle5/R1_tentacle6/R1_tentacle7/R1_tentacle8/R1_tentacle9/R1_tentacle10/R1_tentacle11
+        weight: 1
+      - path: Root/R2_tentacle5
+        weight: 1
+      - path: Root/R2_tentacle5/R2_tentacle6
+        weight: 1
+      - path: Root/R2_tentacle5/R2_tentacle6/R2_tentacle7
+        weight: 1
+      - path: Root/R2_tentacle5/R2_tentacle6/R2_tentacle7/R2_tentacle8
+        weight: 1
+      - path: Root/R2_tentacle5/R2_tentacle6/R2_tentacle7/R2_tentacle8/R2_tentacle9
+        weight: 1
+      - path: Root/R2_tentacle5/R2_tentacle6/R2_tentacle7/R2_tentacle8/R2_tentacle9/R2_tentacle10
+        weight: 1
+      - path: Root/R2_tentacle5/R2_tentacle6/R2_tentacle7/R2_tentacle8/R2_tentacle9/R2_tentacle10/R2_tentacle11
+        weight: 1
+      - path: Root/R3_tentacle5
+        weight: 1
+      - path: Root/R3_tentacle5/R3_tentacle6
+        weight: 1
+      - path: Root/R3_tentacle5/R3_tentacle6/R3_tentacle7
+        weight: 1
+      - path: Root/R3_tentacle5/R3_tentacle6/R3_tentacle7/R3_tentacle8
+        weight: 1
+      - path: Root/R3_tentacle5/R3_tentacle6/R3_tentacle7/R3_tentacle8/R3_tentacle9
+        weight: 1
+      - path: Root/R3_tentacle5/R3_tentacle6/R3_tentacle7/R3_tentacle8/R3_tentacle9/R3_tentacle10
+        weight: 1
+      - path: Root/R3_tentacle5/R3_tentacle6/R3_tentacle7/R3_tentacle8/R3_tentacle9/R3_tentacle10/R3_tentacle11
+        weight: 1
+      - path: Root/R5_tentacle5
+        weight: 1
+      - path: Root/R5_tentacle5/R5_tentacle6
+        weight: 1
+      - path: Root/R5_tentacle5/R5_tentacle6/R5_tentacle7
+        weight: 1
+      - path: Root/R5_tentacle5/R5_tentacle6/R5_tentacle7/R5_tentacle8
+        weight: 1
+      - path: Root/R5_tentacle5/R5_tentacle6/R5_tentacle7/R5_tentacle8/R5_tentacle9
+        weight: 1
+      - path: Root/R5_tentacle5/R5_tentacle6/R5_tentacle7/R5_tentacle8/R5_tentacle9/R5_tentacle10
+        weight: 1
+      - path: Root/R5_tentacle5/R5_tentacle6/R5_tentacle7/R5_tentacle8/R5_tentacle9/R5_tentacle10/R5_tentacle11
+        weight: 1
+      - path: Root/R6_tentacle5
+        weight: 1
+      - path: Root/R6_tentacle5/R6_tentacle6
+        weight: 1
+      - path: Root/R6_tentacle5/R6_tentacle6/R6_tentacle7
+        weight: 1
+      - path: Root/R6_tentacle5/R6_tentacle6/R6_tentacle7/R6_tentacle8
+        weight: 1
+      - path: Root/R6_tentacle5/R6_tentacle6/R6_tentacle7/R6_tentacle8/R6_tentacle9
+        weight: 1
+      - path: Root/R6_tentacle5/R6_tentacle6/R6_tentacle7/R6_tentacle8/R6_tentacle9/R6_tentacle10
+        weight: 1
+      - path: Root/R6_tentacle5/R6_tentacle6/R6_tentacle7/R6_tentacle8/R6_tentacle9/R6_tentacle10/R6_tentacle11
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
