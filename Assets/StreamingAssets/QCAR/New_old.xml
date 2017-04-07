@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
     <Tracking>
+        <ImageTarget name="trouhelniky.Bottom" size="248.000000 56.983273"/>
+        <ImageTarget name="trouhelniky.Right" size="57.000000 248.072815"/>
+        <ImageTarget name="trouhelniky.Top" size="248.000000 56.983273"/>
+        <ImageTarget name="trouhelniky.Back" size="248.000000 248.000000"/>
+        <ImageTarget name="trouhelniky.Left" size="57.000000 248.072815"/>
+        <ImageTarget name="trouhelniky.Front" size="248.000000 248.000000"/>
         <ImageTarget name="new_old_bigger.Bottom" size="248.000000 56.983273"/>
         <ImageTarget name="new_old_bigger.Right" size="57.000000 248.072815"/>
         <ImageTarget name="new_old_bigger.Top" size="248.000000 56.983273"/>
@@ -13,6 +19,14 @@
         <ImageTarget name="new_old.Back" size="248.000000 248.000000"/>
         <ImageTarget name="new_old.Left" size="57.000000 248.072815"/>
         <ImageTarget name="new_old.Front" size="248.000000 248.000000"/>
+        <MultiTarget name="trouhelniky">
+            <Part name="trouhelniky.Left" translation="-124.0 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="trouhelniky.Right" translation="124.0 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="trouhelniky.Front" translation="0 0 28.5" rotation="AD: 1 0 0 0"/>
+            <Part name="trouhelniky.Back" translation="0 0 -28.5" rotation="AD: 0 1 0 180"/>
+            <Part name="trouhelniky.Top" translation="0 124.0 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="trouhelniky.Bottom" translation="0 -124.0 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
         <MultiTarget name="new_old_bigger">
             <Part name="new_old_bigger.Left" translation="-124.0 0 0" rotation="AD: 0 1 0 -90"/>
             <Part name="new_old_bigger.Right" translation="124.0 0 0" rotation="AD: 0 1 0 90"/>
