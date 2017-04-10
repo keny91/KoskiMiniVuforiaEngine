@@ -28,6 +28,7 @@ public class GameControllerScript : MonoBehaviour
     public bool gameRunning = false;  // The game is running ?
     public bool gameStopped = true;
     public bool gameEnded = false;
+    public bool changingSceneStatus = false;
 
     public int subSceneIndex = 1;
     bool buildingphase = false;
@@ -48,6 +49,8 @@ public class GameControllerScript : MonoBehaviour
     public GameObject WorldObject;
     public bool trackerDetected = false;
     public HideTrackerOnLost theTracker;
+    Vector3 OriginalPosition;
+
 
     public SoundController theSoundController;
 
@@ -81,18 +84,37 @@ public class GameControllerScript : MonoBehaviour
 
     public IEnumerator FadeOut()
     {
-        EnableOccludingCut();
-        float alpha = 0f;
-        Vector3 FinalPosition = WorldObject.transform.position;
-        FinalPosition.y -= 3000f;
-        float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
-        while (alpha < 20)
+        if (!changingSceneStatus)
         {
-            //WorldObject.transform.position.translate
-            WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, Time.deltaTime/10);
-            // Reduce alpha by fadeSpeed amount.
-            alpha++;
-            yield return new WaitForEndOfFrame();
+            changingSceneStatus = true;
+            //Debug.LogError("FADE OUT");
+            EnableOccludingCut();
+            Vector3 FinalPosition = GameObject.Find("SinkBoardReference").transform.position;
+            float alpha = 0f;
+            //Vector3 FinalPosition = WorldObject.transform.position;
+            //FinalPosition.y -= 3000f;
+            float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
+            float step;
+            while (WorldObject.transform.position.y != FinalPosition.y)
+            {
+                if (Vector3.Distance(WorldObject.transform.position, FinalPosition) < 5)
+                    step = Vector3.Distance(WorldObject.transform.position, FinalPosition);
+                else
+                    step = Time.deltaTime*300;
+                //WorldObject.transform.position.translate
+                //WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, Time.deltaTime/10);
+               // WorldObject.transform.position = Vector3.Lerp(OriginalPosition, FinalPosition, step);
+                WorldObject.transform.position =Vector3.MoveTowards(WorldObject.transform.position, FinalPosition, step);
+                // Reduce alpha by fadeSpeed amount.
+                alpha++;
+                yield return new WaitForEndOfFrame();
+
+            }
+            //Debug.LogError("Arrived");
+            changingSceneStatus = false;
+        }
+       else
+        {
 
         }
     }
@@ -109,23 +131,39 @@ public class GameControllerScript : MonoBehaviour
 
     public IEnumerator FadeIn()
     {
-        
-        SubSceneController theSub = PresentSubScene;
-        float alpha = 0f;
-        Vector3 FinalPosition = WorldObject.transform.position;
-        FinalPosition.y += 3000f;
-        float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
-        while (alpha < 20)
+        if (!changingSceneStatus)
         {
-            //WorldObject.transform.position.translate
-            WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, Time.deltaTime / 10);
-            // Reduce alpha by fadeSpeed amount.
-            alpha++;
-            yield return new WaitForEndOfFrame();
+            changingSceneStatus = true;
+            //Debug.LogError("FADE IN");
+            SubSceneController theSub = PresentSubScene;
+            float alpha = 0f;
+            //Vector3 FinalPosition = WorldObject.transform.position;
+            Vector3 FinalPosition = OriginalPosition;
+            float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
+            float step;
+            while (WorldObject.transform.position.y != FinalPosition.y)
+            {
+
+                if (Vector3.Distance(WorldObject.transform.position, FinalPosition) < 5)
+                    step = Vector3.Distance(WorldObject.transform.position, FinalPosition);
+                else
+                    step = Time.deltaTime * 300;
+                //WorldObject.transform.position.translate
+                //WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, Time.deltaTime * 300);
+                WorldObject.transform.position = Vector3.MoveTowards(WorldObject.transform.position, FinalPosition, step);
+                // Reduce alpha by fadeSpeed amount.
+                alpha++;
+                yield return new WaitForEndOfFrame();
+
+            }
+            DisableOccludingCut();
+            theSub.TransferPhysicalBlocks2Scene();
+            changingSceneStatus = false;
+        }
+        else
+        {
 
         }
-        DisableOccludingCut();
-        theSub.TransferPhysicalBlocks2Scene();
     }
 
 
@@ -482,6 +520,8 @@ public class GameControllerScript : MonoBehaviour
         //SetGoal and respawn positions
         Respawn = (Transform)GameObject.Find("RespawnPosition").GetComponent<Transform>();
         WorldObject = GameObject.Find("WorldScene");
+        OriginalPosition = WorldObject.transform.position;
+
 
         try
         {
