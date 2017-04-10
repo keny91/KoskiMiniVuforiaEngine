@@ -11,6 +11,8 @@ public class SubSceneController : MonoBehaviour {
     public float distance2Player;
     public float distanceTH = 20f;
 
+    bool built;
+
     GameObject[] placeHolders;
     GameObject[] otherAssets;
     GameObject[] physicalblocks;
@@ -196,12 +198,13 @@ public class SubSceneController : MonoBehaviour {
 
     void SetBuildingPhase()
     {
+        HideVisualReference();
+        DisplayPlaceHolders();
         //theController.changeWorldVisible(true, false);
         StartCoroutine(theController.FadeOut());
         //theController.FadeOut();
         //theSubSceneUI.Show();
-        HideVisualReference();
-        DisplayPlaceHolders();
+
     }
 
     void RollBackToRefStatus()
@@ -217,7 +220,7 @@ public class SubSceneController : MonoBehaviour {
    public void Start () {
         TargetReached = false;
         thePlayer = GameObject.Find("Player").transform;
-
+        built = false;
 
         if (transform.FindChild("Placeholders").childCount == transform.FindChild("Blocks").childCount)
         {
@@ -270,9 +273,10 @@ public class SubSceneController : MonoBehaviour {
             if (TargetReached)
             {
                 SetBuildingPhase();
+                built = true;
             }
 
-            else if (!TargetReached)
+            else if (!TargetReached && !built)
             {
                 //RollBackToRefStatus();
                 DisplayVisualReference();
