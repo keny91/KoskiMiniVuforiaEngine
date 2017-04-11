@@ -118,7 +118,12 @@ public class SubSceneController : MonoBehaviour {
     {
         for (int i = 0; i < blockCount; i++)
         {
-            placeHolders[i].GetComponent<Renderer>().enabled = true;
+            //placeHolders[i].GetComponent<Renderer>().enabled = true;
+            Renderer[] rendererComponents = placeHolders[i].GetComponentsInChildren<Renderer>(true);
+            foreach (Renderer component in rendererComponents)
+            {
+                component.enabled = true;
+            }
             placeHolders[i].GetComponent<BoxCollider>().enabled = true;
         }
     }
@@ -127,7 +132,13 @@ public class SubSceneController : MonoBehaviour {
     {
         for (int i = 0; i < blockCount; i++)
         {
-            placeHolders[i].GetComponent<Renderer>().enabled = false;
+           // placeHolders[i].GetComponent<Renderer>().enabled = false;
+            Renderer[] rendererComponents = placeHolders[i].GetComponentsInChildren<Renderer>(true);
+            foreach (Renderer component in rendererComponents)
+            {
+                component.enabled = false;
+            }
+            
             placeHolders[i].GetComponent<BoxCollider>().enabled = false;
         }
     }
