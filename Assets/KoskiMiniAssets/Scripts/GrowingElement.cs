@@ -21,6 +21,11 @@ public class GrowingElement : MonoBehaviour {
         animationElements = this.GetComponent<Animator>();
     }
 	
+
+
+    /// <summary>
+    /// Checks if the distance between the player and the object is sufficiently small.
+    /// </summary>
     protected void checkDistance()
     {
         distance2Player = (thePlayer.position - this.GetComponent<Transform>().position).magnitude;
