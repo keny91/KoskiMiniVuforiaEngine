@@ -11,38 +11,27 @@ using System;
 public class GameControllerScript : MonoBehaviour 
     {
 
-
+    // Axis controllet
     CrossPlatformInputManager.VirtualAxis theAxis;
-
-
 
     public Text LvlNumber;
     protected Text NameText;
-    
     public Transform Respawn;
     protected Transform EndGame;
     protected Transform CheckPoint1;
 
 
+
+    // Game Status
     public bool gameStarted = false;  // The game has passed the building phase ?
     public bool gameRunning = false;  // The game is running ?
     public bool gameStopped = true;
     public bool gameEnded = false;
     public bool changingSceneStatus = false;
-
     public int subSceneIndex = 1;
     bool buildingphase = false;
 
     //public LoadingScreen theLoadingScreen;
-
-/*
-    private Color alphaColor;
-    public Color fadeColor = new Color(0, 0, 0, 0);
-    private float timeToFade = 1.0f;
-
-    private Material m_Material;    // Used to store material reference.
-    private Color m_Color;            // Used to store color reference.
-*/
 
     //Hidden world
     public bool WorldHidden;
@@ -61,13 +50,13 @@ public class GameControllerScript : MonoBehaviour
     protected int score_th = 15;
 
     // Panel that should appear once the level has been completed
+    // Elements inside all scenes
     protected GameObject GameMenuLose;
     protected GameObject GameMenuWin;
     protected GameObject GameUIinGame;
     protected GameObject LostTrackerUI;
     public GameObject GamePause;
     CanvasGroupDisplay [] UIs;
-
     GameObject NewBlocksContainer;
     GameObject SubScenesContainer;
     SubSceneController PresentSubScene;
@@ -81,18 +70,18 @@ public class GameControllerScript : MonoBehaviour
     protected bool allCollectiblesCollected;
 
 
-
+    /// <summary>
+    /// Make the worldscene dissapear below a board dedicated to occlude. Has a sinking feeling.
+    /// </summary>
     public IEnumerator FadeOut()
     {
         if (!changingSceneStatus)
         {
             changingSceneStatus = true;
-            //Debug.LogError("FADE OUT");
+            //Debug.LogError("FADE OUT process");
             EnableOccludingCut();
             Vector3 FinalPosition = GameObject.Find("SinkBoardReference").transform.position;
             float alpha = 0f;
-            //Vector3 FinalPosition = WorldObject.transform.position;
-            //FinalPosition.y -= 3000f;
             float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
             float step;
             while (WorldObject.transform.position.y != FinalPosition.y)
@@ -101,9 +90,6 @@ public class GameControllerScript : MonoBehaviour
                     step = Vector3.Distance(WorldObject.transform.position, FinalPosition);
                 else
                     step = Time.deltaTime*300;
-                //WorldObject.transform.position.translate
-                //WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, Time.deltaTime/10);
-               // WorldObject.transform.position = Vector3.Lerp(OriginalPosition, FinalPosition, step);
                 WorldObject.transform.position =Vector3.MoveTowards(WorldObject.transform.position, FinalPosition, step);
                 // Reduce alpha by fadeSpeed amount.
                 alpha++;
@@ -115,9 +101,11 @@ public class GameControllerScript : MonoBehaviour
         }
        else
         {
-
+            // Nothing for now I guess
         }
     }
+
+
 
     public void EnableOccludingCut()
     {
@@ -129,6 +117,10 @@ public class GameControllerScript : MonoBehaviour
         GameObject.Find("OcclusionBoard").GetComponent<MeshRenderer>().enabled = false;
     }
 
+
+    /// <summary>
+    /// Opposite to FadeOut() make the scene reapear from a hidden State.
+    /// </summary>
     public IEnumerator FadeIn()
     {
         if (!changingSceneStatus)
@@ -137,7 +129,6 @@ public class GameControllerScript : MonoBehaviour
             //Debug.LogError("FADE IN");
             SubSceneController theSub = PresentSubScene;
             float alpha = 0f;
-            //Vector3 FinalPosition = WorldObject.transform.position;
             Vector3 FinalPosition = OriginalPosition;
             float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
             float step;
@@ -148,8 +139,6 @@ public class GameControllerScript : MonoBehaviour
                     step = Vector3.Distance(WorldObject.transform.position, FinalPosition);
                 else
                     step = Time.deltaTime * 300;
-                //WorldObject.transform.position.translate
-                //WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, Time.deltaTime * 300);
                 WorldObject.transform.position = Vector3.MoveTowards(WorldObject.transform.position, FinalPosition, step);
                 // Reduce alpha by fadeSpeed amount.
                 alpha++;
@@ -172,26 +161,7 @@ public class GameControllerScript : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
     }
-    public IEnumerator AlphaFade()
-    {
 
-        Debug.LogError("FAAAAAAADING");
-        // Alpha start value.
-        float alpha = 0f;
-        
-        Vector3 FinalPosition = WorldObject.transform.position;
-        FinalPosition.y -= 3000f;
-        float journeyLength = Vector3.Distance(WorldObject.transform.position, FinalPosition);
-        // Loop until aplha is below zero (completely invisalbe)
-        while (alpha < 10.0f)
-        {
-            //WorldObject.transform.position.translate
-            WorldObject.transform.position = Vector3.Lerp(WorldObject.transform.position, FinalPosition, journeyLength);
-            // Reduce alpha by fadeSpeed amount.
-            alpha++;
-            yield return new WaitForEndOfFrame();
-        }
-    }
 
     /// <summary>
     ///  Start and unpause the game, enable movement, set the proper UI assets.
@@ -208,46 +178,6 @@ public class GameControllerScript : MonoBehaviour
 
     }
 
-    
-    public void EnableLostUI()
-    {
-
-        for (int i = 0; i < UIs.Length; i++)
-        {
-            if (UIs[i].transform.name == LostTrackerUI.transform.name)
-                UIs[i].Show();
-            else
-            {
-                UIs[i].Hide();
-            }
-        }
-        gameRunning = false;
-    }
-
-
-    public void DisableLostUI()
-    {
-        string thename;
-        if (gameStarted)
-            thename = "InGameUI";
-        else
-            thename = "PreSceneUI";
-
-            for (int i = 0; i < UIs.Length; i++)
-            {
-                if (UIs[i].transform.name == thename)
-                {
-                //Debug.LogError("Enabling UI: "+ UIs[i].transform.name);
-                UIs[i].Show();
-                }
-                    
-                else
-                {
-                    UIs[i].Hide();
-                }
-            }
-        gameRunning = true;
-    }
 
 
     /// <summary>
@@ -270,7 +200,9 @@ public class GameControllerScript : MonoBehaviour
 
 
 
-
+    /*******************************************************/
+    /*****************   Collectibles   ********************/
+    /*******************************************************/
 
     /// <summary> 
     /// A collectible has been picked. Depending on its properties modify game variables
@@ -279,10 +211,8 @@ public class GameControllerScript : MonoBehaviour
     public void collectibleCollected(Collectible collect)
     {
 
-
         if (!collect.isPowerUp)
         {            
-
             modifyScore(collect.value);
             theSoundController.playClip(theSoundController.SoundCoinCollected);
         }          
@@ -323,6 +253,7 @@ public class GameControllerScript : MonoBehaviour
     /*******************************************************/
     /*****************    PLAY/PAUSE    ********************/
     /*******************************************************/
+
     /// <summary>
     /// Resume the process when paused
     /// </summary>
@@ -357,6 +288,61 @@ public class GameControllerScript : MonoBehaviour
     }
 
 
+
+    /************************************************************/
+    /*****************    World visibility   ********************/
+    /************************************************************/
+
+    /// <summary>
+    /// When the tracker is lost trigger the lost screen and disable the visible world.
+    /// This does not properly work with a multiTracker. 
+    /// </summary>
+    public void EnableLostUI()
+    {
+
+        for (int i = 0; i < UIs.Length; i++)
+        {
+            if (UIs[i].transform.name == LostTrackerUI.transform.name)
+                UIs[i].Show();
+            else
+            {
+                UIs[i].Hide();
+            }
+        }
+        gameRunning = false;
+    }
+
+    /// <summary>
+    /// Opposite to EnableLostUI, make the given UI dissapear as the tracked object has been found.
+    /// </summary>
+    public void DisableLostUI()
+    {
+        string thename;
+        if (gameStarted)
+            thename = "InGameUI";
+        else
+            thename = "PreSceneUI";
+
+        for (int i = 0; i < UIs.Length; i++)
+        {
+            if (UIs[i].transform.name == thename)
+            {
+                //Debug.LogError("Enabling UI: "+ UIs[i].transform.name);
+                UIs[i].Show();
+            }
+
+            else
+            {
+                UIs[i].Hide();
+            }
+        }
+        gameRunning = true;
+    }
+
+    /// <summary>
+    /// Enable or disable the scene object´s renderers.
+    /// </summary>
+    /// <param name="visible">Enablo or disable (true or false)</param>
     public void makeSceneVisible(bool visible)
     {
         // Originally disable the scene render
@@ -367,8 +353,6 @@ public class GameControllerScript : MonoBehaviour
         foreach (Renderer component in rendererComponents)
         {
             component.enabled = visible;
-            //StartCoroutine(AlphaFade());
-            //component.material = Material.Color.Lerp(component.material.color, alphaColor, timeToFade * Time.deltaTime);
         }
 
     }
@@ -425,7 +409,6 @@ public class GameControllerScript : MonoBehaviour
                     //PreSceneControl.GetPreScene().makePreSceneVisible(!untracked);
                 }
             }
-
 
             else
             {
@@ -487,7 +470,6 @@ public class GameControllerScript : MonoBehaviour
     /// <param name="int value"> Amount incremented to the live system.</param>
     /// <seealso cref="GameControllerScript.Alive() "/>
     /// <seealso cref="ScoreCanvasControl.changeLifeSprite(int LiveNumber) "/>
-
     public void ChangeLiveCount(int value)
     {
         Lives += value;
@@ -566,40 +548,24 @@ public class GameControllerScript : MonoBehaviour
         coinObject = GameObject.FindGameObjectsWithTag("Collectable");
         collectibleRemaining = 0;
 
-        CheckNumberOfCollectables();
-        /*
-        for (int i =0; i < coinObject.Length; i++)
-        {
-            Collectible theCollectible = (Collectible)coinObject[i].GetComponent(typeof(Collectible));
-            if (theCollectible.requiredToPassLevel)
-                collectibleRemaining++;
-
-            if (theCollectible.value > 0)
-                max_score += theCollectible.value;
-
-        }
-        */
+        CheckNumberOfCollectables(); // Find out the number of collectibles in the scene.
 
         // Originally disable the scene render
         makeSceneVisible(true);
         StartGame();
         GameUIinGame.GetComponent<ScoreCanvasControl>().Show();
 
-
         GameObject objectRespawn = GameObject.Find("RespawnPosition");
         Respawn = objectRespawn.transform;
 
 
         // Start on the PreSceneScreen
-        
         //LoadPreScene(); //
         
 
         theSoundController = (SoundController)GetComponent<SoundController>();
         theSoundController.PlayBackGroundMusic();
         InitSubScene(subSceneIndex);
-
-
     }
 
 
@@ -626,6 +592,10 @@ public class GameControllerScript : MonoBehaviour
 
     /*****************   SubSceneControll   *******************/
     
+    /// <summary>
+    /// Start a subscene given its index
+    /// </summary>
+    /// <param name="id">The Id of the scene to be initialized.</param>
     void InitSubScene(int id)
     {
         if(id <= numberSubscenes)
@@ -646,10 +616,6 @@ public class GameControllerScript : MonoBehaviour
 
     }
 
-    void ChangeToBuildingStatus()
-    {
-
-    }
 
 
 
@@ -663,37 +629,18 @@ public class GameControllerScript : MonoBehaviour
         for (int i = 0; i < numberOfChildsSubScenes; i++)
         {
             SubScenesContainer.transform.FindChild(prefix + i).GetComponent<SubSceneController>().HideAllContent();
-            /*
-            // Determine the number of blocks in the subscene
-            int numberOfElements = SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Placeholders").childCount;
-            // Disable all renderers for both 
-            for (int j = 0; j < numberOfElements; j++)
-            {
-                SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Placeholders").GetChild(j).GetComponent<Renderer>().enabled = false;
-                SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Placeholders").GetChild(j).GetComponent<BoxCollider>().enabled = false;
-                SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Blocks").GetChild(j).GetComponent<Renderer>().enabled = false;
-                SubScenesContainer.transform.FindChild(prefix + i).transform.FindChild("Blocks").GetChild(j).GetComponent<BoxCollider>().enabled = false;
-            }
-*/
 
         }
             int numberOfChilds = SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("Blocks").childCount;
     }
 
 
-   public void ReachedProximityTrigger()
-    {
-        SubScenesContainer.transform.FindChild(prefix + subSceneIndex).transform.FindChild("placeholders").GetComponentInChildren<Renderer>().enabled = true;
-    }
-
 
     // Update is called once per frame
     protected void Update () {
-
-        //if(trackerDetected)
-
-
     }
+
+
 
     /*******************************************************/
     /*****************  Victory/Defeat  ********************/
@@ -832,7 +779,6 @@ public class GameControllerScript : MonoBehaviour
         ClearAxis();
         SceneManager.LoadScene("MainMenuTrue");
     }
-
 
 
     public void OnNextButton()

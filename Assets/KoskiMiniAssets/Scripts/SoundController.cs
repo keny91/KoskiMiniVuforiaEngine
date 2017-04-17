@@ -40,6 +40,7 @@ public class SoundController : MonoBehaviour
         AudioLevel.Play();
     }
 
+
     public void StopBackGroundMusic()
     {
         //AudioLevel = gameObject.AddComponent<AudioSource>();

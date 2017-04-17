@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
+/// <summary>
+/// Attach this script to the placeHolders in the Subscene. They will be the triggers to shift to the next screen.
+/// </summary>
 public class TouchTrigger : MonoBehaviour {
 
     public Material[] materials;//Allows input of material colors in a set size of array;
@@ -15,21 +21,19 @@ public class TouchTrigger : MonoBehaviour {
     void Start()
     {
         theController = GameObject.Find("GameControl").GetComponent<GameControllerScript>();
-        //Rend = GetComponent<Renderer>();//Gives functionality for the renderer
-        //Rend.enabled = true;//Makes the rendered 3d object visable if enabled;
     }
 
 
 
+
+    /// <summary>
+    /// We attach an onMouseDown event to trigger the onTouchFunction
+    /// </summary>
     void OnMouseDown()
     {
-
-
         if (Input.GetMouseButtonDown(0))
         {
-            //Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             theController.NextSubScene();
-            //Rend.sharedMaterial = materials[index - 1]; //This sets the material color values inside the index
         }
     }
 }
