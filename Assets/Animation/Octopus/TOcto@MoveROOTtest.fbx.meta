@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 152dee733f82ed944bcd7881324dc8d6
-timeCreated: 1492430442
+guid: 349d43e7eb0a5384ea38572bb1a6faca
+timeCreated: 1491845573
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -297,7 +297,7 @@ ModelImporter:
       name: MoveROOT
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 38
+      lastFrame: 76
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -448,6 +448,14 @@ ModelImporter:
         weight: 1
       - path: Origin/Character/_Root/R_Arms1/offset__R3/_R3_tentacle5/R3_tentacle
         weight: 1
+      - path: Origin/Character/Octo_face
+        weight: 1
+      - path: Origin/Character/Octo_face/L_eye
+        weight: 1
+      - path: Origin/Character/Octo_face/Mouth
+        weight: 1
+      - path: Origin/Character/Octo_face/R_eye
+        weight: 1
       - path: Origin/TentacleAim
         weight: 1
       - path: Origin/TentacleAim/offset_L1_TentacleAim
@@ -493,14 +501,6 @@ ModelImporter:
       - path: Root/L1_tentacle5/L1_tentacle6/L1_tentacle7/L1_tentacle8/L1_tentacle9/L1_tentacle10
         weight: 1
       - path: Root/L1_tentacle5/L1_tentacle6/L1_tentacle7/L1_tentacle8/L1_tentacle9/L1_tentacle10/L1_tentacle11
-        weight: 1
-      - path: Root/Octo_face
-        weight: 1
-      - path: Root/Octo_face/L_eye
-        weight: 1
-      - path: Root/Octo_face/Mouth
-        weight: 1
-      - path: Root/Octo_face/R_eye
         weight: 1
       - path: Root/R1_tentacle5
         weight: 1
