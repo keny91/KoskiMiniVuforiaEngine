@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f95c7ccfc20a4484bb878920bde471cc
+timeCreated: 1492519776
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: KaoriGelBold
+  fontNames:
+  - KaoriGelBold
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
