@@ -15,6 +15,7 @@ public class SubSceneController : MonoBehaviour {
     protected Transform position;
     public float distance2Player;
     public float distanceTH = 20f;
+    bool doOnce = false;
 
     bool built;
 
@@ -76,6 +77,18 @@ public class SubSceneController : MonoBehaviour {
         foreach (Renderer component in rendererComponents)
         {
             component.enabled = true;
+        }
+
+        if (!doOnce)
+        {
+            Animator[] AnimComponents = VisualReference.GetComponentsInChildren<Animator>(true);
+            foreach (Animator component in AnimComponents)
+            {
+                //component.enabled = true;
+                component.Play("grow");
+                // component.Update(Time.deltaTime);
+                //component.SetBool("Trigger", false);
+            }
         }
 
     }
@@ -270,6 +283,7 @@ public class SubSceneController : MonoBehaviour {
        // theSubSceneUI.Hide();
         DisplayVisualReference();
         HidePlaceHolders();
+        doOnce = false;
     }
 
     /*******************************************/
@@ -338,6 +352,7 @@ public class SubSceneController : MonoBehaviour {
             {
                 //RollBackToRefStatus();
                 DisplayVisualReference();
+                doOnce = true;
             }
         }
         // get to building phase
