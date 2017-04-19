@@ -13,7 +13,7 @@ Shader "MatCap/Vertex/Textured Add"
 	
 	Subshader
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType" = "Opaque"}
 		
 		Pass
 		{
