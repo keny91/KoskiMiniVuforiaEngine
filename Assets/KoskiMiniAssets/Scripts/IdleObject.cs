@@ -5,10 +5,10 @@ using UnityEngine;
 public class IdleObject : MonoBehaviour {
 
     bool doingNothing = true;
-    float timeUnproductive = 0f;
-    float idleTimerTrigger = 12f;
+    public float timeUnproductive = 0f;
+    public float idleTimerTrigger = 12f;
     float RegisteredTime = 0f;
-    int numAnimatorBranches = 2;
+    public int numAnimatorBranches = 2;
     Animator animationElements;
 
     // Use this for initialization
@@ -39,10 +39,11 @@ public class IdleObject : MonoBehaviour {
 
     public IEnumerator Reset()
     {
-        yield return new WaitForSeconds(1);
         getTimeStamp();
         doingNothing = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
+        animationElements.SetInteger("AnimVersion", -1);
+        
     }
 
         // Update is called once per frame
@@ -57,6 +58,7 @@ public class IdleObject : MonoBehaviour {
             //Debug.LogError("Triggered: " + selected);
             animationElements.SetInteger("AnimVersion", selected);
             doingNothing = false;
+            selected = -1;
 
 
             /*
@@ -69,7 +71,7 @@ public class IdleObject : MonoBehaviour {
                 transform.FindChild("Particles").GetComponent<ParticleSystem>().Play();
             }
             */
-
+            getTimeStamp();
             StartCoroutine(Reset());
 
         }
