@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    public float timer;
+
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+            Destroy(gameObject);
 	}
 }
