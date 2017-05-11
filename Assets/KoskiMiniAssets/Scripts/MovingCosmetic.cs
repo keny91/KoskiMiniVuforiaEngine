@@ -71,7 +71,7 @@ public class MovingCosmetic : MonoBehaviour
         {
             GetComponent<Animator>().speed = 1;
 
-            if (     < Waypoints.Length)
+            if (curWayPoint < Waypoints.Length)
             {
                 // Select the target depending on the type of route
 
